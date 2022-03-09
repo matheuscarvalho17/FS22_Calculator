@@ -1,10 +1,20 @@
 import React from 'react';
-import {View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {Text, TouchableOpacity, View} from 'react-native';
+import {navigationMenuCropsProps} from '../../utils/typesRoutes';
 
-// import { Container } from './styles';
-
-const menuCrops: React.FC = () => {
-  return <View />;
+const MenuCrop: React.FC = () => {
+  const navigation = useNavigation<navigationMenuCropsProps>();
+  return (
+    <View>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('crop');
+        }}>
+        <Text>This is Menu Crop Page</Text>
+      </TouchableOpacity>
+    </View>
+  );
 };
 
-export default menuCrops;
+export default MenuCrop;

@@ -1,21 +1,25 @@
 import React from 'react';
-import main from '../pages/main';
+import Main from '../pages/Main';
+import Crop from '../pages/Crop';
+import MenuCrops from '../pages/MenuCrops';
+import {RootStackParamList} from '../utils/typesRoutes';
+import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import menuCrops from '../pages/menuCrops';
-import crop from '../pages/crop';
 
-const App = createNativeStackNavigator();
-export const routeNames = {
-  mainPage: 'main',
-  menuCrops: 'menuCrops',
-  crop: 'crop',
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+const App: React.FC = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{headerShown: true}}
+        initialRouteName="mainPage">
+        <Stack.Screen name="mainPage" component={Main} />
+        <Stack.Screen name="menuCrops" component={MenuCrops} />
+        <Stack.Screen name="crop" component={Crop} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
-const app: React.FC = () => (
-  <App.Navigator>
-    <App.Screen name={routeNames.mainPage} component={main} />
-    <App.Screen name={routeNames.menuCrops} component={menuCrops} />
-    <App.Screen name={routeNames.crop} component={crop} />
-  </App.Navigator>
-);
 
-export default app;
+export default App;

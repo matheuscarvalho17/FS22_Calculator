@@ -1,8 +1,8 @@
 import App from './App';
 import React from 'react';
 
-const routes: React.FC = () => {
+const Routes: React.FC = () => {
   return <App />;
 };
 
-export default routes;
+export default Routes;

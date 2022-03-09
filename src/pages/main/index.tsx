@@ -1,25 +1,20 @@
-import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {Text, TouchableOpacity, View} from 'react-native';
-import {routeNames} from '../../routes/App';
+import {navigationMainPageProps} from '../../utils/typesRoutes';
 
-// import { Container } from './styles';
-interface INavigation {
-  navigation: StackNavigationProp<any, 'Main'>;
-}
-const main: React.FC<INavigation> = ({navigation}) => {
-  // type authScreenProp = StackNavigationProp<RootStackParamList, 'Auth'>;
-  // const navigation = useNavigation<>();
+const Main: React.FC = () => {
+  const navigation = useNavigation<navigationMainPageProps>();
   return (
     <View>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate(routeNames.menuCrops);
+          navigation.navigate('menuCrops');
         }}>
-        <Text>dasdasdasd main</Text>
+        <Text>This is Main Page</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default main;
+export default Main;
