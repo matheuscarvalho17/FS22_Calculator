@@ -1,18 +1,19 @@
 import React from 'react';
+import * as Styles from './styles';
 import {useNav} from '../../utils/hooks';
-import {Text, TouchableOpacity, View} from 'react-native';
 
 const Main: React.FC = () => {
   const navigation = useNav('mainPage');
   return (
-    <View>
-      <TouchableOpacity
+    <Styles.Container>
+      <Styles.Inside />
+      <Styles.Text>Main Page</Styles.Text>
+      <Styles.Button
         onPress={() => {
           navigation.navigate('menuCrops');
-        }}>
-        <Text>This is Main Page</Text>
-      </TouchableOpacity>
-    </View>
+        }}
+      />
+    </Styles.Container>
   );
 };
 
