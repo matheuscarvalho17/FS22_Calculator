@@ -2,9 +2,10 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {navigationMainPageProps} from '../../utils/typesRoutes';
+import {useNav} from '../../utils/hooks';
 
 const Main: React.FC = () => {
-  const navigation = useNavigation<navigationMainPageProps>();
+  const navigation = useNav('mainPage');
   return (
     <View>
       <TouchableOpacity
