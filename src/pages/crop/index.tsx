@@ -1,11 +1,9 @@
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {Text, TouchableOpacity, View} from 'react-native';
-import {navigationCropProps} from '../../utils/typesRoutes';
 import {useNav} from '../../utils/hooks';
+import {Text, TouchableOpacity, View} from 'react-native';
 
 const Crop: React.FC = () => {
-  const navigation = useNav('mainPage');
+  const navigation = useNav('crop');
   return (
     <View>
       <TouchableOpacity

@@ -12,7 +12,7 @@ const App: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        screenOptions={{headerShown: true}}
+        screenOptions={{headerShown: false}}
         initialRouteName="mainPage">
         <Stack.Screen name="mainPage" component={Main} />
         <Stack.Screen name="menuCrops" component={MenuCrops} />
