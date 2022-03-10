@@ -1,12 +1,15 @@
 import React from 'react';
 import {styles} from './styles';
 import * as Styles from './styles';
-import {useNav} from '../../utils/hooks';
 import {string} from '../../languages';
+import {useNav} from '../../utils/hooks';
 import Button from '../../components/Button';
 import IconButton from '../../components/IconButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
+export const language = 'US';
+export const apparence = 'FS22';
 
 const Main: React.FC = () => {
   const navigation = useNav('mainPage');
