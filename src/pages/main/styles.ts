@@ -18,6 +18,12 @@ export const Header = styled.View`
 export const Body = styled.View`
   flex: 0.71;
 `;
+export const BottomBox = styled.View`
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+`;
 export const Title = styled.Text`
   font-weight: bold;
   text-align: center;
