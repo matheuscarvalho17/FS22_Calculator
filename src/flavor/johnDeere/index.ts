@@ -1,8 +1,8 @@
 import {colors} from './colors';
 
-const johnDeere = {
-  nome: 'John Deere',
+const JohnDeere = {
+  name: 'John Deere',
   colors: colors,
 };
 
-export {johnDeere};
+export {JohnDeere};

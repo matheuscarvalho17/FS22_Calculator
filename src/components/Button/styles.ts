@@ -1,5 +1,5 @@
+import {colors} from '../../flavor';
 import styled from 'styled-components/native';
-import {colors} from '../../flavor/fs22/colors';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,

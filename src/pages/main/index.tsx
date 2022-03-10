@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Styles from './styles';
 import {useNav} from '../../utils/hooks';
-import {string} from '../../languages/US';
+import {string} from '../../languages';
 import Button from '../../components/Button';
 
 const Main: React.FC = () => {

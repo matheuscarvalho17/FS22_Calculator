@@ -1,8 +1,13 @@
-const string = {
+const strings = {
   // Main buttons
   crops: 'Crops',
   animals: 'Animals',
   products: 'Products',
 };
 
-export {string};
+const US = {
+  name: 'English',
+  string: strings,
+};
+
+export {US};

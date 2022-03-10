@@ -1,8 +1,13 @@
-const string = {
+const strings = {
   // Botões do Menu
   crops: 'Culturas',
   animals: 'Animais',
   products: 'Produtos',
 };
 
-export {string};
+const PT = {
+  name: 'Português',
+  string: strings,
+};
+
+export {PT};
