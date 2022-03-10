@@ -1,11 +1,12 @@
 import React from 'react';
+import {styles} from './styles';
 import * as Styles from './styles';
 import {useNav} from '../../utils/hooks';
 import {string} from '../../languages';
 import Button from '../../components/Button';
 import IconButton from '../../components/IconButton';
-// import Icon2 from 'react-native-vector-icons/Ionicons';
-// import { } from 'react-native-vector-icons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const Main: React.FC = () => {
   const navigation = useNav('mainPage');
@@ -36,11 +37,11 @@ const Main: React.FC = () => {
         <Styles.BottomBox>
           <IconButton
             onPress={() => {}}
-            // icon={<AntDesign name="smileo" />}
+            icon={<Ionicons name="globe-sharp" style={styles.icon} />}
           />
           <IconButton
             onPress={() => {}}
-            // icon={<AntDesign name="smileo" />}
+            icon={<FontAwesome name="gear" style={styles.icon} />}
           />
         </Styles.BottomBox>
       </Styles.Body>

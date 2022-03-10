@@ -12,7 +12,7 @@ const IconButton: React.FC<ButtonProps> = ({onPress, icon}) => {
       onPress={() => {
         onPress();
       }}>
-      <Styles.IconBox>{icon}</Styles.IconBox>
+      {icon}
     </Styles.Button>
   );
 };

@@ -4,6 +4,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {StyleSheet} from 'react-native';
 
 export const Container = styled.View`
   flex: 1;
@@ -30,3 +31,10 @@ export const Title = styled.Text`
   font-size: ${hp(4.5)}px;
   color: ${colors.text_light};
 `;
+
+export const styles = StyleSheet.create({
+  icon: {
+    color: colors.text_light,
+    fontSize: hp(4.5),
+  },
+});
