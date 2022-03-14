@@ -39,10 +39,19 @@ export const List = styled.View`
   padding-right: ${wp(10)}px;
 `;
 
-export const ImageBg = styled.ImageBackground``;
+export const ImageBg = styled.ImageBackground`
+  /* border-width: 1px;
+  border-top-right-radius: ${wp(1)}px;
+  border-top-left-radius: ${wp(5.5)}px;
+  border-bottom-left-radius: ${wp(1)}px;
+  border-bottom-right-radius: ${wp(5.5)}px; */
+`;
 
 export const styles = StyleSheet.create({
   btn: {
     marginLeft: 10,
+    width: 80,
+    height: 80,
   },
+  btnImage: {width: 50, height: 50},
 });

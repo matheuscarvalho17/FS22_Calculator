@@ -32,11 +32,11 @@ const MenuCrop: React.FC = () => {
             {buttons.map((v, i) => (
               <CustomButton
                 onPress={v.onPress}
-                style={{...{width: 80, height: 80}, ...Styles.styles.btn}}
+                style={{...Styles.styles.btn}}
                 key={i}>
                 <Styles.ImageBg
                   source={v.icon}
-                  style={{...{width: 50, height: 50}}}></Styles.ImageBg>
+                  style={{...Styles.styles.btnImage}}></Styles.ImageBg>
               </CustomButton>
             ))}
           </Styles.List>
