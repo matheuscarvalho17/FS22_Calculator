@@ -1,3 +1,5 @@
+import {string} from '../languages';
+
 interface ICrop {
   name: string;
   icon: any;
@@ -6,13 +8,13 @@ interface ICrop {
 }
 export const crops: Array<ICrop> = [
   {
-    name: 'wheat',
+    name: string.wheat,
     icon: require('../assets/crops/wheat.png'),
     avgPrice: 1,
     yieldPerHa: 1,
   },
   {
-    name: 'wheat',
+    name: string.wheat,
     icon: require('../assets/crops/wheat.png'),
     avgPrice: 1,
     yieldPerHa: 1,

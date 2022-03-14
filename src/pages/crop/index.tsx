@@ -1,18 +1,23 @@
 import React from 'react';
 import {useNav} from '../../utils/hooks';
 import {Text, TouchableOpacity, View} from 'react-native';
+import {useRoute} from '@react-navigation/native';
+import * as Styles from './styles';
+import {crops} from '../../utils/database';
 
-const Crop: React.FC = () => {
+const Crop: React.FC = ({}) => {
   const navigation = useNav('crop');
+  const route = useRoute();
+  const {cropid} = route.params;
   return (
-    <View>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('mainPage');
-        }}>
-        <Text>This is Crop Page</Text>
-      </TouchableOpacity>
-    </View>
+    <Styles.Container>
+      <Styles.Header>
+        <Styles.Title>{crops[cropid].name}</Styles.Title>
+      </Styles.Header>
+      <Styles.Body>
+        <Styles.TextInfos>Price</Styles.TextInfos>
+      </Styles.Body>
+    </Styles.Container>
   );
 };
 

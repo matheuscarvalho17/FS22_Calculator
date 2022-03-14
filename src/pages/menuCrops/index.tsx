@@ -25,7 +25,7 @@ const MenuCrop: React.FC = () => {
       aux.push({
         icon: element.icon,
         onPress: () => {
-          console.log(i);
+          navigation.navigate('crop', {cropid: i});
         },
       });
     });
