@@ -1,18 +1,48 @@
 import React from 'react';
 import {useNav} from '../../utils/hooks';
-import {Text, TouchableOpacity, View} from 'react-native';
+import * as Styles from './styles';
+import {FlatList, Image, ImageBackground, ScrollView} from 'react-native';
+import CustomButton from '../../components/CustomButton';
+import {Text} from '../../components/Button/styles';
+import {string} from '../../languages';
 
 const MenuCrop: React.FC = () => {
+  interface IButton {
+    icon: any;
+    onPress: Function;
+  }
   const navigation = useNav('menuCrops');
+
+  const buttons: Array<IButton> = [
+    {icon: require('../../assets/crops/barley.png'), onPress: () => {}},
+    {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
+    {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
+    {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
+    {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
+    {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
+  ];
   return (
-    <View>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('crop');
-        }}>
-        <Text>This is Menu Crop Page</Text>
-      </TouchableOpacity>
-    </View>
+    <Styles.Container>
+      <Styles.Header>
+        <Styles.Title>Crops</Styles.Title>
+      </Styles.Header>
+      <Styles.Body>
+        <ScrollView>
+          <Styles.List>
+            {buttons.map((v, i) => (
+              <CustomButton
+                onPress={v.onPress}
+                style={{...{width: 80, height: 80}, ...Styles.styles.btn}}
+                key={i}>
+                <Styles.ImageBg
+                  source={v.icon}
+                  style={{...{width: 50, height: 50}}}></Styles.ImageBg>
+              </CustomButton>
+            ))}
+          </Styles.List>
+        </ScrollView>
+      </Styles.Body>
+    </Styles.Container>
   );
 };
 
