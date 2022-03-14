@@ -8,6 +8,8 @@ const strings: ILanguage = {
   products: 'Products',
   title: 'Farming Calculator',
   wheat: 'Wheat',
+  price: 'Price',
+  yieldPerHa: 'yieldPerHa',
 };
 
 const US = {
