@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNav} from '../../utils/hooks';
 import * as Styles from './styles';
-import {FlatList, Image, ImageBackground, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import CustomButton from '../../components/CustomButton';
 import {Text} from '../../components/Button/styles';
 import {string} from '../../languages';
+import {crops} from '../../utils/database';
 
 const MenuCrop: React.FC = () => {
   interface IButton {
@@ -13,14 +14,23 @@ const MenuCrop: React.FC = () => {
   }
   const navigation = useNav('menuCrops');
 
-  const buttons: Array<IButton> = [
-    {icon: require('../../assets/crops/barley.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
-  ];
+  const [buttons, setButtons] = useState<Array<IButton>>([
+    // {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
+  ]);
+
+  useEffect(() => {
+    console.log('Aqui');
+    let aux: Array<IButton> = [];
+    crops.forEach((element, i) => {
+      aux.push({
+        icon: element.icon,
+        onPress: () => {
+          console.log(i);
+        },
+      });
+    });
+    setButtons(aux);
+  }, []);
   return (
     <Styles.Container>
       <Styles.Header>
