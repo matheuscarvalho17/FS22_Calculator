@@ -1,6 +1,5 @@
 import React from 'react';
-import {styles} from './styles';
-import * as Styles from './styles';
+import {useStyle} from './styles';
 import {useNav} from '../../utils/hooks';
 import {useLanguage} from '../../languages';
 import {useCrops} from '../../utils/database';
@@ -10,10 +9,12 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Crop: React.FC = ({}) => {
   const crops = useCrops();
-  const navigation = useNav('crop');
   const route = useRoute();
-  const {string} = useLanguage();
+  const Styles = useStyle();
+  const {styles} = useStyle();
   const {cropId} = route.params;
+  const {string} = useLanguage();
+  const navigation = useNav('crop');
 
   return (
     <Styles.Container>
@@ -42,5 +43,4 @@ const Crop: React.FC = ({}) => {
     </Styles.Container>
   );
 };
-
 export default Crop;

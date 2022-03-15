@@ -1,7 +1,6 @@
-import {styles} from './styles';
-import * as Styles from './styles';
-import {ImageURISource} from 'react-native';
+import {useStyle} from './styles';
 import {useNav} from '../../utils/hooks';
+import {ImageURISource} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import IconButton from '../../components/IconButton';
 import CustomButton from '../../components/CustomButton';
@@ -16,8 +15,10 @@ import {useLanguage} from '../../languages';
 import {useCrops} from '../../utils/database';
 const MenuCrop: React.FC = () => {
   //context
-  const {string} = useLanguage();
   const crops = useCrops();
+  const Styles = useStyle();
+  const {styles} = useStyle();
+  const {string} = useLanguage();
   const navigation = useNav('menuCrops');
   const [buttons, setButtons] = useState<Array<IButton>>([]);
 

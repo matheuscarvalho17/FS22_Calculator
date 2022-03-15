@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Styles from './styles';
+import {useStyle} from './styles';
 
 interface ButtonProps {
   text: string;
@@ -7,6 +7,8 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({text, onPress}) => {
+  const Styles = useStyle();
+
   return (
     <Styles.Button
       onPress={() => {

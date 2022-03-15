@@ -9,7 +9,7 @@ import {Context} from './src/Context';
 export default function MainIndex() {
   return (
     <Context>
-      <StatusBar backgroundColor={colors.background} />
+      {/* <StatusBar backgroundColor={colors.background} /> */}
       <Routes />
     </Context>
   );
