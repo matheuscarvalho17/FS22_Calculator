@@ -1,3 +1,10 @@
+export interface ILanguageProps {
+  key: string;
+  flag: string;
+  name: string;
+  string: object;
+}
+
 export interface ILanguage {
   // Main buttons and Title
   crops: string;
@@ -85,8 +92,9 @@ const strings: ILanguage = {
   wood_chips_square_bale: 'Wood Chips Square Bale',
 };
 
-const US = {
+const US: ILanguageProps = {
   key: 'US',
+  flag: '🇺🇸',
   name: 'English',
   string: strings,
 };

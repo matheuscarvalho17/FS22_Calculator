@@ -1,4 +1,4 @@
-import {ILanguage, US} from '../English';
+import {ILanguage, ILanguageProps, US} from '../English';
 
 const strings: ILanguage = {
   ...US.string,
@@ -44,9 +44,10 @@ const strings: ILanguage = {
   // wood_chips_square_bale: 'Wood Chips Square Bale',
 };
 
-const JP = {
-  name: '日本',
+const JP: ILanguageProps = {
   key: 'JP',
+  flag: '🇯🇵',
+  name: '日本',
   string: strings,
 };
 
