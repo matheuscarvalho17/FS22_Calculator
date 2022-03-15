@@ -3,15 +3,19 @@ import {View} from 'react-native';
 import Button from '../../components/Button';
 import {Text} from '../../components/Button/styles';
 import IconButton from '../../components/IconButton';
-import {listOfLanguages, string, updateLanguage} from '../../languages';
+import {listOfLanguages, useLanguage} from '../../languages';
 import * as Styles from './styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNav} from '../../utils/hooks';
-import {language, setLanguage} from '../../utils/storage';
 import AsyncStorage from '@react-native-community/async-storage';
+import {useAppContext} from '../../Context';
 // import { Container } from './styles';
 
 const Language: React.FC = () => {
+  //Context
+  const {language, SetLanguage} = useAppContext();
+  const {string} = useLanguage();
+  //
   const navigation = useNav('language');
   return (
     <Styles.Container>
@@ -20,19 +24,20 @@ const Language: React.FC = () => {
       </Styles.Header>
       <Styles.Body>
         <Styles.Scroll showsVerticalScrollIndicator={false}>
-          {Object.keys(listOfLanguages).map(value => (
+          {Object.keys(listOfLanguages).map((value, index) => (
             <Button
+              key={index}
               text={listOfLanguages[value].name}
               onPress={() => {
                 // console.log(listOfLanguages[value].name);
-                setLanguage(listOfLanguages[value].selectionName);
-                AsyncStorage.setItem(
-                  '@language',
-                  listOfLanguages[value].selectionName,
-                );
-                console.log(language);
+                SetLanguage(listOfLanguages[value].selectionName);
+                // AsyncStorage.setItem(
+                //   '@language',
+                //   listOfLanguages[value].selectionName,
+                // );
+                // console.log(language);
 
-                updateLanguage();
+                // updateLanguage();
               }}
             />
           ))}

@@ -4,10 +4,15 @@ import * as Styles from './styles';
 import {ScrollView} from 'react-native';
 import CustomButton from '../../components/CustomButton';
 import {Text} from '../../components/Button/styles';
-import {string} from '../../languages';
-import {crops} from '../../utils/database';
+
+import {useLanguage} from '../../languages';
+import {useCrops} from '../../utils/database';
 
 const MenuCrop: React.FC = () => {
+  //context
+  const {string} = useLanguage();
+  const crops = useCrops();
+  //
   interface IButton {
     icon: any;
     onPress: Function;
@@ -20,6 +25,8 @@ const MenuCrop: React.FC = () => {
 
   useEffect(() => {
     let aux: Array<IButton> = [];
+    console.log(crops);
+
     crops.forEach((element, i) => {
       aux.push({
         icon: element.icon,
@@ -33,7 +40,7 @@ const MenuCrop: React.FC = () => {
   return (
     <Styles.Container>
       <Styles.Header>
-        <Styles.Title>Crops</Styles.Title>
+        <Styles.Title>{string.crops}</Styles.Title>
       </Styles.Header>
       <Styles.Body>
         <ScrollView>

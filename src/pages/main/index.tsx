@@ -1,16 +1,19 @@
 import React from 'react';
 import {styles} from './styles';
 import * as Styles from './styles';
-import {string} from '../../languages';
+
 import {useNav} from '../../utils/hooks';
 import Button from '../../components/Button';
 import IconButton from '../../components/IconButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {language, start} from '../../utils/storage';
+import {start} from '../../utils/storage';
+import {useLanguage} from '../../languages';
 
 const Main: React.FC = () => {
-  console.log(language);
+  //context
+  const {string} = useLanguage();
+  //
 
   start();
   const navigation = useNav('mainPage');

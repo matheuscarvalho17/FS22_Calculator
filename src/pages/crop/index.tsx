@@ -1,14 +1,17 @@
 import React from 'react';
 import * as Styles from './styles';
 import {useNav} from '../../utils/hooks';
-import {crops} from '../../utils/database';
+import {useCrops} from '../../utils/database';
 import {useRoute} from '@react-navigation/native';
-import {string} from '../../languages';
+import {useLanguage} from '../../languages';
+// import {string} from '../../languages';
 
 const Crop: React.FC = ({}) => {
+  const crops = useCrops();
   const navigation = useNav('crop');
   const route = useRoute();
   const {cropid} = route.params;
+  const {string} = useLanguage();
   return (
     <Styles.Container>
       <Styles.Header>
