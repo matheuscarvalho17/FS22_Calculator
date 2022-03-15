@@ -5,6 +5,8 @@ import {AppRegistry} from 'react-native';
 import {StatusBar} from 'react-native';
 import {name as appName} from './app.json';
 import {Context} from './src/Context';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import NavigationBar from 'react-native-navbar-color';
 
 export default function MainIndex() {
   return (
