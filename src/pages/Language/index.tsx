@@ -25,9 +25,9 @@ const Language: React.FC = () => {
           {Object.keys(listOfLanguages).map((value, index) => (
             <Button
               key={index}
-              text={listOfLanguages[value].name}
+              text={listOfLanguages[value].language.name}
               onPress={() => {
-                SetLanguage(listOfLanguages[value].selectionName);
+                SetLanguage(listOfLanguages[value].language.key);
               }}
             />
           ))}

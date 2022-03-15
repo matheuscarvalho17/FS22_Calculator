@@ -45,6 +45,7 @@ const strings: ILanguage = {
 };
 
 const PT = {
+  key: 'PT',
   name: 'Português',
   string: strings,
 };
