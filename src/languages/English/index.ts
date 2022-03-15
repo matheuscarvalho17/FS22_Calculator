@@ -84,6 +84,7 @@ const strings: ILanguage = {
 };
 
 const US = {
+  key: 'US',
   name: 'English',
   string: strings,
 };

@@ -1,8 +1,10 @@
 import {colors} from './colors';
+import {IFlavorProps} from '../fs22';
 
-const JohnDeere = {
-  name: 'John Deere',
+const JohnDeere: IFlavorProps = {
+  key: 'JohnDeere',
   colors: colors,
+  name: 'John Deere',
 };
 
 export {JohnDeere};

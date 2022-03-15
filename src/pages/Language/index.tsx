@@ -1,20 +1,18 @@
 import React from 'react';
-import {View} from 'react-native';
-import Button from '../../components/Button';
-import {Text} from '../../components/Button/styles';
-import IconButton from '../../components/IconButton';
-import {listOfLanguages, useLanguage} from '../../languages';
-import * as Styles from './styles';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useStyle} from './styles';
 import {useNav} from '../../utils/hooks';
-import AsyncStorage from '@react-native-community/async-storage';
 import {useAppContext} from '../../Context';
-// import { Container } from './styles';
+import Button from '../../components/Button';
+import IconButton from '../../components/IconButton';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {listOfLanguages, useLanguage} from '../../languages';
 
 const Language: React.FC = () => {
   //Context
-  const {language, SetLanguage} = useAppContext();
+  const Styles = useStyle();
+  const {styles} = useStyle();
   const {string} = useLanguage();
+  const {SetLanguage} = useAppContext();
   //
   const navigation = useNav('language');
   return (
@@ -27,17 +25,9 @@ const Language: React.FC = () => {
           {Object.keys(listOfLanguages).map((value, index) => (
             <Button
               key={index}
-              text={listOfLanguages[value].name}
+              text={listOfLanguages[value].language.name}
               onPress={() => {
-                // console.log(listOfLanguages[value].name);
-                SetLanguage(listOfLanguages[value].selectionName);
-                // AsyncStorage.setItem(
-                //   '@language',
-                //   listOfLanguages[value].selectionName,
-                // );
-                // console.log(language);
-
-                // updateLanguage();
+                SetLanguage(listOfLanguages[value].language.key);
               }}
             />
           ))}
@@ -48,7 +38,7 @@ const Language: React.FC = () => {
           onPress={() => {
             navigation.goBack();
           }}
-          icon={<Ionicons name="arrow-back" style={Styles.styles.icon} />}
+          icon={<Ionicons name="arrow-back" style={styles.icon} />}
         />
       </Styles.Footer>
     </Styles.Container>

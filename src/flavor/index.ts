@@ -1,20 +1,22 @@
 import {FS22} from './fs22';
 import {Fendt} from './fendt';
+import {IColors} from './fs22/colors';
 import {JohnDeere} from './johnDeere';
 import {NewHolland} from './newHolland';
+import {useAppContext} from '../Context';
 import {MasseyFerguson} from './masseyFerguson';
-import {apparence} from '../utils/storage';
 
-const version = apparence;
-const {name, colors} =
-  version === 'FS22'
-    ? FS22
-    : version === 'MasseyFerguson'
-    ? MasseyFerguson
-    : version === 'NewHolland'
-    ? NewHolland
-    : version === 'Fendt'
-    ? Fendt
-    : JohnDeere;
+export const listOfFlavors: any = {
+  FS22: {flavor: FS22},
+  Fendt: {flavor: Fendt},
+  JohnDeere: {flavor: JohnDeere},
+  NewHolland: {flavor: NewHolland},
+  MasseyFerguson: {flavor: MasseyFerguson},
+};
+export function useFlavor() {
+  const {flavor} = useAppContext();
+  let {name, colors}: {name: string; colors: IColors} =
+    listOfFlavors[flavor].flavor;
 
-export {name, colors};
+  return {name, colors};
+}

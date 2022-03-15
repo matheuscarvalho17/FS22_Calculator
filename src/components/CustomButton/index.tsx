@@ -1,6 +1,6 @@
 import React from 'react';
+import {useStyle} from './styles';
 import {ViewStyle} from 'react-native';
-import * as Styles from './styles';
 
 interface ButtonProps {
   onPress: Function;
@@ -8,6 +8,8 @@ interface ButtonProps {
 }
 
 const CustomButton: React.FC<ButtonProps> = ({onPress, style, children}) => {
+  const Styles = useStyle();
+
   return (
     <Styles.Button
       onPress={() => {
