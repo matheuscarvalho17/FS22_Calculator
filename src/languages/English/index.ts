@@ -3,8 +3,9 @@ export interface ILanguage {
   crops: string;
   animals: string;
   products: string;
-  title: string;
   language: string;
+  appearance: string;
+  title: string;
   // Labels
   price: string;
   yieldPerHa: string;
@@ -46,6 +47,7 @@ const strings: ILanguage = {
   animals: 'Animals',
   products: 'Products',
   language: 'Language',
+  appearance: 'Appearance',
   title: 'Farming Calculator',
   // Labels
   price: 'Price',

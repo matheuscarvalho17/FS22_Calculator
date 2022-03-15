@@ -46,7 +46,9 @@ const Main: React.FC = () => {
           icon={<Ionicons name="globe-sharp" style={styles.icon} />}
         />
         <IconButton
-          onPress={() => {}}
+          onPress={() => {
+            navigation.navigate('appearance');
+          }}
           icon={<FontAwesome name="paint-brush" style={styles.icon} />}
         />
       </Styles.Footer>

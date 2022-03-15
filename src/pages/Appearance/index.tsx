@@ -1,33 +1,35 @@
 import React from 'react';
 import {useStyle} from './styles';
 import {useNav} from '../../utils/hooks';
+import {listOfFlavors} from '../../flavor';
 import {useAppContext} from '../../Context';
+import {useLanguage} from '../../languages';
 import Button from '../../components/Button';
 import IconButton from '../../components/IconButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {listOfLanguages, useLanguage} from '../../languages';
 
-const Language: React.FC = () => {
+const Appearance: React.FC = () => {
   //Context
   const Styles = useStyle();
+  // const {name} = useFlavor();
   const {styles} = useStyle();
   const {string} = useLanguage();
-  const {SetLanguage} = useAppContext();
+  const {SetFlavor} = useAppContext();
   //
   const navigation = useNav('language');
   return (
     <Styles.Container>
       <Styles.Header>
-        <Styles.Title>{string.language}</Styles.Title>
+        <Styles.Title>{string.appearance}</Styles.Title>
       </Styles.Header>
       <Styles.ScrollBody showsVerticalScrollIndicator={false}>
         <Styles.List>
-          {Object.keys(listOfLanguages).map((value, index) => (
+          {Object.keys(listOfFlavors).map((value, index) => (
             <Button
               key={index}
-              text={listOfLanguages[value].language.name}
+              text={listOfFlavors[value].flavor.name}
               onPress={() => {
-                SetLanguage(listOfLanguages[value].language.key);
+                SetFlavor(listOfFlavors[value].flavor.key);
               }}
             />
           ))}
@@ -45,4 +47,4 @@ const Language: React.FC = () => {
   );
 };
 
-export default Language;
+export default Appearance;

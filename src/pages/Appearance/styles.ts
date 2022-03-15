@@ -31,8 +31,8 @@ export function useStyle() {
   const List = styled.View`
     flex: 1;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
     padding: ${hp(0)}px ${wp(5)}px;
   `;
   const Footer = styled.View`

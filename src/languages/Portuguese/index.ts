@@ -7,6 +7,7 @@ const strings: ILanguage = {
   animals: 'Animais',
   products: 'Produtos',
   language: 'Idioma',
+  appearance: 'Aparência',
   title: 'Calculadora de Farming',
   // Rótulos
   price: 'Preço',
