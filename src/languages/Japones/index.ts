@@ -11,6 +11,8 @@ const strings: ILanguage = {
   // Rótulos
   price: '価格',
   yieldPerHa: 'ヘクタールあたりのリットル',
+  // liters: 'L',
+  // unit: 'un.',
   // Culturas
   // barley: 'Barley',
   // canola: 'Canola',

@@ -25,10 +25,10 @@ const Crop: React.FC = ({}) => {
         <Styles.Body>
           <Styles.Image source={crops[cropId].icon} />
           <Styles.TextInfos>
-            {string.price}: {crops[cropId].avgPrice}
+            {string.price}: {crops[cropId].avgPriceEasy}
           </Styles.TextInfos>
           <Styles.TextInfos>
-            {string.yieldPerHa}: {crops[cropId].yieldPerHa}
+            {string.yieldPerHa}: {crops[cropId].yieldPerHa} {crops[cropId].unit}
           </Styles.TextInfos>
         </Styles.Body>
       </Styles.ScrollBody>

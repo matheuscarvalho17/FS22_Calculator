@@ -16,6 +16,8 @@ export interface ILanguage {
   // Labels
   price: string;
   yieldPerHa: string;
+  liters: string;
+  unit: string;
   // Crops
   barley: string;
   canola: string;
@@ -59,6 +61,8 @@ const strings: ILanguage = {
   // Labels
   price: 'Price',
   yieldPerHa: 'Yield (Ha)',
+  liters: 'L',
+  unit: 'Un.',
   // Crops
   barley: 'Barley',
   canola: 'Canola',

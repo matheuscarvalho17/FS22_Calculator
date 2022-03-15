@@ -12,6 +12,8 @@ const strings: ILanguage = {
   // Rótulos
   price: 'Preço',
   yieldPerHa: 'Rendimento (Ha)',
+  liters: 'L',
+  unit: 'Un.',
   // Culturas
   barley: 'Cevada',
   canola: 'Canola',
