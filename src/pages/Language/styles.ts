@@ -25,6 +25,22 @@ export function useStyle() {
     font-size: ${hp(4.5)}px;
     color: ${colors.text_light};
   `;
+  const ButtonContent = styled.View`
+    flex-direction: row;
+  `;
+  const Flag = styled.Text`
+    flex: 0.4;
+    text-align: center;
+    font-weight: bold;
+    font-size: ${hp(4)}px;
+    color: ${colors.text_light};
+  `;
+  const Text = styled.Text`
+    flex: 0.6;
+    font-weight: bold;
+    font-size: ${hp(4)}px;
+    color: ${colors.text_light};
+  `;
   const ScrollBody = styled.ScrollView`
     flex: 0.73;
   `;
@@ -45,5 +61,16 @@ export function useStyle() {
       color: colors.text_light,
     },
   });
-  return {Container, Header, Title, ScrollBody, List, Footer, styles};
+  return {
+    Container,
+    Header,
+    Title,
+    Flag,
+    Text,
+    ButtonContent,
+    ScrollBody,
+    List,
+    Footer,
+    styles,
+  };
 }
