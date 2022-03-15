@@ -51,7 +51,7 @@ const strings: ILanguage = {
   title: 'Farming Calculator',
   // Labels
   price: 'Price',
-  yieldPerHa: 'yieldPerHa',
+  yieldPerHa: 'Yield (Ha)',
   // Crops
   barley: 'Barley',
   canola: 'Canola',
@@ -63,7 +63,7 @@ const strings: ILanguage = {
   fir_tree: 'Fir Tree',
   grapes: 'Grapes',
   grass: 'Grass',
-  grass_cut: 'Grass (cut)',
+  grass_cut: 'Grass (Cut)',
   hay: 'Hay',
   oat: 'Oat',
   olives: 'Olives',
@@ -76,7 +76,7 @@ const strings: ILanguage = {
   straw_round_bale: 'Straw Round Bale',
   straw_square_bale: 'Straw Square Bale',
   sugar_beet: 'Sugar Beet',
-  sugar_beet_cut: 'Sugar Beet (cut)',
+  sugar_beet_cut: 'Sugar Beet (Cut)',
   sugarcane: 'Sugarcane',
   sunflowers: 'Sunflowers',
   wheat: 'Wheat',

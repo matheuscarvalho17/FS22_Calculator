@@ -8,10 +8,10 @@ const strings: ILanguage = {
   products: 'Produtos',
   language: 'Idioma',
   appearance: 'Aparência',
-  title: 'Calculadora de Farming',
+  title: 'Calculadora do Farming',
   // Rótulos
   price: 'Preço',
-  yieldPerHa: 'yieldPerHa',
+  yieldPerHa: 'Rendimento (Ha)',
   // Culturas
   barley: 'Cevada',
   canola: 'Canola',
@@ -37,12 +37,12 @@ const strings: ILanguage = {
   straw_square_bale: 'Fardo Quadrado de Palha',
   sugar_beet: 'Beterraba',
   sugar_beet_cut: 'Beterraba',
-  sugarcane: 'Cana de Açucar',
-  sunflowers: 'Girasol',
+  sugarcane: 'Cana de Açúcar',
+  sunflowers: 'Girassol',
   wheat: 'Trigo',
-  wood_chips: 'Lasca de madeira',
-  wood_chips_round_bale: 'Fardo Redondo de lasca de madeira',
-  wood_chips_square_bale: 'Fardo Quadrado de lasca de madeira',
+  wood_chips: 'Lasca de Madeira',
+  wood_chips_round_bale: 'Fardo Redondo de Lasca de Madeira',
+  wood_chips_square_bale: 'Fardo Quadrado de Lasca de Madeira',
 };
 
 const PT = {
