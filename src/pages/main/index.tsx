@@ -7,11 +7,12 @@ import Button from '../../components/Button';
 import IconButton from '../../components/IconButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
-export const language = 'US';
-export const apparence = 'FS22';
+import {language, start} from '../../utils/storage';
 
 const Main: React.FC = () => {
+  console.log(language);
+
+  start();
   const navigation = useNav('mainPage');
   return (
     <Styles.Container>
@@ -39,7 +40,9 @@ const Main: React.FC = () => {
         />
         <Styles.BottomBox>
           <IconButton
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate('language');
+            }}
             icon={<Ionicons name="globe-sharp" style={styles.icon} />}
           />
           <IconButton

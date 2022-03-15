@@ -1,7 +1,7 @@
-import {defaultLanguage, ILanguage} from '../interface';
+import {ILanguage, US} from '../English';
 
 const strings: ILanguage = {
-  ...defaultLanguage,
+  ...US,
   // Botões do Menu
   crops: 'Culturas',
   animals: 'Animais',
@@ -10,6 +10,7 @@ const strings: ILanguage = {
   wheat: 'Trigo',
   price: 'Preço',
   yieldPerHa: 'yieldPerHa',
+  language: 'Idioma',
 };
 
 const PT = {

@@ -19,7 +19,6 @@ const MenuCrop: React.FC = () => {
   ]);
 
   useEffect(() => {
-    console.log('Aqui');
     let aux: Array<IButton> = [];
     crops.forEach((element, i) => {
       aux.push({

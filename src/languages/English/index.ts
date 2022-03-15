@@ -1,7 +1,16 @@
-import {defaultLanguage, ILanguage} from '../interface';
-
+export interface ILanguage {
+  crops: string;
+  animals: string;
+  products: string;
+  title: string;
+  language: string;
+  //crops
+  wheat: string;
+  //crop screen
+  price: string;
+  yieldPerHa: string;
+}
 const strings: ILanguage = {
-  ...defaultLanguage,
   // Main buttons
   crops: 'Crops',
   animals: 'Animals',
@@ -10,6 +19,7 @@ const strings: ILanguage = {
   wheat: 'Wheat',
   price: 'Price',
   yieldPerHa: 'yieldPerHa',
+  language: 'Language',
 };
 
 const US = {
