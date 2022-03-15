@@ -1,10 +1,11 @@
-import React from 'react';
-import {styles} from './styles';
-import * as Styles from './styles';
+import React, {useEffect, useState} from 'react';
 import {useNav} from '../../utils/hooks';
-import IconButton from '../../components/IconButton';
+import * as Styles from './styles';
+import {FlatList, Image, ImageBackground, ScrollView} from 'react-native';
 import CustomButton from '../../components/CustomButton';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {Text} from '../../components/Button/styles';
+import {string} from '../../languages';
+import {crops} from '../../utils/database';
 
 interface IButton {
   icon: any;
@@ -13,20 +14,24 @@ interface IButton {
 
 const MenuCrop: React.FC = () => {
   const navigation = useNav('menuCrops');
-  const buttons: Array<IButton> = [
-    {icon: require('../../assets/crops/barley.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/olives.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/cotton.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/grass.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/grapes.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/barley.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/olives.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/cotton.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/grass.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/grapes.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
-  ];
+
+  const [buttons, setButtons] = useState<Array<IButton>>([
+    // {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
+  ]);
+
+  useEffect(() => {
+    console.log('Aqui');
+    let aux: Array<IButton> = [];
+    crops.forEach((element, i) => {
+      aux.push({
+        icon: element.icon,
+        onPress: () => {
+          navigation.navigate('crop', {cropid: i});
+        },
+      });
+    });
+    setButtons(aux);
+  }, []);
   return (
     <Styles.Container>
       <Styles.Header>

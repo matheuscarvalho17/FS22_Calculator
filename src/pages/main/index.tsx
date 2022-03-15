@@ -16,7 +16,7 @@ const Main: React.FC = () => {
   return (
     <Styles.Container>
       <Styles.Header>
-        <Styles.Title>Farming Calculator</Styles.Title>
+        <Styles.Title>{string.title}</Styles.Title>
       </Styles.Header>
       <Styles.Body>
         <Button

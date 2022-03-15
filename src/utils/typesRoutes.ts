@@ -1,5 +1,5 @@
 export type RootStackParamList = {
-  crop: undefined;
+  crop: {cropid: number};
   mainPage: undefined;
   menuCrops: undefined;
 };
