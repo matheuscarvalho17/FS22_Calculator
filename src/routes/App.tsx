@@ -6,7 +6,8 @@ import MenuCrops from '../pages/MenuCrops';
 import Appearance from '../pages/Appearance';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
+import NavigationBar from 'react-native-navbar-color';
+import {useFlavor} from '../flavor';
 export type RootStackParamList = {
   mainPage: undefined;
   language: undefined;
@@ -14,10 +15,10 @@ export type RootStackParamList = {
   appearance: undefined;
   crop: {cropId: number};
 };
-
 const Stack = createNativeStackNavigator<RootStackParamList>();
-
 const App: React.FC = () => {
+  const {colors} = useFlavor();
+  NavigationBar.setColor(colors.primary);
   return (
     <NavigationContainer>
       <Stack.Navigator
