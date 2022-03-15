@@ -37,17 +37,17 @@ const Main: React.FC = () => {
           }}
           text={string.products}
         />
-        <Styles.BottomBox>
-          <IconButton
-            onPress={() => {}}
-            icon={<Ionicons name="globe-sharp" style={styles.icon} />}
-          />
-          <IconButton
-            onPress={() => {}}
-            icon={<FontAwesome name="gear" style={styles.icon} />}
-          />
-        </Styles.BottomBox>
       </Styles.Body>
+      <Styles.BottomBox>
+        <IconButton
+          onPress={() => {}}
+          icon={<Ionicons name="globe-sharp" style={styles.icon} />}
+        />
+        <IconButton
+          onPress={() => {}}
+          icon={<FontAwesome name="paint-brush" style={styles.icon} />}
+        />
+      </Styles.BottomBox>
     </Styles.Container>
   );
 };

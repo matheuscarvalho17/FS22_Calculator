@@ -23,7 +23,7 @@ export const Title = styled.Text`
   color: ${colors.text_light};
 `;
 export const Scroll = styled.ScrollView`
-  flex: 0.7;
+  flex: 0.73;
 `;
 export const Body = styled.View`
   flex: 1;
@@ -34,7 +34,7 @@ export const Body = styled.View`
   padding: ${hp(0)}px ${wp(5)}px;
 `;
 export const BottomBox = styled.View`
-  flex: 0.15;
+  flex: 0.12;
 `;
 
 export const ImageBg = styled.ImageBackground``;
@@ -45,6 +45,7 @@ export const styles = StyleSheet.create({
     height: hp(12),
     marginLeft: wp(2),
     marginRight: wp(2),
+    backgroundColor: '#26343d',
   },
   btnImage: {
     width: wp(16),

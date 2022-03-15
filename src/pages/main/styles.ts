@@ -13,16 +13,17 @@ export const Container = styled.View`
   background: ${colors.background};
 `;
 export const Header = styled.View`
-  flex: 0.29;
+  flex: 0.25;
   justify-content: center;
 `;
 export const Body = styled.View`
-  flex: 0.71;
+  flex: 0.63;
 `;
 export const BottomBox = styled.View`
-  flex: 1;
-  flex-direction: row;
+  flex: 0.12;
+  width: 100%;
   align-items: center;
+  flex-direction: row;
   justify-content: space-around;
 `;
 export const Title = styled.Text`

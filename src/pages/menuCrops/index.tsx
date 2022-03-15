@@ -17,22 +17,22 @@ const MenuCrop: React.FC = () => {
     {icon: require('../../assets/crops/barley.png'), onPress: () => {}},
     {icon: require('../../assets/crops/olives.png'), onPress: () => {}},
     {icon: require('../../assets/crops/cotton.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/grapes.png'), onPress: () => {}},
     {icon: require('../../assets/crops/grass.png'), onPress: () => {}},
+    {icon: require('../../assets/crops/grapes.png'), onPress: () => {}},
+    {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
     {icon: require('../../assets/crops/barley.png'), onPress: () => {}},
     {icon: require('../../assets/crops/olives.png'), onPress: () => {}},
     {icon: require('../../assets/crops/cotton.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
-    {icon: require('../../assets/crops/grapes.png'), onPress: () => {}},
     {icon: require('../../assets/crops/grass.png'), onPress: () => {}},
+    {icon: require('../../assets/crops/grapes.png'), onPress: () => {}},
+    {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
   ];
   return (
     <Styles.Container>
       <Styles.Header>
         <Styles.Title>Crops</Styles.Title>
       </Styles.Header>
-      <Styles.Scroll>
+      <Styles.Scroll showsVerticalScrollIndicator={false}>
         <Styles.Body>
           {buttons.map((value, key) => (
             <CustomButton
