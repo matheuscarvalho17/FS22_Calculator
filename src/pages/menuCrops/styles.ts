@@ -33,10 +33,9 @@ export const List = styled.View`
   justify-content: space-around;
   padding: ${hp(0)}px ${wp(5)}px;
 `;
-export const BottomBox = styled.View`
+export const Footer = styled.View`
   flex: 0.12;
 `;
-
 export const ImageBg = styled.ImageBackground``;
 
 export const styles = StyleSheet.create({

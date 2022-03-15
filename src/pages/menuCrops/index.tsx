@@ -51,14 +51,14 @@ const MenuCrop: React.FC = () => {
           ))}
         </Styles.List>
       </Styles.ScrollBody>
-      <Styles.BottomBox>
+      <Styles.Footer>
         <IconButton
           onPress={() => {
             navigation.goBack();
           }}
           icon={<Ionicons name="arrow-back" style={styles.icon} />}
         />
-      </Styles.BottomBox>
+      </Styles.Footer>
     </Styles.Container>
   );
 };
