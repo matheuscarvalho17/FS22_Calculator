@@ -8,6 +8,7 @@ import {
 
 export function useStyle() {
   const {colors} = useFlavor();
+
   const Container = styled.View`
     flex: 1;
     align-items: center;
@@ -31,13 +32,15 @@ export function useStyle() {
   const Body = styled.View`
     flex: 1;
     display: flex;
-    padding: ${hp(0)}px ${wp(5)}px;
+    padding: ${hp(2.5)}px ${wp(5)}px;
   `;
   const Image = styled.Image`
     align-self: center;
+    margin-bottom: ${hp(2.5)}px;
     width: ${wp(26)}px;
     height: ${hp(15)}px;
-    border: ${wp(0.8)}px solid black;
+    border-color: black;
+    border-width: ${wp(0.8)}px;
     border-top-right-radius: ${wp(1)}px;
     border-top-left-radius: ${wp(5.5)}px;
     border-bottom-left-radius: ${wp(1)}px;

@@ -1,4 +1,4 @@
-import {ILanguage, US} from '../English';
+import {ILanguage, ILanguageProps, US} from '../English';
 
 const strings: ILanguage = {
   ...US.string,
@@ -12,6 +12,8 @@ const strings: ILanguage = {
   // Rótulos
   price: 'Preço',
   yieldPerHa: 'Rendimento (Ha)',
+  liters: 'L',
+  unit: 'Un.',
   // Culturas
   barley: 'Cevada',
   canola: 'Canola',
@@ -45,8 +47,9 @@ const strings: ILanguage = {
   wood_chips_square_bale: 'Fardo Quadrado de Lasca de Madeira',
 };
 
-const PT = {
+const PT: ILanguageProps = {
   key: 'PT',
+  flag: '🇧🇷',
   name: 'Português',
   string: strings,
 };

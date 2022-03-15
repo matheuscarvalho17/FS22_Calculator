@@ -2,7 +2,7 @@ import React from 'react';
 import {useStyle} from './styles';
 import {useNav} from '../../utils/hooks';
 import {useAppContext} from '../../Context';
-import Button from '../../components/Button';
+import Button from '../../components/CustomButton';
 import IconButton from '../../components/IconButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {listOfLanguages, useLanguage} from '../../languages';
@@ -25,11 +25,18 @@ const Language: React.FC = () => {
           {Object.keys(listOfLanguages).map((value, index) => (
             <Button
               key={index}
-              text={listOfLanguages[value].language.name}
               onPress={() => {
                 SetLanguage(listOfLanguages[value].language.key);
-              }}
-            />
+              }}>
+              <Styles.ButtonContent>
+                <Styles.Flag>
+                  {listOfLanguages[value].language.flag}
+                </Styles.Flag>
+                <Styles.Text>
+                  {listOfLanguages[value].language.name}
+                </Styles.Text>
+              </Styles.ButtonContent>
+            </Button>
           ))}
         </Styles.List>
       </Styles.ScrollBody>

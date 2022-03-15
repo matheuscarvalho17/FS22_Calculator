@@ -1,3 +1,10 @@
+export interface ILanguageProps {
+  key: string;
+  flag: string;
+  name: string;
+  string: object;
+}
+
 export interface ILanguage {
   // Main buttons and Title
   crops: string;
@@ -9,6 +16,8 @@ export interface ILanguage {
   // Labels
   price: string;
   yieldPerHa: string;
+  liters: string;
+  unit: string;
   // Crops
   barley: string;
   canola: string;
@@ -52,6 +61,8 @@ const strings: ILanguage = {
   // Labels
   price: 'Price',
   yieldPerHa: 'Yield (Ha)',
+  liters: 'L',
+  unit: 'Un.',
   // Crops
   barley: 'Barley',
   canola: 'Canola',
@@ -85,8 +96,9 @@ const strings: ILanguage = {
   wood_chips_square_bale: 'Wood Chips Square Bale',
 };
 
-const US = {
+const US: ILanguageProps = {
   key: 'US',
+  flag: '🇺🇸',
   name: 'English',
   string: strings,
 };
