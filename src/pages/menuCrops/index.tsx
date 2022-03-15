@@ -1,63 +1,67 @@
-import React, {useEffect, useState} from 'react';
-import {useNav} from '../../utils/hooks';
+import {styles} from './styles';
 import * as Styles from './styles';
-import {ScrollView} from 'react-native';
+import {ImageURISource} from 'react-native';
+import {useNav} from '../../utils/hooks';
+import React, {useEffect, useState} from 'react';
+import IconButton from '../../components/IconButton';
 import CustomButton from '../../components/CustomButton';
-import {Text} from '../../components/Button/styles';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+interface IButton {
+  onPress: Function;
+  icon: ImageURISource;
+}
 
 import {useLanguage} from '../../languages';
 import {useCrops} from '../../utils/database';
-
 const MenuCrop: React.FC = () => {
   //context
   const {string} = useLanguage();
   const crops = useCrops();
-  //
-  interface IButton {
-    icon: any;
-    onPress: Function;
-  }
   const navigation = useNav('menuCrops');
-
-  const [buttons, setButtons] = useState<Array<IButton>>([
-    // {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
-  ]);
+  const [buttons, setButtons] = useState<Array<IButton>>([]);
 
   useEffect(() => {
     let aux: Array<IButton> = [];
-    console.log(crops);
-
-    crops.forEach((element, i) => {
+    crops.forEach((element, id) => {
       aux.push({
         icon: element.icon,
         onPress: () => {
-          navigation.navigate('crop', {cropid: i});
+          navigation.navigate('crop', {cropId: id});
         },
       });
     });
     setButtons(aux);
   }, []);
+
   return (
     <Styles.Container>
       <Styles.Header>
         <Styles.Title>{string.crops}</Styles.Title>
       </Styles.Header>
-      <Styles.Body>
-        <ScrollView>
-          <Styles.List>
-            {buttons.map((v, i) => (
-              <CustomButton
-                onPress={v.onPress}
-                style={{...Styles.styles.btn}}
-                key={i}>
-                <Styles.ImageBg
-                  source={v.icon}
-                  style={{...Styles.styles.btnImage}}></Styles.ImageBg>
-              </CustomButton>
-            ))}
-          </Styles.List>
-        </ScrollView>
-      </Styles.Body>
+      <Styles.ScrollBody showsVerticalScrollIndicator={false}>
+        <Styles.List>
+          {buttons.map((value, key) => (
+            <CustomButton
+              key={key}
+              onPress={value.onPress}
+              style={{...styles.btn}}>
+              <Styles.ImageBg
+                source={value.icon}
+                style={{...styles.btnImage}}
+              />
+            </CustomButton>
+          ))}
+        </Styles.List>
+      </Styles.ScrollBody>
+      <Styles.Footer>
+        <IconButton
+          onPress={() => {
+            navigation.goBack();
+          }}
+          icon={<Ionicons name="arrow-back" style={styles.icon} />}
+        />
+      </Styles.Footer>
     </Styles.Container>
   );
 };

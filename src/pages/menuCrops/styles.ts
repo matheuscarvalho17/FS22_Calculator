@@ -1,10 +1,10 @@
 import {colors} from '../../flavor';
+import {StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {StyleSheet} from 'react-native';
 
 export const Container = styled.View`
   flex: 1;
@@ -13,45 +13,45 @@ export const Container = styled.View`
   background: ${colors.background};
 `;
 export const Header = styled.View`
-  flex: 0.29;
+  flex: 0.15;
   justify-content: center;
 `;
-
 export const Title = styled.Text`
   font-weight: bold;
   text-align: center;
   font-size: ${hp(4.5)}px;
   color: ${colors.text_light};
 `;
-
-export const Body = styled.View`
-  flex: 0.71;
-  background-color: red;
-  width: 100%;
+export const ScrollBody = styled.ScrollView`
+  flex: 0.73;
 `;
-
 export const List = styled.View`
-  background-color: blue;
+  flex: 1;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  padding-left: ${wp(10)}px;
-  padding-right: ${wp(10)}px;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: ${hp(0)}px ${wp(5)}px;
 `;
-
-export const ImageBg = styled.ImageBackground`
-  /* border-width: 1px;
-  border-top-right-radius: ${wp(1)}px;
-  border-top-left-radius: ${wp(5.5)}px;
-  border-bottom-left-radius: ${wp(1)}px;
-  border-bottom-right-radius: ${wp(5.5)}px; */
+export const Footer = styled.View`
+  flex: 0.12;
 `;
+export const ImageBg = styled.ImageBackground``;
 
 export const styles = StyleSheet.create({
   btn: {
-    marginLeft: 10,
-    width: 80,
-    height: 80,
+    width: wp(20),
+    height: hp(12),
+    marginLeft: wp(2),
+    marginRight: wp(2),
+    backgroundColor: '#26343d',
   },
-  btnImage: {width: 50, height: 50},
+  btnImage: {
+    width: wp(16),
+    height: hp(9),
+  },
+  icon: {
+    fontSize: hp(4.5),
+    color: colors.text_light,
+  },
 });

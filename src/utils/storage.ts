@@ -4,9 +4,9 @@ export let language: string = 'US';
 export let apparence: string = 'FS22';
 
 export async function start() {
-  const v = await AsyncStorage.getItem('@language');
-  if (v) {
-    language = v;
+  const value = await AsyncStorage.getItem('@language');
+  if (value) {
+    language = value;
   }
 }
 
