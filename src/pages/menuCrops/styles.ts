@@ -22,10 +22,10 @@ export const Title = styled.Text`
   font-size: ${hp(4.5)}px;
   color: ${colors.text_light};
 `;
-export const Scroll = styled.ScrollView`
+export const ScrollBody = styled.ScrollView`
   flex: 0.73;
 `;
-export const Body = styled.View`
+export const List = styled.View`
   flex: 1;
   display: flex;
   flex-wrap: wrap;

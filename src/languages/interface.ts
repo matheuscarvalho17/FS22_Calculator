@@ -4,7 +4,37 @@ export interface ILanguage {
   products: string;
   title: string;
   //crops
+  barley: string;
+  canola: string;
+  chafft: string;
+  corn: string;
+  cotton: string;
+  cotton_round_bale: string;
+  cotton_square_bale: string;
+  fir_tree: string;
+  grapes: string;
+  grass: string;
+  grass_cut: string;
+  hay: string;
+  oat: string;
+  olives: string;
+  poplar_tree: string;
+  potatoes: string;
+  silage: string;
+  sorghum: string;
+  soybeans: string;
+  straw: string;
+  straw_round_bale: string;
+  straw_square_bale: string;
+  sugar_beet: string;
+  sugar_beet_cut: string;
+  sugarcane: string;
+  sunflowers: string;
   wheat: string;
+  wood_chips: string;
+  wood_chips_round_bale: string;
+  wood_chips_square_bale: string;
+
   //crop screen
   price: string;
   yieldPerHa: string;
@@ -15,7 +45,36 @@ export const defaultLanguage: ILanguage = {
   crops: defaultText,
   products: defaultText,
   title: defaultText,
-  wheat: defaultText,
   price: defaultText,
   yieldPerHa: defaultText,
+  barley: defaultText,
+  canola: defaultText,
+  chafft: defaultText,
+  corn: defaultText,
+  cotton: defaultText,
+  cotton_round_bale: defaultText,
+  cotton_square_bale: defaultText,
+  fir_tree: defaultText,
+  grapes: defaultText,
+  grass: defaultText,
+  grass_cut: defaultText,
+  hay: defaultText,
+  oat: defaultText,
+  olives: defaultText,
+  poplar_tree: defaultText,
+  potatoes: defaultText,
+  silage: defaultText,
+  sorghum: defaultText,
+  soybeans: defaultText,
+  straw: defaultText,
+  straw_round_bale: defaultText,
+  straw_square_bale: defaultText,
+  sugar_beet: defaultText,
+  sugar_beet_cut: defaultText,
+  sugarcane: defaultText,
+  sunflowers: defaultText,
+  wheat: defaultText,
+  wood_chips: defaultText,
+  wood_chips_round_bale: defaultText,
+  wood_chips_square_bale: defaultText,
 };

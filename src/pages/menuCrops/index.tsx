@@ -1,44 +1,43 @@
-import React, {useEffect, useState} from 'react';
-import {useNav} from '../../utils/hooks';
+import {styles} from './styles';
 import * as Styles from './styles';
-import {FlatList, Image, ImageBackground, ScrollView} from 'react-native';
-import CustomButton from '../../components/CustomButton';
-import {Text} from '../../components/Button/styles';
 import {string} from '../../languages';
+import {useNav} from '../../utils/hooks';
 import {crops} from '../../utils/database';
+import {ImageURISource} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import IconButton from '../../components/IconButton';
+import CustomButton from '../../components/CustomButton';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 interface IButton {
-  icon: any;
   onPress: Function;
+  icon: ImageURISource;
 }
 
 const MenuCrop: React.FC = () => {
   const navigation = useNav('menuCrops');
-
-  const [buttons, setButtons] = useState<Array<IButton>>([
-    // {icon: require('../../assets/crops/wheat.png'), onPress: () => {}},
-  ]);
+  const [buttons, setButtons] = useState<Array<IButton>>([]);
 
   useEffect(() => {
-    console.log('Aqui');
     let aux: Array<IButton> = [];
-    crops.forEach((element, i) => {
+    crops.forEach((element, id) => {
       aux.push({
         icon: element.icon,
         onPress: () => {
-          navigation.navigate('crop', {cropid: i});
+          navigation.navigate('crop', {cropId: id});
         },
       });
     });
     setButtons(aux);
   }, []);
+
   return (
     <Styles.Container>
       <Styles.Header>
-        <Styles.Title>Crops</Styles.Title>
+        <Styles.Title>{string.crops}</Styles.Title>
       </Styles.Header>
-      <Styles.Scroll showsVerticalScrollIndicator={false}>
-        <Styles.Body>
+      <Styles.ScrollBody showsVerticalScrollIndicator={false}>
+        <Styles.List>
           {buttons.map((value, key) => (
             <CustomButton
               key={key}
@@ -50,8 +49,8 @@ const MenuCrop: React.FC = () => {
               />
             </CustomButton>
           ))}
-        </Styles.Body>
-      </Styles.Scroll>
+        </Styles.List>
+      </Styles.ScrollBody>
       <Styles.BottomBox>
         <IconButton
           onPress={() => {
