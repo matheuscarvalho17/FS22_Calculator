@@ -5,6 +5,8 @@ export interface IColors {
   background: string;
   text_light: string;
   text_dark: string;
+  border_buttons: string;
+  checkbox_bg: string;
 }
 
 const colors: IColors = {
@@ -14,6 +16,8 @@ const colors: IColors = {
   background: '#2F414B',
   text_light: '#FFFFFF',
   text_dark: '#000000',
+  border_buttons: '#000000',
+  checkbox_bg: '#DDDDDD',
 };
 
 export {colors};

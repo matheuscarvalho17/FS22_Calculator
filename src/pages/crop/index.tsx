@@ -3,6 +3,7 @@ import {useStyle} from './styles';
 import {useNav} from '../../utils/hooks';
 import {useLanguage} from '../../languages';
 import {useCrops} from '../../utils/database';
+import CheckBox from '../../components/CheckBox';
 import {useRoute} from '@react-navigation/native';
 import IconButton from '../../components/IconButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -30,6 +31,14 @@ const Crop: React.FC = ({}) => {
           <Styles.TextInfos>
             {string.yieldPerHa}: {crops[cropId].yieldPerHa} {crops[cropId].unit}
           </Styles.TextInfos>
+          <Styles.CheckBoxList>
+            <CheckBox text={'Adubado'} onPress={() => {}} />
+            <CheckBox text={'Triturado'} onPress={() => {}} />
+            <CheckBox text={'Fertilizado 50%'} onPress={() => {}} />
+            <CheckBox text={'Fertilizado 50%'} onPress={() => {}} />
+            <CheckBox text={'Removido Pedras'} onPress={() => {}} />
+            <CheckBox text={'Removido Ervas Daninhas'} onPress={() => {}} />
+          </Styles.CheckBoxList>
         </Styles.Body>
       </Styles.ScrollBody>
       <Styles.Footer>

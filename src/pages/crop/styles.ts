@@ -39,17 +39,22 @@ export function useStyle() {
     margin-bottom: ${hp(2.5)}px;
     width: ${wp(26)}px;
     height: ${hp(15)}px;
-    border-color: black;
     border-width: ${wp(0.8)}px;
     border-top-right-radius: ${wp(1)}px;
     border-top-left-radius: ${wp(5.5)}px;
     border-bottom-left-radius: ${wp(1)}px;
+    border-color: ${colors.border_buttons};
     border-bottom-right-radius: ${wp(5.5)}px;
   `;
   const TextInfos = styled.Text`
     font-weight: bold;
-    font-size: ${hp(3.2)}px;
+    font-size: ${hp(2.5)}px;
     color: ${colors.text_light};
+  `;
+  const CheckBoxList = styled.View`
+    /* background: red; */
+    height: ${hp(35)}px;
+    justify-content: space-around;
   `;
   const Footer = styled.View`
     flex: 0.12;
@@ -69,6 +74,7 @@ export function useStyle() {
     Body,
     Image,
     TextInfos,
+    CheckBoxList,
     Footer,
     styles,
   };

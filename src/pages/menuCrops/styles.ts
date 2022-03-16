@@ -44,14 +44,14 @@ export function useStyle() {
   const styles = StyleSheet.create({
     btn: {
       width: wp(20),
-      height: hp(12),
+      height: wp(20),
       marginLeft: wp(2),
       marginRight: wp(2),
       backgroundColor: '#26343d',
     },
     btnImage: {
-      width: wp(16),
-      height: hp(9),
+      width: wp(15.5),
+      height: wp(15.5),
     },
     icon: {
       fontSize: hp(4.5),

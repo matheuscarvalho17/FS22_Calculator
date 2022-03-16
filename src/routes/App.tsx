@@ -2,6 +2,7 @@ import React from 'react';
 import Main from '../pages/Main';
 import Crop from '../pages/Crop';
 import {useFlavor} from '../flavor';
+import {StatusBar} from 'react-native';
 import Language from '../pages/Language';
 import MenuCrops from '../pages/MenuCrops';
 import Appearance from '../pages/Appearance';
@@ -23,6 +24,7 @@ const App: React.FC = () => {
 
   return (
     <NavigationContainer>
+      <StatusBar hidden={false} backgroundColor={colors.primary} />
       <Stack.Navigator
         screenOptions={{headerShown: false}}
         initialRouteName="mainPage">

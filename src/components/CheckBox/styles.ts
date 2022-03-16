@@ -8,24 +8,26 @@ import {
 export function useStyle() {
   const {colors} = useFlavor();
 
-  const Button = styled.TouchableOpacity`
-    width: ${wp(80)}px;
-    height: ${hp(10)}px;
+  const View = styled.View`
+    /* background: grey; */
+    align-items: center;
+    flex-direction: row;
+  `;
+  const Box = styled.TouchableOpacity`
+    width: ${wp(8)}px;
+    height: ${wp(8)}px;
     align-items: center;
     justify-content: center;
+    border-radius: ${wp(1.5)}px;
     border-width: ${wp(0.8)}px;
-    margin: ${hp(2)}px ${wp(0)}px;
-    background: ${colors.secondary};
-    border-top-right-radius: ${wp(1)}px;
-    border-top-left-radius: ${wp(5.5)}px;
-    border-bottom-left-radius: ${wp(1)}px;
+    background: ${colors.checkbox_bg};
     border-color: ${colors.border_buttons};
-    border-bottom-right-radius: ${wp(5.5)}px;
   `;
-  const Text = styled.Text`
+  const Label = styled.Text`
     font-weight: bold;
-    font-size: ${hp(4)}px;
+    font-size: ${hp(2.5)}px;
+    margin-left: ${wp(2)}px;
     color: ${colors.text_light};
   `;
-  return {Button, Text};
+  return {Box, Label, View};
 }
