@@ -18,6 +18,12 @@ export interface ILanguage {
   yieldPerHa: string;
   liters: string;
   unit: string;
+  limed: string;
+  fertilized: string;
+  removed_weeds: string;
+  stone_picked: string;
+  rolled: string;
+  mulched: string;
   // Crops
   barley: string;
   canola: string;
@@ -63,6 +69,12 @@ const strings: ILanguage = {
   yieldPerHa: 'Yield (Ha)',
   liters: 'L',
   unit: 'Un.',
+  limed: 'Limed',
+  fertilized: 'Fertilized',
+  removed_weeds: 'Removed Weeds',
+  stone_picked: 'Stone Picked',
+  rolled: 'Rolled',
+  mulched: 'Mulched',
   // Crops
   barley: 'Barley',
   canola: 'Canola',

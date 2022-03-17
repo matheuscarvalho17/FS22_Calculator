@@ -1,4 +1,5 @@
 import {useFlavor} from '../../flavor';
+import {StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
 import {
   widthPercentageToDP as wp,
@@ -9,7 +10,6 @@ export function useStyle() {
   const {colors} = useFlavor();
 
   const View = styled.View`
-    /* background: grey; */
     align-items: center;
     flex-direction: row;
   `;
@@ -18,9 +18,8 @@ export function useStyle() {
     height: ${wp(8)}px;
     align-items: center;
     justify-content: center;
-    border-radius: ${wp(1.5)}px;
     border-width: ${wp(0.8)}px;
-    background: ${colors.checkbox_bg};
+    border-radius: ${wp(1.5)}px;
     border-color: ${colors.border_buttons};
   `;
   const Label = styled.Text`
@@ -29,5 +28,18 @@ export function useStyle() {
     margin-left: ${wp(2)}px;
     color: ${colors.text_light};
   `;
-  return {Box, Label, View};
+
+  const styles = StyleSheet.create({
+    icon: {
+      fontSize: hp(3),
+      color: colors.text_light,
+    },
+    checked: {
+      backgroundColor: colors.secondary,
+    },
+    unchecked: {
+      backgroundColor: colors.checkbox_bg,
+    },
+  });
+  return {Box, Label, View, styles};
 }

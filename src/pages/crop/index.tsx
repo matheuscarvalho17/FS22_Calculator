@@ -32,12 +32,12 @@ const Crop: React.FC = ({}) => {
             {string.yieldPerHa}: {crops[cropId].yieldPerHa} {crops[cropId].unit}
           </Styles.TextInfos>
           <Styles.CheckBoxList>
-            <CheckBox text={'Adubado'} onPress={() => {}} />
-            <CheckBox text={'Triturado'} onPress={() => {}} />
-            <CheckBox text={'Fertilizado 50%'} onPress={() => {}} />
-            <CheckBox text={'Fertilizado 50%'} onPress={() => {}} />
-            <CheckBox text={'Removido Pedras'} onPress={() => {}} />
-            <CheckBox text={'Removido Ervas Daninhas'} onPress={() => {}} />
+            <CheckBox text={string.limed} onPress={() => {}} />
+            <CheckBox text={string.fertilized} onPress={() => {}} />
+            <CheckBox text={string.removed_weeds} onPress={() => {}} />
+            <CheckBox text={string.stone_picked} onPress={() => {}} />
+            <CheckBox text={string.rolled} onPress={() => {}} />
+            <CheckBox text={string.mulched} onPress={() => {}} />
           </Styles.CheckBoxList>
         </Styles.Body>
       </Styles.ScrollBody>

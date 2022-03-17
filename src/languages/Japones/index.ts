@@ -13,6 +13,12 @@ const strings: ILanguage = {
   yieldPerHa: 'ヘクタールあたりのリットル',
   // liters: 'L',
   // unit: 'un.',
+  // limed: 'Limed',
+  // fertilized: 'Fertilized',
+  // removed_weeds: 'Removed Weeds',
+  // stone_picked: 'Stone Picked',
+  // rolled: 'Rolled',
+  // mulched: 'Mulched',
   // Culturas
   // barley: 'Barley',
   // canola: 'Canola',

@@ -14,6 +14,12 @@ const strings: ILanguage = {
   yieldPerHa: 'Rendimento (Ha)',
   liters: 'L',
   unit: 'Un.',
+  limed: 'Calado',
+  fertilized: 'Fertilizado',
+  removed_weeds: 'Ervas Daninhas Removidas',
+  stone_picked: 'Pedras Recolhidas',
+  rolled: 'Rolado',
+  mulched: 'Adubado',
   // Culturas
   barley: 'Cevada',
   canola: 'Canola',
