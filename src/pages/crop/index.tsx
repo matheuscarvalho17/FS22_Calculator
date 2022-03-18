@@ -4,6 +4,7 @@ import {useNav} from '../../utils/hooks';
 import {useLanguage} from '../../languages';
 import {useCrops} from '../../utils/database';
 import CheckBox from '../../components/CheckBox';
+import ComboBox from '../../components/ComboBox';
 import {useRoute} from '@react-navigation/native';
 import IconButton from '../../components/IconButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -32,6 +33,10 @@ const Crop: React.FC = ({}) => {
             {string.yieldPerHa}: {crops[cropId].yieldPerHa} {crops[cropId].unit}
           </Styles.TextInfos>
           <Styles.CheckBoxList>
+            <ComboBox
+              label={string.difficulty}
+              modal_text={string.select_difficulty}
+            />
             <CheckBox text={string.limed} onPress={() => {}} />
             <CheckBox text={string.fertilized} onPress={() => {}} />
             <CheckBox text={string.removed_weeds} onPress={() => {}} />

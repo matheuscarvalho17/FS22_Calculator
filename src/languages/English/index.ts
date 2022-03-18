@@ -24,6 +24,8 @@ export interface ILanguage {
   stone_picked: string;
   rolled: string;
   mulched: string;
+  difficulty: string;
+  select_difficulty: string;
   // Crops
   barley: string;
   canola: string;
@@ -75,6 +77,8 @@ const strings: ILanguage = {
   stone_picked: 'Stone Picked',
   rolled: 'Rolled',
   mulched: 'Mulched',
+  difficulty: 'Difficulty',
+  select_difficulty: 'Select the difficulty',
   // Crops
   barley: 'Barley',
   canola: 'Canola',

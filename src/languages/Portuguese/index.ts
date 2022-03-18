@@ -20,6 +20,8 @@ const strings: ILanguage = {
   stone_picked: 'Pedras Recolhidas',
   rolled: 'Rolado',
   mulched: 'Adubado',
+  difficulty: 'Dificuldade',
+  select_difficulty: 'Selecione a dificuldade',
   // Culturas
   barley: 'Cevada',
   canola: 'Canola',

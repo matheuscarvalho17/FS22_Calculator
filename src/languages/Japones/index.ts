@@ -19,6 +19,8 @@ const strings: ILanguage = {
   // stone_picked: 'Stone Picked',
   // rolled: 'Rolled',
   // mulched: 'Mulched',
+  // difficulty: 'Difficulty',
+  // select_difficulty: 'Select the difficulty',
   // Culturas
   // barley: 'Barley',
   // canola: 'Canola',
