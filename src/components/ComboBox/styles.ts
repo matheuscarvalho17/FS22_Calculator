@@ -46,7 +46,7 @@ export function useStyle() {
     height: ${hp(47)}px;
     border-radius: ${wp(2)}px;
     border-width: ${wp(0.8)}px;
-    background: ${colors.secondary};
+    background: ${colors.primary};
     padding: ${hp(1)}px ${wp(1.5)}px;
     border-color: ${colors.border_buttons};
   `;
@@ -76,7 +76,7 @@ export function useStyle() {
     border-radius: ${wp(1)}px;
     border-width: ${wp(0.4)}px;
     margin-bottom: ${hp(0.6)}px;
-    background: ${colors.primary};
+    background: ${colors.secondary};
     border-color: ${colors.border_buttons};
   `;
   const ItemLabel = styled.Text`
