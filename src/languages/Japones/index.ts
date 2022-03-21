@@ -21,6 +21,9 @@ const strings: ILanguage = {
   // mulched: 'Mulched',
   // difficulty: 'Difficulty',
   // select_difficulty: 'Select the difficulty',
+  // easy: 'Easy',
+  // medium: 'Medium',
+  // hard: 'Hard',
   // Culturas
   // barley: 'Barley',
   // canola: 'Canola',

@@ -43,14 +43,14 @@ export function useStyle() {
   `;
   const ModalBox = styled.View`
     width: ${wp(80)}px;
-    height: ${hp(50)}px;
+    height: ${hp(47)}px;
     border-radius: ${wp(2)}px;
     border-width: ${wp(0.8)}px;
     background: ${colors.secondary};
+    padding: ${hp(1)}px ${wp(1.5)}px;
     border-color: ${colors.border_buttons};
   `;
   const ModalIconView = styled.TouchableOpacity`
-    /* background: red; */
     width: 100%;
     height: ${hp(4.2)}px;
     align-items: flex-end;
@@ -61,6 +61,28 @@ export function useStyle() {
     text-align: center;
     font-size: ${hp(3)}px;
     margin-top: ${hp(1)}px;
+    margin-bottom: ${hp(3)}px;
+    color: ${colors.text_light};
+  `;
+  const FlatList = styled.FlatList`
+    flex: 1;
+    padding: ${hp(1)}px ${wp(1.5)}px;
+  `;
+  const ItemButton = styled.TouchableOpacity`
+    width: 100%;
+    min-height: ${hp(6)}px;
+    justify-content: center;
+    margin-top: ${hp(0.6)}px;
+    border-radius: ${wp(1)}px;
+    border-width: ${wp(0.4)}px;
+    margin-bottom: ${hp(0.6)}px;
+    background: ${colors.primary};
+    border-color: ${colors.border_buttons};
+  `;
+  const ItemLabel = styled.Text`
+    font-weight: bold;
+    text-align: center;
+    font-size: ${hp(2.5)}px;
     color: ${colors.text_light};
   `;
 
@@ -83,6 +105,9 @@ export function useStyle() {
     ModalBox,
     ModalIconView,
     ModalLabel,
+    FlatList,
+    ItemLabel,
+    ItemButton,
     styles,
   };
 }

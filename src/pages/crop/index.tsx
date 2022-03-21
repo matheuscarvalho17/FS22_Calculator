@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {useStyle} from './styles';
 import {useNav} from '../../utils/hooks';
 import {useLanguage} from '../../languages';
 import {useCrops} from '../../utils/database';
 import CheckBox from '../../components/CheckBox';
-import ComboBox from '../../components/ComboBox';
 import {useRoute} from '@react-navigation/native';
 import IconButton from '../../components/IconButton';
+import ComboBox, {Data} from '../../components/ComboBox';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Crop: React.FC = ({}) => {
@@ -17,6 +17,22 @@ const Crop: React.FC = ({}) => {
   const {cropId} = route.params;
   const {string} = useLanguage();
   const navigation = useNav('crop');
+  const [difficulty, setDifficulty] = useState<Data>({
+    id: -1,
+    label: null,
+    value: null,
+  });
+
+  const [difficultyItems] = useState<Array<Data>>(
+    useMemo(
+      () => [
+        {id: 0, label: string.easy, value: 'easy'},
+        {id: 1, label: string.medium, value: 'medium'},
+        {id: 2, label: string.hard, value: 'hard'},
+      ],
+      [],
+    ),
+  );
 
   return (
     <Styles.Container>
@@ -34,7 +50,10 @@ const Crop: React.FC = ({}) => {
           </Styles.TextInfos>
           <Styles.CheckBoxList>
             <ComboBox
-              label={string.difficulty}
+              value={difficulty}
+              data={difficultyItems}
+              setValue={setDifficulty}
+              placeholder={string.difficulty}
               modal_text={string.select_difficulty}
             />
             <CheckBox text={string.limed} onPress={() => {}} />

@@ -26,6 +26,9 @@ export interface ILanguage {
   mulched: string;
   difficulty: string;
   select_difficulty: string;
+  easy: string;
+  medium: string;
+  hard: string;
   // Crops
   barley: string;
   canola: string;
@@ -79,6 +82,9 @@ const strings: ILanguage = {
   mulched: 'Mulched',
   difficulty: 'Difficulty',
   select_difficulty: 'Select the difficulty',
+  easy: 'Easy',
+  medium: 'Medium',
+  hard: 'Hard',
   // Crops
   barley: 'Barley',
   canola: 'Canola',
