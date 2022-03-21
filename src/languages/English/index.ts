@@ -14,10 +14,30 @@ export interface ILanguage {
   appearance: string;
   title: string;
   // Labels
+  bonus: string;
   price: string;
   yieldPerHa: string;
   liters: string;
   unit: string;
+  limed_stage: string;
+  fertilized_stage: string;
+  select_fertilized: string;
+  no_fertilized: string;
+  half_fertilized: string;
+  full_fertilized: string;
+  weeds_stage: string;
+  select_removed_weeds: string;
+  no_removed_weeds: string;
+  mec_removed_weeds: string;
+  chem_removed_weeds: string;
+  rolled_stage: string;
+  mulched_stage: string;
+  plowed_stage: string;
+  difficulty: string;
+  select_difficulty: string;
+  easy: string;
+  medium: string;
+  hard: string;
   // Crops
   barley: string;
   canola: string;
@@ -60,9 +80,29 @@ const strings: ILanguage = {
   title: 'Farming Calculator',
   // Labels
   price: 'Price',
+  bonus: 'Bonus',
   yieldPerHa: 'Yield (Ha)',
   liters: 'L',
   unit: 'Un.',
+  limed_stage: 'Limed',
+  fertilized_stage: 'Fertilizer stage',
+  select_fertilized: 'Select the fertilizer stage',
+  no_fertilized: 'Unfertilized',
+  half_fertilized: '50% Fertilized',
+  full_fertilized: '100% Fertilized',
+  weeds_stage: 'Weeds stage',
+  select_removed_weeds: 'Select the weeds stage',
+  no_removed_weeds: 'Weeds not removed',
+  mec_removed_weeds: 'Mechanically removed weeds',
+  chem_removed_weeds: 'Chemically removed weeds',
+  rolled_stage: 'Rolled',
+  mulched_stage: 'Mulched',
+  plowed_stage: 'Plowed',
+  difficulty: 'Difficulty',
+  select_difficulty: 'Select the difficulty',
+  easy: 'Easy',
+  medium: 'Medium',
+  hard: 'Hard',
   // Crops
   barley: 'Barley',
   canola: 'Canola',

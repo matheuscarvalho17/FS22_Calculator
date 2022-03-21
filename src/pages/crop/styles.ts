@@ -32,27 +32,34 @@ export function useStyle() {
   const Body = styled.View`
     flex: 1;
     display: flex;
-    padding: ${hp(2.5)}px ${wp(5)}px;
+    padding: ${hp(1.5)}px ${wp(5)}px;
   `;
   const Image = styled.Image`
     align-self: center;
-    margin-bottom: ${hp(2.5)}px;
-    width: ${wp(26)}px;
-    height: ${hp(15)}px;
-    border-color: black;
+    width: ${wp(20)}px;
+    height: ${wp(20)}px;
     border-width: ${wp(0.8)}px;
+    margin-bottom: ${hp(1.5)}px;
     border-top-right-radius: ${wp(1)}px;
     border-top-left-radius: ${wp(5.5)}px;
     border-bottom-left-radius: ${wp(1)}px;
+    border-color: ${colors.border_buttons};
     border-bottom-right-radius: ${wp(5.5)}px;
   `;
   const TextInfos = styled.Text`
     font-weight: bold;
-    font-size: ${hp(3.2)}px;
+    font-size: ${hp(2.5)}px;
     color: ${colors.text_light};
+  `;
+  const BoxList = styled.View`
+    height: ${hp(50)}px;
+    justify-content: space-around;
   `;
   const Footer = styled.View`
     flex: 0.12;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
   `;
 
   const styles = StyleSheet.create({
@@ -69,6 +76,7 @@ export function useStyle() {
     Body,
     Image,
     TextInfos,
+    BoxList,
     Footer,
     styles,
   };
