@@ -10,6 +10,7 @@ const strings: ILanguage = {
   appearance: 'Aparência',
   title: 'Calculadora do Farming',
   // Rótulos
+  bonus: 'Bônus',
   price: 'Preço',
   yieldPerHa: 'Rendimento (Ha)',
   liters: 'L',

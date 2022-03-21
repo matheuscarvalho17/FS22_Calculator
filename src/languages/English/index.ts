@@ -14,6 +14,7 @@ export interface ILanguage {
   appearance: string;
   title: string;
   // Labels
+  bonus: string;
   price: string;
   yieldPerHa: string;
   liters: string;
@@ -79,6 +80,7 @@ const strings: ILanguage = {
   title: 'Farming Calculator',
   // Labels
   price: 'Price',
+  bonus: 'Bonus',
   yieldPerHa: 'Yield (Ha)',
   liters: 'L',
   unit: 'Un.',

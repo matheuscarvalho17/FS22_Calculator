@@ -9,6 +9,7 @@ const strings: ILanguage = {
   language: '言語',
   title: '農業計算機',
   // Labels
+  // bonus: 'Bonus',
   price: '価格',
   yieldPerHa: 'ヘクタールあたりのリットル',
   // liters: 'L',

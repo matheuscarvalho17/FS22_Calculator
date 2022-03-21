@@ -20,15 +20,11 @@ const Crop: React.FC = ({}) => {
   const {string} = useLanguage();
   const navigation = useNav('crop');
   const [multiplier, setMultiplier] = useState<number>(1);
+  const [bonus, setBonus] = useState<number>(0);
   const [limed, setLimed] = useState<boolean>(false);
   const [rolled, setRolled] = useState<boolean>(false);
   const [plowed, setPlowed] = useState<boolean>(false);
   const [mulched, setMulched] = useState<boolean>(false);
-  const [difficulty, setDifficulty] = useState<Data>({
-    id: -1,
-    label: null,
-    value: null,
-  });
   const [fertilized, setFertilized] = useState<Data>({
     id: -1,
     label: null,
@@ -39,16 +35,6 @@ const Crop: React.FC = ({}) => {
     label: null,
     value: null,
   });
-  const [difficultyItems] = useState<Array<Data>>(
-    useMemo(
-      () => [
-        {id: 0, label: string.easy, value: 'easy'},
-        {id: 1, label: string.medium, value: 'medium'},
-        {id: 2, label: string.hard, value: 'hard'},
-      ],
-      [],
-    ),
-  );
   const [fertilizedItems] = useState<Array<Data>>(
     useMemo(
       () => [
@@ -98,6 +84,7 @@ const Crop: React.FC = ({}) => {
       percentual = percentual + 0.15;
     }
     setMultiplier(percentual);
+    setBonus((percentual - 1) * 100);
   }
 
   return (
@@ -108,15 +95,15 @@ const Crop: React.FC = ({}) => {
       <Styles.ScrollBody>
         <Styles.Body>
           <Styles.Image source={crops[cropId].icon} />
-          <Styles.TextInfos>
-            {string.price}: {crops[cropId].avgPriceEasy}
-          </Styles.TextInfos>
-          <Styles.TextInfos>
-            {string.yieldPerHa}:{' '}
-            {roundNumber(multiplier * crops[cropId].yieldPerHa)}{' '}
-            {crops[cropId].unit}
-          </Styles.TextInfos>
           <Styles.BoxList>
+            <Styles.TextInfos>
+              {string.yieldPerHa}:{' '}
+              {roundNumber(multiplier * crops[cropId].yieldPerHa)}{' '}
+              {crops[cropId].unit}
+            </Styles.TextInfos>
+            <Styles.TextInfos>
+              {string.bonus}: {roundNumber(bonus) + '%'}
+            </Styles.TextInfos>
             <CheckBox
               value={limed}
               setValue={() => setLimed(!limed)}
@@ -154,13 +141,6 @@ const Crop: React.FC = ({}) => {
               setValue={setRemovedWeeds}
               placeholder={string.weeds_stage}
               modal_text={string.select_removed_weeds}
-            />
-            <ComboBox
-              value={difficulty}
-              data={difficultyItems}
-              setValue={setDifficulty}
-              placeholder={string.difficulty}
-              modal_text={string.select_difficulty}
             />
           </Styles.BoxList>
         </Styles.Body>
