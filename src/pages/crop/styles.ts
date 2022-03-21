@@ -36,8 +36,8 @@ export function useStyle() {
   `;
   const Image = styled.Image`
     align-self: center;
-    width: ${wp(26)}px;
-    height: ${hp(15)}px;
+    width: ${wp(20)}px;
+    height: ${wp(20)}px;
     border-width: ${wp(0.8)}px;
     margin-bottom: ${hp(1.5)}px;
     border-top-right-radius: ${wp(1)}px;
@@ -51,12 +51,15 @@ export function useStyle() {
     font-size: ${hp(2.5)}px;
     color: ${colors.text_light};
   `;
-  const CheckBoxList = styled.View`
-    height: ${hp(45)}px;
+  const BoxList = styled.View`
+    height: ${hp(50)}px;
     justify-content: space-around;
   `;
   const Footer = styled.View`
     flex: 0.12;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
   `;
 
   const styles = StyleSheet.create({
@@ -73,7 +76,7 @@ export function useStyle() {
     Body,
     Image,
     TextInfos,
-    CheckBoxList,
+    BoxList,
     Footer,
     styles,
   };

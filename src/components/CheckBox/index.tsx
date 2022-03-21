@@ -1,30 +1,32 @@
+import React from 'react';
 import {useStyle} from './styles';
-import React, {useState} from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 interface CheckBoxProps {
+  value: boolean;
   text: string;
   onPress: Function;
+  setValue: (value: boolean) => void;
 }
 
-const CheckBox: React.FC<CheckBoxProps> = ({text, onPress}) => {
+const CheckBox: React.FC<CheckBoxProps> = ({
+  text,
+  value,
+  onPress,
+  setValue,
+}) => {
   const Styles = useStyle();
   const {styles} = useStyle();
-  const [check, setCheck] = useState(false);
-
-  function handleCheck() {
-    setCheck(!check);
-  }
 
   return (
     <Styles.View>
       <Styles.Box
-        style={check ? styles.checked : styles.unchecked}
+        style={value ? styles.checked : styles.unchecked}
         onPress={() => {
-          handleCheck();
+          setValue(!value);
           onPress();
         }}>
-        {check && <FontAwesome name="check" style={styles.icon} />}
+        {value && <FontAwesome name="check" style={styles.icon} />}
       </Styles.Box>
       <Styles.Label>{text}</Styles.Label>
     </Styles.View>
