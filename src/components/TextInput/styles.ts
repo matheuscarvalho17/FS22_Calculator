@@ -8,11 +8,11 @@ import {
 export function useStyle() {
   const {colors} = useFlavor();
 
-  const Button = styled.TouchableOpacity`
+  const InputBox = styled.TextInput.attrs({
+    placeholderTextColor: '#CECECE',
+  })`
     width: ${wp(80)}px;
-    height: ${hp(10)}px;
-    align-items: center;
-    justify-content: center;
+    height: ${hp(8.5)}px;
     border-width: ${wp(0.8)}px;
     margin: ${hp(2)}px ${wp(0)}px;
     background: ${colors.secondary};
@@ -21,6 +21,11 @@ export function useStyle() {
     border-bottom-left-radius: ${wp(1)}px;
     border-color: ${colors.border_buttons};
     border-bottom-right-radius: ${wp(5.5)}px;
+    /* Text */
+    font-weight: bold;
+    font-size: ${hp(3)}px;
+    padding-left: ${wp(5)}px;
+    color: ${colors.text_light};
   `;
-  return {Button};
+  return {InputBox};
 }
