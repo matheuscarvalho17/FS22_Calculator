@@ -1,4 +1,5 @@
-import {useStyle} from './styles';
+import * as Styles from './styles';
+import {useFlavor} from '../../flavor';
 import {useNav} from '../../utils/hooks';
 import {useLanguage} from '../../languages';
 import {useCrops} from '../../utils/database';
@@ -9,13 +10,11 @@ import TextInput from '../../components/TextInput';
 import IconButton from '../../components/IconButton';
 import ComboBox, {Data} from '../../components/ComboBox';
 import {roundNumber, onlyNumber} from '../../utils/masks';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Crop: React.FC = ({}) => {
   const crops = useCrops();
   const route = useRoute();
-  const Styles = useStyle();
-  const {styles} = useStyle();
+  const {colors} = useFlavor();
   const {cropId} = route.params;
   const {string} = useLanguage();
   const navigation = useNav('crop');
@@ -89,21 +88,20 @@ const Crop: React.FC = ({}) => {
   }
 
   return (
-    <Styles.Container>
-      {console.log('rebuild')}
+    <Styles.Container colors={colors}>
       <Styles.Header>
-        <Styles.Title>{crops[cropId].name}</Styles.Title>
+        <Styles.Title colors={colors}>{crops[cropId].name}</Styles.Title>
       </Styles.Header>
       <Styles.ScrollBody>
         <Styles.Body>
-          <Styles.Image source={crops[cropId].icon} />
+          <Styles.Image colors={colors} source={crops[cropId].icon} />
           <Styles.BoxList>
-            <Styles.TextInfos>
+            <Styles.TextInfos colors={colors}>
               {string.yieldPerHa}:{' '}
               {roundNumber(multiplier * crops[cropId].yieldPerHa)}{' '}
               {crops[cropId].unit}
             </Styles.TextInfos>
-            <Styles.TextInfos>
+            <Styles.TextInfos colors={colors}>
               {string.bonus}: +{roundNumber(bonus) + '%'}
             </Styles.TextInfos>
             <CheckBox
@@ -160,13 +158,13 @@ const Crop: React.FC = ({}) => {
           onPress={() => {
             navigation.goBack();
           }}
-          icon={<Ionicons name="arrow-back" style={styles.icon} />}
+          icon={<Styles.Icon colors={colors} name="arrow-back" />}
         />
         <IconButton
           onPress={() => {
             yieldCalculation();
           }}
-          icon={<Ionicons name="calculator" style={styles.icon} />}
+          icon={<Styles.Icon colors={colors} name="calculator" />}
         />
       </Styles.Footer>
     </Styles.Container>

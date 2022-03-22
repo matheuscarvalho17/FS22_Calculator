@@ -9,6 +9,10 @@ export interface IColors {
   checkbox_bg: string;
 }
 
+export interface IColorsProps {
+  colors: IColors;
+}
+
 const colors: IColors = {
   primary: '#2f414b',
   secondary: '#19e0fd',

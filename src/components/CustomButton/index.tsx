@@ -1,17 +1,19 @@
 import React from 'react';
-import {useStyle} from './styles';
+import * as Styles from './styles';
+import {useFlavor} from '../../flavor';
 import {ViewStyle} from 'react-native';
 
-interface ButtonProps {
-  onPress: Function;
+interface IButtonProps {
   style?: ViewStyle;
+  onPress: Function;
 }
 
-const CustomButton: React.FC<ButtonProps> = ({onPress, style, children}) => {
-  const Styles = useStyle();
+const CustomButton: React.FC<IButtonProps> = ({style, onPress, children}) => {
+  const {colors} = useFlavor();
 
   return (
     <Styles.Button
+      colors={colors}
       onPress={() => {
         onPress();
       }}

@@ -1,5 +1,7 @@
-import {useStyle} from './styles';
+import {styles} from './styles';
+import * as Styles from './styles';
 import React, {useState} from 'react';
+import {useFlavor} from '../../flavor';
 import {Modal, ListRenderItem, ViewStyle} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -10,7 +12,7 @@ export interface Data {
   label: string | null;
 }
 
-interface ComboBoxProps {
+interface IComboBoxProps {
   value: Data;
   data: Array<Data>;
   style?: ViewStyle;
@@ -19,7 +21,7 @@ interface ComboBoxProps {
   setValue: (value: Data) => void;
 }
 
-const ComboBox: React.FC<ComboBoxProps> = ({
+const ComboBox: React.FC<IComboBoxProps> = ({
   data,
   value,
   style,
@@ -27,32 +29,32 @@ const ComboBox: React.FC<ComboBoxProps> = ({
   modal_text,
   placeholder,
 }) => {
-  const Styles = useStyle();
-  const {styles} = useStyle();
+  const {colors} = useFlavor();
   const [open, setOpen] = useState<boolean>(false);
 
   const Item = ({item}: {item: Data}) => (
     <Styles.ItemButton
+      colors={colors}
       onPress={() => {
         setValue(item);
         setOpen(false);
       }}>
-      <Styles.ItemLabel>{item.label}</Styles.ItemLabel>
+      <Styles.ItemLabel colors={colors}>{item.label}</Styles.ItemLabel>
     </Styles.ItemButton>
   );
 
   return (
     <>
       <Modal visible={open} animationType="fade" transparent>
-        <Styles.ModalContainer>
-          <Styles.ModalBox>
+        <Styles.ModalContainer colors={colors}>
+          <Styles.ModalBox colors={colors}>
             <Styles.ModalIconView
               onPress={() => {
                 setOpen(false);
               }}>
               <FontAwesome name="close" style={styles.iconExit} />
             </Styles.ModalIconView>
-            <Styles.ModalLabel>{modal_text}</Styles.ModalLabel>
+            <Styles.ModalLabel colors={colors}>{modal_text}</Styles.ModalLabel>
             <Styles.FlatList
               data={data}
               renderItem={Item as ListRenderItem<unknown>}
@@ -62,12 +64,15 @@ const ComboBox: React.FC<ComboBoxProps> = ({
         </Styles.ModalContainer>
       </Modal>
       <Styles.Box
+        colors={colors}
         style={style}
         onPress={() => {
           setOpen(true);
         }}>
         <Styles.LabelView>
-          <Styles.Label>{value.label || placeholder}</Styles.Label>
+          <Styles.Label colors={colors}>
+            {value.label || placeholder}
+          </Styles.Label>
         </Styles.LabelView>
         <Styles.IconView>
           <FontAwesome5 name="angle-double-down" style={styles.icon} />

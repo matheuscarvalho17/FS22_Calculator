@@ -1,5 +1,7 @@
 import React from 'react';
-import {useStyle} from './styles';
+import {styles} from './styles';
+import * as Styles from './styles';
+import {useFlavor} from '../../flavor';
 import {useNav} from '../../utils/hooks';
 import {useLanguage} from '../../languages';
 import Button from '../../components/Button';
@@ -8,15 +10,14 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const Main: React.FC = () => {
-  const Styles = useStyle();
-  const {styles} = useStyle();
+  const {colors} = useFlavor();
   const {string} = useLanguage();
   const navigation = useNav('mainPage');
 
   return (
-    <Styles.Container>
+    <Styles.Container colors={colors}>
       <Styles.Header>
-        <Styles.Title>{string.title}</Styles.Title>
+        <Styles.Title colors={colors}>{string.title}</Styles.Title>
       </Styles.Header>
       <Styles.Body>
         <Button

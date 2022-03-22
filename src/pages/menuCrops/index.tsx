@@ -1,6 +1,10 @@
-import {useStyle} from './styles';
+import {styles} from './styles';
+import * as Styles from './styles';
+import {useFlavor} from '../../flavor';
 import {useNav} from '../../utils/hooks';
+import {useLanguage} from '../../languages';
 import {ImageURISource} from 'react-native';
+import {useCrops} from '../../utils/database';
 import React, {useEffect, useState} from 'react';
 import IconButton from '../../components/IconButton';
 import CustomButton from '../../components/CustomButton';
@@ -11,13 +15,9 @@ interface IButton {
   icon: ImageURISource;
 }
 
-import {useLanguage} from '../../languages';
-import {useCrops} from '../../utils/database';
 const MenuCrop: React.FC = () => {
-  //context
   const crops = useCrops();
-  const Styles = useStyle();
-  const {styles} = useStyle();
+  const {colors} = useFlavor();
   const {string} = useLanguage();
   const navigation = useNav('menuCrops');
   const [buttons, setButtons] = useState<Array<IButton>>([]);
@@ -36,9 +36,9 @@ const MenuCrop: React.FC = () => {
   }, []);
 
   return (
-    <Styles.Container>
+    <Styles.Container colors={colors}>
       <Styles.Header>
-        <Styles.Title>{string.crops}</Styles.Title>
+        <Styles.Title colors={colors}>{string.crops}</Styles.Title>
       </Styles.Header>
       <Styles.ScrollBody showsVerticalScrollIndicator={false}>
         <Styles.List>

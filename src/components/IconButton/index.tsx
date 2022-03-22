@@ -1,16 +1,18 @@
 import React from 'react';
-import {useStyle} from './styles';
+import * as Styles from './styles';
+import {useFlavor} from '../../flavor';
 
-interface ButtonProps {
+interface IButtonProps {
   onPress: Function;
   icon?: React.ReactNode;
 }
 
-const IconButton: React.FC<ButtonProps> = ({onPress, icon}) => {
-  const Styles = useStyle();
+const IconButton: React.FC<IButtonProps> = ({icon, onPress}) => {
+  const {colors} = useFlavor();
 
   return (
     <Styles.Button
+      colors={colors}
       onPress={() => {
         onPress();
       }}>
