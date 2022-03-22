@@ -6,7 +6,7 @@ const colors: IColors = {
   primary: '#367C2B',
   secondary: '#FFCC00', //Oficial is #FFDE00
   background: '#367C2B',
-  background_glass: '#367C2Bbb',
+  background_glass: '#27251Faa',
   text_light: '#FFFFFF',
   text_dark: '#000000',
   border_buttons: '#27251F',

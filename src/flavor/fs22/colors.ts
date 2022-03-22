@@ -13,7 +13,7 @@ const colors: IColors = {
   primary: '#2f414b',
   secondary: '#19e0fd',
   background: '#2F414B',
-  background_glass: '#2F414Bbb',
+  background_glass: '#27251Faa',
   text_light: '#FFFFFF',
   text_dark: '#000000',
   border_buttons: '#27251F',
