@@ -6,7 +6,6 @@ import {StatusBar} from 'react-native';
 import Language from '../pages/Language';
 import MenuCrops from '../pages/MenuCrops';
 import Appearance from '../pages/Appearance';
-import NavigationBar from 'react-native-navbar-color';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -20,7 +19,6 @@ export type RootStackParamList = {
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const App: React.FC = () => {
   const {colors} = useFlavor();
-  NavigationBar.setColor(colors.primary);
 
   return (
     <NavigationContainer>

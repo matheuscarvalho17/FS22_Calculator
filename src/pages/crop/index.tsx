@@ -21,9 +21,9 @@ const Crop: React.FC = ({}) => {
   const navigation = useNav('crop');
   const [bonus, setBonus] = useState<number>(0);
   const [limed, setLimed] = useState<boolean>(false);
-  const [fildSize, setFildSize] = useState<string>('');
   const [rolled, setRolled] = useState<boolean>(false);
   const [plowed, setPlowed] = useState<boolean>(false);
+  const [fieldSize, setFieldSize] = useState<string>('');
   const [mulched, setMulched] = useState<boolean>(false);
   const [multiplier, setMultiplier] = useState<number>(1);
   const [fertilized, setFertilized] = useState<Data>({
@@ -90,6 +90,7 @@ const Crop: React.FC = ({}) => {
 
   return (
     <Styles.Container>
+      {console.log('rebuild')}
       <Styles.Header>
         <Styles.Title>{crops[cropId].name}</Styles.Title>
       </Styles.Header>
@@ -107,25 +108,25 @@ const Crop: React.FC = ({}) => {
             </Styles.TextInfos>
             <CheckBox
               value={limed}
-              setValue={() => setLimed(!limed)}
+              setValue={setLimed}
               text={string.limed_stage}
               onPress={() => {}}
             />
             <CheckBox
               value={plowed}
-              setValue={() => setPlowed(!plowed)}
+              setValue={setPlowed}
               text={string.plowed_stage}
               onPress={() => {}}
             />
             <CheckBox
               value={rolled}
-              setValue={() => setRolled(!rolled)}
+              setValue={setRolled}
               text={string.rolled_stage}
               onPress={() => {}}
             />
             <CheckBox
               value={mulched}
-              setValue={() => setMulched(!mulched)}
+              setValue={setMulched}
               text={string.mulched_stage}
               onPress={() => {}}
             />
@@ -146,8 +147,8 @@ const Crop: React.FC = ({}) => {
           </Styles.BoxList>
           <Styles.InputList>
             <TextInput
-              value={onlyNumber(fildSize)}
-              setValue={setFildSize}
+              value={onlyNumber(fieldSize)}
+              setValue={setFieldSize}
               keyboard={'numeric'}
               placeholder={'Digite aqui'}
             />
