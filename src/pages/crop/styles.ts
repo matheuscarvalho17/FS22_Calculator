@@ -55,6 +55,10 @@ export function useStyle() {
     height: ${hp(50)}px;
     justify-content: space-around;
   `;
+  const InputList = styled.View`
+    height: ${hp(50)}px;
+    justify-content: space-around;
+  `;
   const Footer = styled.View`
     flex: 0.12;
     width: 100%;
@@ -77,6 +81,7 @@ export function useStyle() {
     Image,
     TextInfos,
     BoxList,
+    InputList,
     Footer,
     styles,
   };

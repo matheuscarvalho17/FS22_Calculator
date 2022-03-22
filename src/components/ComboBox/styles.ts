@@ -11,7 +11,7 @@ export function useStyle() {
 
   const Box = styled.TouchableOpacity`
     width: ${wp(80)}px;
-    height: ${hp(7)}px;
+    height: ${hp(8.5)}px;
     align-items: center;
     flex-direction: row;
     border-width: ${wp(0.8)}px;

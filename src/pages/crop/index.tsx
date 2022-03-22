@@ -1,14 +1,14 @@
 import {useStyle} from './styles';
 import {useNav} from '../../utils/hooks';
 import {useLanguage} from '../../languages';
-import Button from '../../components/Button';
 import {useCrops} from '../../utils/database';
-import {roundNumber} from '../../utils/masks';
 import React, {useMemo, useState} from 'react';
 import CheckBox from '../../components/CheckBox';
 import {useRoute} from '@react-navigation/native';
+import TextInput from '../../components/TextInput';
 import IconButton from '../../components/IconButton';
 import ComboBox, {Data} from '../../components/ComboBox';
+import {roundNumber, onlyNumber} from '../../utils/masks';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Crop: React.FC = ({}) => {
@@ -19,12 +19,13 @@ const Crop: React.FC = ({}) => {
   const {cropId} = route.params;
   const {string} = useLanguage();
   const navigation = useNav('crop');
-  const [multiplier, setMultiplier] = useState<number>(1);
   const [bonus, setBonus] = useState<number>(0);
   const [limed, setLimed] = useState<boolean>(false);
+  const [fildSize, setFildSize] = useState<string>('');
   const [rolled, setRolled] = useState<boolean>(false);
   const [plowed, setPlowed] = useState<boolean>(false);
   const [mulched, setMulched] = useState<boolean>(false);
+  const [multiplier, setMultiplier] = useState<number>(1);
   const [fertilized, setFertilized] = useState<Data>({
     id: -1,
     label: null,
@@ -102,7 +103,7 @@ const Crop: React.FC = ({}) => {
               {crops[cropId].unit}
             </Styles.TextInfos>
             <Styles.TextInfos>
-              {string.bonus}: {roundNumber(bonus) + '%'}
+              {string.bonus}: +{roundNumber(bonus) + '%'}
             </Styles.TextInfos>
             <CheckBox
               value={limed}
@@ -143,6 +144,14 @@ const Crop: React.FC = ({}) => {
               modal_text={string.select_removed_weeds}
             />
           </Styles.BoxList>
+          <Styles.InputList>
+            <TextInput
+              value={onlyNumber(fildSize)}
+              setValue={setFildSize}
+              keyboard={'numeric'}
+              placeholder={'Digite aqui'}
+            />
+          </Styles.InputList>
         </Styles.Body>
       </Styles.ScrollBody>
       <Styles.Footer>

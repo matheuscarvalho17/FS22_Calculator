@@ -1,6 +1,6 @@
 import {useStyle} from './styles';
-import {Modal} from 'react-native';
 import React, {useState} from 'react';
+import {Modal, ListRenderItem, ViewStyle} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
@@ -13,6 +13,7 @@ export interface Data {
 interface ComboBoxProps {
   value: Data;
   data: Array<Data>;
+  style?: ViewStyle;
   modal_text: string;
   placeholder: string;
   setValue: (value: Data) => void;
@@ -21,6 +22,7 @@ interface ComboBoxProps {
 const ComboBox: React.FC<ComboBoxProps> = ({
   data,
   value,
+  style,
   setValue,
   modal_text,
   placeholder,
@@ -53,13 +55,14 @@ const ComboBox: React.FC<ComboBoxProps> = ({
             <Styles.ModalLabel>{modal_text}</Styles.ModalLabel>
             <Styles.FlatList
               data={data}
-              renderItem={Item}
+              renderItem={Item as ListRenderItem<unknown>}
               showsVerticalScrollIndicator={false}
             />
           </Styles.ModalBox>
         </Styles.ModalContainer>
       </Modal>
       <Styles.Box
+        style={style}
         onPress={() => {
           setOpen(true);
         }}>
