@@ -3,5 +3,5 @@ export function roundNumber(number: number) {
 }
 
 export function onlyNumber(value: string) {
-  return value.replace(/\D/, '');
+  return value.replace(/\D/g, '');
 }

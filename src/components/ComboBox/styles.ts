@@ -1,6 +1,8 @@
-import {StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
 import {IColorsProps} from '../../flavor/fs22/colors';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -8,16 +10,16 @@ import {
 
 export const Box = styled.TouchableOpacity`
   width: ${wp(80)}px;
-  height: ${hp(8.5)}px;
   align-items: center;
   flex-direction: row;
+  height: ${hp(8.5)}px;
   border-width: ${wp(0.8)}px;
-  background: ${(props: IColorsProps) => props.colors.secondary};
   border-top-right-radius: ${wp(1)}px;
   border-top-left-radius: ${wp(5.5)}px;
   border-bottom-left-radius: ${wp(1)}px;
-  border-color: ${(props: IColorsProps) => props.colors.border_buttons};
   border-bottom-right-radius: ${wp(5.5)}px;
+  background: ${(props: IColorsProps) => props.colors.secondary};
+  border-color: ${(props: IColorsProps) => props.colors.border_buttons};
 `;
 export const LabelView = styled.View`
   flex: 0.8;
@@ -43,8 +45,8 @@ export const ModalBox = styled.View`
   height: ${hp(47)}px;
   border-radius: ${wp(2)}px;
   border-width: ${wp(0.8)}px;
-  background: ${(props: IColorsProps) => props.colors.primary};
   padding: ${hp(1)}px ${wp(1.5)}px;
+  background: ${(props: IColorsProps) => props.colors.primary};
   border-color: ${(props: IColorsProps) => props.colors.border_buttons};
 `;
 export const ModalIconView = styled.TouchableOpacity`
@@ -82,16 +84,12 @@ export const ItemLabel = styled.Text`
   font-size: ${hp(2.5)}px;
   color: ${(props: IColorsProps) => props.colors.text_light};
 `;
+export const IconFA = styled(FontAwesome)`
+  font-size: ${hp(4)}px;
+  color: ${(props: IColorsProps) => props.colors.text_light};
+`;
 
-export const styles = StyleSheet.create({
-  icon: {
-    fontSize: hp(3),
-    // color: colors.text_light,
-    color: 'white',
-  },
-  iconExit: {
-    fontSize: hp(4),
-    // color: colors.text_light,
-    color: 'white',
-  },
-});
+export const IconFA5 = styled(FontAwesome5)`
+  font-size: ${hp(3)}px;
+  color: ${(props: IColorsProps) => props.colors.text_light};
+`;

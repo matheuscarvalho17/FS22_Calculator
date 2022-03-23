@@ -1,7 +1,7 @@
+import {StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
 import {IColorsProps} from '../../flavor/fs22/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -41,8 +41,8 @@ export const Image = styled.Image`
   border-top-right-radius: ${wp(1)}px;
   border-top-left-radius: ${wp(5.5)}px;
   border-bottom-left-radius: ${wp(1)}px;
-  border-color: ${(props: IColorsProps) => props.colors.border_buttons};
   border-bottom-right-radius: ${wp(5.5)}px;
+  border-color: ${(props: IColorsProps) => props.colors.border_buttons};
 `;
 export const TextInfos = styled.Text`
   font-weight: bold;
@@ -50,12 +50,20 @@ export const TextInfos = styled.Text`
   color: ${(props: IColorsProps) => props.colors.text_light};
 `;
 export const BoxList = styled.View`
-  height: ${hp(50)}px;
+  height: ${hp(60)}px;
   justify-content: space-around;
 `;
 export const InputList = styled.View`
-  height: ${hp(50)}px;
-  justify-content: space-around;
+  flex-direction: row;
+`;
+export const LeftView = styled.View`
+  flex: 0.75;
+  justify-content: center;
+`;
+export const RightView = styled.View`
+  flex: 0.25;
+  align-items: flex-end;
+  justify-content: center;
 `;
 export const Footer = styled.View`
   flex: 0.12;
@@ -67,3 +75,9 @@ export const Icon = styled(Ionicons)`
   font-size: ${hp(4.5)}px;
   color: ${(props: IColorsProps) => props.colors.text_light};
 `;
+
+export const styles = StyleSheet.create({
+  width95: {
+    width: '95%',
+  },
+});

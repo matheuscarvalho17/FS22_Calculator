@@ -5,16 +5,10 @@ import {useFlavor} from '../../flavor';
 interface ICheckBoxProps {
   text: string;
   value: boolean;
-  onPress: Function;
   setValue: (value: boolean) => void;
 }
 
-const CheckBox: React.FC<ICheckBoxProps> = ({
-  text,
-  value,
-  onPress,
-  setValue,
-}) => {
+const CheckBox: React.FC<ICheckBoxProps> = ({text, value, setValue}) => {
   const {colors} = useFlavor();
 
   return (
@@ -23,7 +17,6 @@ const CheckBox: React.FC<ICheckBoxProps> = ({
         colors={colors}
         onPress={() => {
           setValue(!value);
-          onPress();
         }}>
         {value && <Styles.Icon colors={colors} name="check" />}
       </Styles.Box>

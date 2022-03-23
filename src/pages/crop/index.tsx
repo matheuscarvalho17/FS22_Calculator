@@ -1,3 +1,4 @@
+import {styles} from './styles';
 import * as Styles from './styles';
 import {useFlavor} from '../../flavor';
 import {useNav} from '../../utils/hooks';
@@ -35,6 +36,11 @@ const Crop: React.FC = ({}) => {
     label: null,
     value: null,
   });
+  const [measureUnit, setMeasureUnit] = useState<Data>({
+    id: -1,
+    label: null,
+    value: null,
+  });
   const [fertilizedItems] = useState<Array<Data>>(
     useMemo(
       () => [
@@ -55,36 +61,59 @@ const Crop: React.FC = ({}) => {
       [],
     ),
   );
+  const [measureUnitItens] = useState<Array<Data>>(
+    useMemo(
+      () => [
+        {id: 0, label: string.are, value: 'a'},
+        {id: 1, label: string.hectare, value: 'ha'},
+        {id: 2, label: string.square_meters, value: 'm²'},
+      ],
+      [],
+    ),
+  );
 
   function yieldCalculation() {
-    let percentual: number = 1;
+    let multiplierByCare: number = 1;
+    let multiplierByFieldSize: number = 0;
+    let multiplierByMeasureUnit: number = 1;
 
     if (limed) {
-      percentual = percentual + 0.15;
+      multiplierByCare = multiplierByCare + 0.15;
     }
     if (plowed) {
-      percentual = percentual + 0.15;
+      multiplierByCare = multiplierByCare + 0.15;
     }
     if (rolled) {
-      percentual = percentual + 0.025;
+      multiplierByCare = multiplierByCare + 0.025;
     }
     if (mulched) {
-      percentual = percentual + 0.025;
+      multiplierByCare = multiplierByCare + 0.025;
     }
     if (fertilized.value === 'half_fertilized') {
-      percentual = percentual + 0.225;
+      multiplierByCare = multiplierByCare + 0.225;
     }
     if (fertilized.value === 'full_fertilized') {
-      percentual = percentual + 0.45;
+      multiplierByCare = multiplierByCare + 0.45;
     }
     if (removedWeeds.value === 'mec_removed_weeds') {
-      percentual = percentual + 0.2;
+      multiplierByCare = multiplierByCare + 0.2;
     }
     if (removedWeeds.value === 'chem_removed_weeds') {
-      percentual = percentual + 0.15;
+      multiplierByCare = multiplierByCare + 0.15;
     }
-    setMultiplier(percentual);
-    setBonus((percentual - 1) * 100);
+
+    if (measureUnit.value === 'a') {
+      multiplierByMeasureUnit = 0.01;
+    }
+    if (measureUnit.value === 'm²') {
+      multiplierByMeasureUnit = 0.0001;
+    }
+
+    multiplierByFieldSize =
+      parseInt(fieldSize) * multiplierByCare * multiplierByMeasureUnit;
+
+    setMultiplier(multiplierByFieldSize);
+    setBonus((multiplierByCare - 1) * 100);
   }
 
   return (
@@ -108,25 +137,21 @@ const Crop: React.FC = ({}) => {
               value={limed}
               setValue={setLimed}
               text={string.limed_stage}
-              onPress={() => {}}
             />
             <CheckBox
               value={plowed}
               setValue={setPlowed}
               text={string.plowed_stage}
-              onPress={() => {}}
             />
             <CheckBox
               value={rolled}
               setValue={setRolled}
               text={string.rolled_stage}
-              onPress={() => {}}
             />
             <CheckBox
               value={mulched}
               setValue={setMulched}
               text={string.mulched_stage}
-              onPress={() => {}}
             />
             <ComboBox
               value={fertilized}
@@ -144,12 +169,26 @@ const Crop: React.FC = ({}) => {
             />
           </Styles.BoxList>
           <Styles.InputList>
-            <TextInput
-              value={onlyNumber(fieldSize)}
-              setValue={setFieldSize}
-              keyboard={'numeric'}
-              placeholder={'Digite aqui'}
-            />
+            <Styles.LeftView>
+              <TextInput
+                style={styles.width95}
+                value={onlyNumber(fieldSize)}
+                setValue={setFieldSize}
+                keyboard={'numeric'}
+                placeholder={string.enter_field_size}
+              />
+            </Styles.LeftView>
+            <Styles.RightView>
+              <ComboBox
+                style={styles.width95}
+                value={measureUnit}
+                data={measureUnitItens}
+                setValue={setMeasureUnit}
+                placeholderType={'value'}
+                placeholder={string.abbr_hectare}
+                modal_text={string.select_measure_unit}
+              />
+            </Styles.RightView>
           </Styles.InputList>
         </Styles.Body>
       </Styles.ScrollBody>
@@ -163,6 +202,8 @@ const Crop: React.FC = ({}) => {
         <IconButton
           onPress={() => {
             yieldCalculation();
+            console.log(fieldSize);
+            console.log(parseInt(fieldSize));
           }}
           icon={<Styles.Icon colors={colors} name="calculator" />}
         />

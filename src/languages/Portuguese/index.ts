@@ -12,7 +12,7 @@ const strings: ILanguage = {
   // Rótulos
   bonus: 'Bônus',
   price: 'Preço',
-  yieldPerHa: 'Rendimento (Ha)',
+  yieldPerHa: 'Rendimento (ha)',
   liters: 'L',
   unit: 'Un.',
   limed_stage: 'Calado',
@@ -34,6 +34,13 @@ const strings: ILanguage = {
   easy: 'Fácil',
   medium: 'Médio',
   hard: 'Difícil',
+  select_measure_unit: 'Selecione a unidade de medida',
+  are: 'Are (a)',
+  hectare: 'Hectare (ha)',
+  abbr_hectare: 'ha',
+  square_meters: 'Metros quadrados (m²)',
+  enter_field_size: 'Digite o tamanho do campo',
+
   // Culturas
   barley: 'Cevada',
   canola: 'Canola',

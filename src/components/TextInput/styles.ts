@@ -6,7 +6,7 @@ import {
 } from 'react-native-responsive-screen';
 
 export const InputBox = styled.TextInput.attrs({
-  placeholderTextColor: '#CECECE',
+  placeholderTextColor: '#DDDDDD',
 })`
   width: ${wp(80)}px;
   height: ${hp(8.5)}px;
@@ -20,7 +20,7 @@ export const InputBox = styled.TextInput.attrs({
   border-bottom-right-radius: ${wp(5.5)}px;
   /* Text */
   font-weight: bold;
-  font-size: ${hp(3)}px;
+  font-size: ${hp(2.5)}px;
   padding-left: ${wp(5)}px;
   color: ${(props: IColorsProps) => props.colors.text_light};
 `;

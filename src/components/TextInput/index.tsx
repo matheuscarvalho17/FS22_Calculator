@@ -22,12 +22,12 @@ const TextInput: React.FC<IButtonProps> = ({
 
   return (
     <Styles.InputBox
-      colors={colors}
       value={value}
-      onChangeText={text => setValue(text)}
-      keyboardType={keyboard || 'default'}
-      placeholder={placeholder}
       style={style}
+      colors={colors}
+      placeholder={placeholder}
+      keyboardType={keyboard || 'default'}
+      onChangeText={text => setValue(text)}
     />
   );
 };

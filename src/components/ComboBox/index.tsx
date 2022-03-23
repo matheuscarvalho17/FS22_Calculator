@@ -1,10 +1,7 @@
-import {styles} from './styles';
 import * as Styles from './styles';
 import React, {useState} from 'react';
 import {useFlavor} from '../../flavor';
 import {Modal, ListRenderItem, ViewStyle} from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 export interface Data {
   id: number;
@@ -18,6 +15,7 @@ interface IComboBoxProps {
   style?: ViewStyle;
   modal_text: string;
   placeholder: string;
+  placeholderType?: 'label' | 'value';
   setValue: (value: Data) => void;
 }
 
@@ -28,6 +26,7 @@ const ComboBox: React.FC<IComboBoxProps> = ({
   setValue,
   modal_text,
   placeholder,
+  placeholderType,
 }) => {
   const {colors} = useFlavor();
   const [open, setOpen] = useState<boolean>(false);
@@ -52,7 +51,7 @@ const ComboBox: React.FC<IComboBoxProps> = ({
               onPress={() => {
                 setOpen(false);
               }}>
-              <FontAwesome name="close" style={styles.iconExit} />
+              <Styles.IconFA colors={colors} name="close" />
             </Styles.ModalIconView>
             <Styles.ModalLabel colors={colors}>{modal_text}</Styles.ModalLabel>
             <Styles.FlatList
@@ -71,11 +70,12 @@ const ComboBox: React.FC<IComboBoxProps> = ({
         }}>
         <Styles.LabelView>
           <Styles.Label colors={colors}>
-            {value.label || placeholder}
+            {(placeholderType === 'value' ? value.value : value.label) ||
+              placeholder}
           </Styles.Label>
         </Styles.LabelView>
         <Styles.IconView>
-          <FontAwesome5 name="angle-double-down" style={styles.icon} />
+          <Styles.IconFA5 colors={colors} name="angle-double-down" />
         </Styles.IconView>
       </Styles.Box>
     </>

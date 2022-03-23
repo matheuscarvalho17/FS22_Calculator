@@ -38,6 +38,12 @@ export interface ILanguage {
   easy: string;
   medium: string;
   hard: string;
+  select_measure_unit: string;
+  are: string;
+  hectare: string;
+  abbr_hectare: string;
+  square_meters: string;
+  enter_field_size: string;
   // Crops
   barley: string;
   canola: string;
@@ -81,7 +87,7 @@ const strings: ILanguage = {
   // Labels
   price: 'Price',
   bonus: 'Bonus',
-  yieldPerHa: 'Yield (Ha)',
+  yieldPerHa: 'Yield (ha)',
   liters: 'L',
   unit: 'Un.',
   limed_stage: 'Limed',
@@ -103,6 +109,12 @@ const strings: ILanguage = {
   easy: 'Easy',
   medium: 'Medium',
   hard: 'Hard',
+  select_measure_unit: 'Select the measure unit',
+  are: 'Are (a)',
+  hectare: 'Hectare (ha)',
+  abbr_hectare: 'ha',
+  square_meters: 'Square Meters (m²)',
+  enter_field_size: 'Enter the field size',
   // Crops
   barley: 'Barley',
   canola: 'Canola',
