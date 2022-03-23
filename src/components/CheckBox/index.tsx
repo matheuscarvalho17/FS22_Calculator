@@ -1,8 +1,6 @@
 import React from 'react';
-import {styles} from './styles';
 import * as Styles from './styles';
 import {useFlavor} from '../../flavor';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 interface ICheckBoxProps {
   text: string;
@@ -23,12 +21,11 @@ const CheckBox: React.FC<ICheckBoxProps> = ({
     <Styles.View>
       <Styles.Box
         colors={colors}
-        style={value ? styles.checked : styles.unchecked}
         onPress={() => {
           setValue(!value);
           onPress();
         }}>
-        {value && <FontAwesome name="check" style={styles.icon} />}
+        {value && <Styles.Icon colors={colors} name="check" />}
       </Styles.Box>
       <Styles.Label colors={colors}>{text}</Styles.Label>
     </Styles.View>

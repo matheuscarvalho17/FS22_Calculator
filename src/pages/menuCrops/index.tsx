@@ -8,7 +8,6 @@ import {useCrops} from '../../utils/database';
 import React, {useEffect, useState} from 'react';
 import IconButton from '../../components/IconButton';
 import CustomButton from '../../components/CustomButton';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
 interface IButton {
   onPress: Function;
@@ -60,7 +59,7 @@ const MenuCrop: React.FC = () => {
           onPress={() => {
             navigation.goBack();
           }}
-          icon={<Ionicons name="arrow-back" style={styles.icon} />}
+          icon={<Styles.Icon colors={colors} name="arrow-back" />}
         />
       </Styles.Footer>
     </Styles.Container>

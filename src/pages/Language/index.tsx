@@ -1,12 +1,10 @@
 import React from 'react';
-import {styles} from './styles';
 import * as Styles from './styles';
 import {useFlavor} from '../../flavor';
 import {useNav} from '../../utils/hooks';
 import {useAppContext} from '../../Context';
 import Button from '../../components/CustomButton';
 import IconButton from '../../components/IconButton';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {listOfLanguages, useLanguage} from '../../languages';
 
 const Language: React.FC = () => {
@@ -45,7 +43,7 @@ const Language: React.FC = () => {
           onPress={() => {
             navigation.goBack();
           }}
-          icon={<Ionicons name="arrow-back" style={styles.icon} />}
+          icon={<Styles.Icon colors={colors} name="arrow-back" />}
         />
       </Styles.Footer>
     </Styles.Container>

@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
 import {IColorsProps} from '../../flavor/fs22/colors';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -37,6 +38,10 @@ export const Footer = styled.View`
   flex: 0.12;
 `;
 export const ImageBg = styled.ImageBackground``;
+export const Icon = styled(Ionicons)`
+  font-size: ${hp(4.5)}px;
+  color: ${(props: IColorsProps) => props.colors.text_light};
+`;
 
 export const styles = StyleSheet.create({
   btn: {
@@ -49,10 +54,5 @@ export const styles = StyleSheet.create({
   btnImage: {
     width: wp(15.5),
     height: wp(15.5),
-  },
-  icon: {
-    fontSize: hp(4.5),
-    // color: colors.text_light,
-    color: 'white',
   },
 });

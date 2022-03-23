@@ -1,13 +1,10 @@
 import React from 'react';
-import {styles} from './styles';
 import * as Styles from './styles';
 import {useFlavor} from '../../flavor';
 import {useNav} from '../../utils/hooks';
 import {useLanguage} from '../../languages';
 import Button from '../../components/Button';
 import IconButton from '../../components/IconButton';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const Main: React.FC = () => {
   const {colors} = useFlavor();
@@ -44,13 +41,13 @@ const Main: React.FC = () => {
           onPress={() => {
             navigation.navigate('language');
           }}
-          icon={<Ionicons name="globe-sharp" style={styles.icon} />}
+          icon={<Styles.IconII colors={colors} name="globe-sharp" />}
         />
         <IconButton
           onPress={() => {
             navigation.navigate('appearance');
           }}
-          icon={<FontAwesome name="paint-brush" style={styles.icon} />}
+          icon={<Styles.IconFA colors={colors} name="paint-brush" />}
         />
       </Styles.Footer>
     </Styles.Container>

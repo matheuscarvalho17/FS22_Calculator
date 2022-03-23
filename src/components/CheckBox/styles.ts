@@ -1,6 +1,6 @@
-import {StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
 import {IColorsProps} from '../../flavor/fs22/colors';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -17,6 +17,7 @@ export const Box = styled.TouchableOpacity`
   justify-content: center;
   border-width: ${wp(0.8)}px;
   border-radius: ${wp(1.5)}px;
+  background: ${(props: IColorsProps) => props.colors.checkbox_bg};
   border-color: ${(props: IColorsProps) => props.colors.border_buttons};
 `;
 export const Label = styled.Text`
@@ -25,19 +26,10 @@ export const Label = styled.Text`
   margin-left: ${wp(2)}px;
   color: ${(props: IColorsProps) => props.colors.text_light};
 `;
-
-export const styles = StyleSheet.create({
-  icon: {
-    fontSize: hp(3),
-    // color: colors.text_light,
-    color: 'white',
-  },
-  checked: {
-    // backgroundColor: colors.secondary,
-    backgroundColor: 'blue',
-  },
-  unchecked: {
-    // backgroundColor: colors.checkbox_bg,
-    backgroundColor: 'grey',
-  },
-});
+export const Icon = styled(FontAwesome)`
+  font-size: ${hp(3)}px;
+  padding: ${wp(0.65)}px;
+  border-radius: ${wp(0.65)}px;
+  color: ${(props: IColorsProps) => props.colors.text_light};
+  background: ${(props: IColorsProps) => props.colors.secondary};
+`;

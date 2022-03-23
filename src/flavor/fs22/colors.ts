@@ -21,7 +21,7 @@ const colors: IColors = {
   text_light: '#FFFFFF',
   text_dark: '#000000',
   border_buttons: '#27251F',
-  checkbox_bg: '#DDDDDD',
+  checkbox_bg: '#CFCFCF',
 };
 
 export {colors};
