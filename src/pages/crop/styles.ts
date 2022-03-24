@@ -9,13 +9,19 @@ import {
 
 export const Container = styled.View`
   flex: 1;
-  align-items: center;
   padding: ${hp(5)}px ${wp(5)}px;
   background: ${(props: IColorsProps) => props.colors.background};
 `;
 export const Header = styled.View`
   flex: 0.15;
-  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+`;
+export const LeftView = styled.View`
+  flex: 0.75;
+`;
+export const RightView = styled.View`
+  flex: 0.25;
 `;
 export const Title = styled.Text`
   font-weight: bold;
@@ -23,47 +29,50 @@ export const Title = styled.Text`
   font-size: ${hp(4.5)}px;
   color: ${(props: IColorsProps) => props.colors.text_light};
 `;
-export const ScrollBody = styled.ScrollView`
-  flex: 0.73;
-  width: 100%;
-`;
-export const Body = styled.View`
-  flex: 1;
-  display: flex;
-  padding: ${hp(1.5)}px ${wp(5)}px;
-`;
 export const Image = styled.Image`
   align-self: center;
-  width: ${wp(20)}px;
-  height: ${wp(20)}px;
+  width: ${wp(15)}px;
+  height: ${wp(15)}px;
   border-width: ${wp(0.8)}px;
-  margin-bottom: ${hp(1.5)}px;
   border-top-right-radius: ${wp(1)}px;
   border-top-left-radius: ${wp(5.5)}px;
   border-bottom-left-radius: ${wp(1)}px;
   border-bottom-right-radius: ${wp(5.5)}px;
   border-color: ${(props: IColorsProps) => props.colors.border_buttons};
 `;
+export const Body = styled.View`
+  flex: 0.73;
+`;
+export const DivideView = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
 export const TextInfos = styled.Text`
   font-weight: bold;
   font-size: ${hp(2.5)}px;
+  margin-right: ${wp(2)}px;
   color: ${(props: IColorsProps) => props.colors.text_light};
 `;
-export const BoxList = styled.View`
-  height: ${hp(60)}px;
-  justify-content: space-around;
+export const TextInfosAccent = styled.Text`
+  font-weight: bold;
+  font-size: ${hp(3)}px;
+  color: ${(props: IColorsProps) => props.colors.text_highlight};
 `;
-export const InputList = styled.View`
-  flex-direction: row;
+export const warnMessage = styled.Text`
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: ${hp(1)}px;
+  font-size: ${hp(3.5)}px;
 `;
-export const LeftView = styled.View`
-  flex: 0.75;
-  justify-content: center;
+export const ScrollBody = styled.ScrollView`
+  flex: 1;
 `;
-export const RightView = styled.View`
-  flex: 0.25;
-  align-items: flex-end;
-  justify-content: center;
+export const SectionTitle = styled.Text`
+  padding-top: ${hp(1)}px;
+  font-weight: bold;
+  font-size: ${hp(2.7)}px;
+  color: ${(props: IColorsProps) => props.colors.text_light};
 `;
 export const Footer = styled.View`
   flex: 0.12;
@@ -77,7 +86,7 @@ export const Icon = styled(Ionicons)`
 `;
 
 export const styles = StyleSheet.create({
-  width95: {
-    width: '95%',
+  margin5px: {
+    marginLeft: wp(5),
   },
 });

@@ -20,18 +20,25 @@ export const Header = styled.View`
 export const Body = styled.View`
   flex: 0.63;
 `;
+export const Title = styled.Text`
+  font-weight: bold;
+  text-align: center;
+  font-size: ${hp(4.5)}px;
+  color: ${(props: IColorsProps) => props.colors.text_light};
+`;
+export const Version = styled.Text`
+  font-weight: bold;
+  text-align: center;
+  font-size: ${hp(2)}px;
+  color: ${(props: IColorsProps) => props.colors.text_light};
+  margin-top: ${hp(8)}px;
+`;
 export const Footer = styled.View`
   flex: 0.12;
   width: 100%;
   align-items: center;
   flex-direction: row;
   justify-content: space-around;
-`;
-export const Title = styled.Text`
-  font-weight: bold;
-  text-align: center;
-  font-size: ${hp(4.5)}px;
-  color: ${(props: IColorsProps) => props.colors.text_light};
 `;
 export const IconII = styled(Ionicons)`
   font-size: ${hp(4.5)}px;

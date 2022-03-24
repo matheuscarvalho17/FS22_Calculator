@@ -1,6 +1,6 @@
 {
   "name": "fs22_calculator",
-  "version": "0.0.1",
+  "version": "Pre-Alpha_0.0.1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",

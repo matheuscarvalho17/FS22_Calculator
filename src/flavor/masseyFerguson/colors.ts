@@ -8,7 +8,7 @@ const colors: IColors = {
   background: '#c80102',
   background_glass: '#27251Faa',
   text_light: '#FFFFFF',
-  text_dark: '#000000',
+  text_highlight: '#FFFF00',
   border_buttons: '#27251F',
   checkbox_bg: '#DDDDDD',
 };

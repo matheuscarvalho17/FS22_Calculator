@@ -11,7 +11,7 @@ const strings: ILanguage = {
   // Labels
   // bonus: 'Bonus',
   price: '価格',
-  yieldPerHa: 'ヘクタールあたりのリットル',
+  // yield: 'Yield',
   // liters: 'L',
   // unit: 'Un.',
   // limed_stage: 'Limed',

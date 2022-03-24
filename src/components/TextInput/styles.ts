@@ -11,7 +11,7 @@ export const InputBox = styled.TextInput.attrs({
   width: ${wp(80)}px;
   height: ${hp(8.5)}px;
   border-width: ${wp(0.8)}px;
-  margin: ${hp(2)}px ${wp(0)}px;
+  margin: ${hp(1)}px ${wp(0)}px;
   border-top-right-radius: ${wp(1)}px;
   border-top-left-radius: ${wp(5.5)}px;
   border-bottom-left-radius: ${wp(1)}px;

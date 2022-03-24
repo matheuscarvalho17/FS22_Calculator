@@ -11,6 +11,7 @@ import {
 export const Box = styled(IBox)`
   flex-direction: row;
   height: ${hp(8.5)}px;
+  margin: ${hp(1)}px ${wp(0)}px;
 `;
 export const LabelView = styled.View`
   flex: 0.85;

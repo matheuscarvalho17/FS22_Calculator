@@ -4,6 +4,7 @@ import {useFlavor} from '../../flavor';
 import {useNav} from '../../utils/hooks';
 import {useLanguage} from '../../languages';
 import Button from '../../components/Button';
+import {version} from '../../../package.json';
 import IconButton from '../../components/IconButton';
 
 const Main: React.FC = () => {
@@ -23,18 +24,9 @@ const Main: React.FC = () => {
           }}
           text={string.crops}
         />
-        <Button
-          onPress={() => {
-            navigation.navigate('menuCrops');
-          }}
-          text={string.animals}
-        />
-        <Button
-          onPress={() => {
-            navigation.navigate('menuCrops');
-          }}
-          text={string.products}
-        />
+        <Button onPress={() => {}} text={string.animals} />
+        <Button onPress={() => {}} text={string.products} />
+        <Styles.Version colors={colors}>{version}</Styles.Version>
       </Styles.Body>
       <Styles.Footer>
         <IconButton

@@ -9,6 +9,7 @@ import {
 export const View = styled.View`
   align-items: center;
   flex-direction: row;
+  margin: ${hp(1)}px ${wp(0)}px;
 `;
 export const Box = styled.TouchableOpacity`
   width: ${wp(8)}px;
