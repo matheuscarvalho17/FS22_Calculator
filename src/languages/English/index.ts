@@ -124,7 +124,7 @@ const strings: ILanguage = {
   square_foot: 'Square Foot (ft²)',
   enter_field_size: 'Enter the field size',
   field_care: 'About field care',
-  field_size: 'About field size e measure unit',
+  field_size: 'About field size and measure unit',
   warn_yield_size: 'Invalid yield size',
   warn_measure_unit: 'Invalid measure unit',
   // Crops
