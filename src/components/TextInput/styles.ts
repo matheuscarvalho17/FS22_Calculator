@@ -12,12 +12,12 @@ export const InputBox = styled.TextInput.attrs({
   height: ${hp(8.5)}px;
   border-width: ${wp(0.8)}px;
   margin: ${hp(2)}px ${wp(0)}px;
-  background: ${(props: IColorsProps) => props.colors.secondary};
   border-top-right-radius: ${wp(1)}px;
   border-top-left-radius: ${wp(5.5)}px;
   border-bottom-left-radius: ${wp(1)}px;
-  border-color: ${(props: IColorsProps) => props.colors.border_buttons};
   border-bottom-right-radius: ${wp(5.5)}px;
+  background: ${(props: IColorsProps) => props.colors.secondary};
+  border-color: ${(props: IColorsProps) => props.colors.border_buttons};
   /* Text */
   font-weight: bold;
   font-size: ${hp(2.5)}px;

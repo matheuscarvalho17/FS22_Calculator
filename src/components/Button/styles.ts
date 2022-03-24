@@ -12,15 +12,15 @@ export const Button = styled.TouchableOpacity`
   justify-content: center;
   border-width: ${wp(0.8)}px;
   margin: ${hp(2)}px ${wp(0)}px;
-  background: ${(props: IColorsProps) => props.colors.secondary};
   border-top-right-radius: ${wp(1)}px;
   border-top-left-radius: ${wp(5.5)}px;
   border-bottom-left-radius: ${wp(1)}px;
-  border-color: ${(props: IColorsProps) => props.colors.border_buttons};
   border-bottom-right-radius: ${wp(5.5)}px;
+  background: ${(props: IColorsProps) => props.colors.secondary};
+  border-color: ${(props: IColorsProps) => props.colors.border_buttons};
 `;
 export const Text = styled.Text`
   font-weight: bold;
-  font-size: ${hp(4)}px;
+  font-size: ${hp(3.5)}px;
   color: ${(props: IColorsProps) => props.colors.text_light};
 `;

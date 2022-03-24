@@ -1,37 +1,32 @@
 import styled from 'styled-components/native';
+import {Button as IBox} from '../Button/styles';
 import {IColorsProps} from '../../flavor/fs22/colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
-export const Box = styled.TouchableOpacity`
-  width: ${wp(80)}px;
-  align-items: center;
+export const Box = styled(IBox)`
   flex-direction: row;
   height: ${hp(8.5)}px;
-  border-width: ${wp(0.8)}px;
-  border-top-right-radius: ${wp(1)}px;
-  border-top-left-radius: ${wp(5.5)}px;
-  border-bottom-left-radius: ${wp(1)}px;
-  border-bottom-right-radius: ${wp(5.5)}px;
-  background: ${(props: IColorsProps) => props.colors.secondary};
-  border-color: ${(props: IColorsProps) => props.colors.border_buttons};
 `;
 export const LabelView = styled.View`
-  flex: 0.8;
+  flex: 0.85;
 `;
 export const IconView = styled.View`
-  flex: 0.2;
+  flex: 0.15;
   align-items: center;
 `;
 export const Label = styled.Text`
   font-weight: bold;
   font-size: ${hp(2.5)}px;
   margin-left: ${wp(5)}px;
+  color: ${(props: IColorsProps) => props.colors.text_light};
+`;
+export const IconFA5 = styled(FontAwesome5)`
+  font-size: ${hp(3)}px;
   color: ${(props: IColorsProps) => props.colors.text_light};
 `;
 export const ModalContainer = styled.View`
@@ -86,10 +81,5 @@ export const ItemLabel = styled.Text`
 `;
 export const IconFA = styled(FontAwesome)`
   font-size: ${hp(4)}px;
-  color: ${(props: IColorsProps) => props.colors.text_light};
-`;
-
-export const IconFA5 = styled(FontAwesome5)`
-  font-size: ${hp(3)}px;
   color: ${(props: IColorsProps) => props.colors.text_light};
 `;
