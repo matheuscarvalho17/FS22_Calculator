@@ -1,22 +1,21 @@
 import React from 'react';
-import {useStyle} from './styles';
+import * as Styles from './styles';
+import {useFlavor} from '../../flavor';
 import {useNav} from '../../utils/hooks';
 import {useLanguage} from '../../languages';
 import Button from '../../components/Button';
+import {version} from '../../../package.json';
 import IconButton from '../../components/IconButton';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const Main: React.FC = () => {
-  const Styles = useStyle();
-  const {styles} = useStyle();
+  const {colors} = useFlavor();
   const {string} = useLanguage();
   const navigation = useNav('mainPage');
 
   return (
-    <Styles.Container>
+    <Styles.Container colors={colors}>
       <Styles.Header>
-        <Styles.Title>{string.title}</Styles.Title>
+        <Styles.Title colors={colors}>{string.title}</Styles.Title>
       </Styles.Header>
       <Styles.Body>
         <Button
@@ -25,31 +24,22 @@ const Main: React.FC = () => {
           }}
           text={string.crops}
         />
-        <Button
-          onPress={() => {
-            navigation.navigate('menuCrops');
-          }}
-          text={string.animals}
-        />
-        <Button
-          onPress={() => {
-            navigation.navigate('menuCrops');
-          }}
-          text={string.products}
-        />
+        <Button onPress={() => {}} text={string.animals} />
+        <Button onPress={() => {}} text={string.products} />
+        <Styles.Version colors={colors}>{version}</Styles.Version>
       </Styles.Body>
       <Styles.Footer>
         <IconButton
           onPress={() => {
             navigation.navigate('language');
           }}
-          icon={<Ionicons name="globe-sharp" style={styles.icon} />}
+          icon={<Styles.IconII colors={colors} name="globe-sharp" />}
         />
         <IconButton
           onPress={() => {
             navigation.navigate('appearance');
           }}
-          icon={<FontAwesome name="paint-brush" style={styles.icon} />}
+          icon={<Styles.IconFA colors={colors} name="paint-brush" />}
         />
       </Styles.Footer>
     </Styles.Container>

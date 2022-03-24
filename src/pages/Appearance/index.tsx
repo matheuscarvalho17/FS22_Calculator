@@ -1,26 +1,23 @@
 import React from 'react';
-import {useStyle} from './styles';
+import * as Styles from './styles';
+import {useFlavor} from '../../flavor';
 import {useNav} from '../../utils/hooks';
 import {listOfFlavors} from '../../flavor';
 import {useAppContext} from '../../Context';
 import {useLanguage} from '../../languages';
 import Button from '../../components/Button';
 import IconButton from '../../components/IconButton';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Appearance: React.FC = () => {
-  //Context
-  const Styles = useStyle();
-  // const {name} = useFlavor();
-  const {styles} = useStyle();
+  const {colors} = useFlavor();
   const {string} = useLanguage();
   const {SetFlavor} = useAppContext();
-  //
   const navigation = useNav('language');
+
   return (
-    <Styles.Container>
+    <Styles.Container colors={colors}>
       <Styles.Header>
-        <Styles.Title>{string.appearance}</Styles.Title>
+        <Styles.Title colors={colors}>{string.appearance}</Styles.Title>
       </Styles.Header>
       <Styles.ScrollBody showsVerticalScrollIndicator={false}>
         <Styles.List>
@@ -40,7 +37,7 @@ const Appearance: React.FC = () => {
           onPress={() => {
             navigation.goBack();
           }}
-          icon={<Ionicons name="arrow-back" style={styles.icon} />}
+          icon={<Styles.Icon colors={colors} name="arrow-back" />}
         />
       </Styles.Footer>
     </Styles.Container>

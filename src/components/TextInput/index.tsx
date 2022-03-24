@@ -1,8 +1,9 @@
 import React from 'react';
-import {useStyle} from './styles';
+import * as Styles from './styles';
+import {useFlavor} from '../../flavor';
 import {ViewStyle} from 'react-native';
 
-interface ButtonProps {
+interface IButtonProps {
   value: string;
   style?: ViewStyle;
   setValue: Function;
@@ -10,22 +11,23 @@ interface ButtonProps {
   keyboard?: 'numeric' | 'number-pad' | 'email-address';
 }
 
-const TextInput: React.FC<ButtonProps> = ({
+const TextInput: React.FC<IButtonProps> = ({
   style,
   value,
   setValue,
   keyboard,
   placeholder,
 }) => {
-  const Styles = useStyle();
+  const {colors} = useFlavor();
 
   return (
     <Styles.InputBox
       value={value}
-      onChangeText={text => setValue(text)}
-      keyboardType={keyboard || 'default'}
-      placeholder={placeholder}
       style={style}
+      colors={colors}
+      placeholder={placeholder}
+      keyboardType={keyboard || 'default'}
+      onChangeText={text => setValue(text)}
     />
   );
 };

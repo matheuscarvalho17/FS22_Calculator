@@ -11,7 +11,7 @@ const strings: ILanguage = {
   // Labels
   // bonus: 'Bonus',
   price: '価格',
-  yieldPerHa: 'ヘクタールあたりのリットル',
+  // yield: 'Yield',
   // liters: 'L',
   // unit: 'Un.',
   // limed_stage: 'Limed',
@@ -33,6 +33,10 @@ const strings: ILanguage = {
   // easy: 'Easy',
   // medium: 'Medium',
   // hard: 'Hard',
+  // select_measure_unit: 'Select the measure unit',
+  // are: 'Are (a)',
+  // hectare: 'Hectare (ha)',
+  // square_meters: 'Square Meters (m²)',
   // // Crops
   // barley: 'Barley',
   // canola: 'Canola',

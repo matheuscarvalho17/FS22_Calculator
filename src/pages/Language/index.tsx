@@ -1,24 +1,22 @@
 import React from 'react';
-import {useStyle} from './styles';
+import * as Styles from './styles';
+import {useFlavor} from '../../flavor';
 import {useNav} from '../../utils/hooks';
 import {useAppContext} from '../../Context';
 import Button from '../../components/CustomButton';
 import IconButton from '../../components/IconButton';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {listOfLanguages, useLanguage} from '../../languages';
 
 const Language: React.FC = () => {
-  //Context
-  const Styles = useStyle();
-  const {styles} = useStyle();
+  const {colors} = useFlavor();
   const {string} = useLanguage();
   const {SetLanguage} = useAppContext();
-  //
+
   const navigation = useNav('language');
   return (
-    <Styles.Container>
+    <Styles.Container colors={colors}>
       <Styles.Header>
-        <Styles.Title>{string.language}</Styles.Title>
+        <Styles.Title colors={colors}>{string.language}</Styles.Title>
       </Styles.Header>
       <Styles.ScrollBody showsVerticalScrollIndicator={false}>
         <Styles.List>
@@ -29,10 +27,10 @@ const Language: React.FC = () => {
                 SetLanguage(listOfLanguages[value].language.key);
               }}>
               <Styles.ButtonContent>
-                <Styles.Flag>
+                <Styles.Flag colors={colors}>
                   {listOfLanguages[value].language.flag}
                 </Styles.Flag>
-                <Styles.Text>
+                <Styles.Text colors={colors}>
                   {listOfLanguages[value].language.name}
                 </Styles.Text>
               </Styles.ButtonContent>
@@ -45,7 +43,7 @@ const Language: React.FC = () => {
           onPress={() => {
             navigation.goBack();
           }}
-          icon={<Ionicons name="arrow-back" style={styles.icon} />}
+          icon={<Styles.Icon colors={colors} name="arrow-back" />}
         />
       </Styles.Footer>
     </Styles.Container>

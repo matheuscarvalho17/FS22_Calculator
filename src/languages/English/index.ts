@@ -16,7 +16,7 @@ export interface ILanguage {
   // Labels
   bonus: string;
   price: string;
-  yieldPerHa: string;
+  yield: string;
   liters: string;
   unit: string;
   limed_stage: string;
@@ -38,6 +38,18 @@ export interface ILanguage {
   easy: string;
   medium: string;
   hard: string;
+  measure_unit: string;
+  select_measure_unit: string;
+  are: string;
+  acre: string;
+  hectare: string;
+  square_meter: string;
+  square_foot: string;
+  enter_field_size: string;
+  field_care: string;
+  field_size: string;
+  warn_yield_size: string;
+  warn_measure_unit: string;
   // Crops
   barley: string;
   canola: string;
@@ -81,12 +93,12 @@ const strings: ILanguage = {
   // Labels
   price: 'Price',
   bonus: 'Bonus',
-  yieldPerHa: 'Yield (Ha)',
+  yield: 'Yield',
   liters: 'L',
   unit: 'Un.',
-  limed_stage: 'Limed',
-  fertilized_stage: 'Fertilizer stage',
-  select_fertilized: 'Select the fertilizer stage',
+  limed_stage: 'Liming',
+  fertilized_stage: 'Fertilization stage',
+  select_fertilized: 'Select fertilization stage',
   no_fertilized: 'Unfertilized',
   half_fertilized: '50% Fertilized',
   full_fertilized: '100% Fertilized',
@@ -95,14 +107,26 @@ const strings: ILanguage = {
   no_removed_weeds: 'Weeds not removed',
   mec_removed_weeds: 'Mechanically removed weeds',
   chem_removed_weeds: 'Chemically removed weeds',
-  rolled_stage: 'Rolled',
-  mulched_stage: 'Mulched',
-  plowed_stage: 'Plowed',
+  rolled_stage: 'Rolling',
+  mulched_stage: 'Mulching',
+  plowed_stage: 'Plowing',
   difficulty: 'Difficulty',
   select_difficulty: 'Select the difficulty',
   easy: 'Easy',
   medium: 'Medium',
   hard: 'Hard',
+  measure_unit: 'Measure unit',
+  select_measure_unit: 'Select the measure unit',
+  are: 'Are (a)',
+  acre: 'Acre (acre)',
+  hectare: 'Hectare (ha)',
+  square_meter: 'Square Meter (m²)',
+  square_foot: 'Square Foot (ft²)',
+  enter_field_size: 'Enter the field size',
+  field_care: 'About field care',
+  field_size: 'About field size e measure unit',
+  warn_yield_size: 'Invalid yield size',
+  warn_measure_unit: 'Invalid measure unit',
   // Crops
   barley: 'Barley',
   canola: 'Canola',
