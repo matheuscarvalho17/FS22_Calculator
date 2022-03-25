@@ -24,8 +24,18 @@ const Main: React.FC = () => {
           }}
           text={string.crops}
         />
-        <Button onPress={() => {}} text={string.animals} />
-        <Button onPress={() => {}} text={string.products} />
+        <Button
+          onPress={() => {
+            navigation.navigate('menuAnimals');
+          }}
+          text={string.animals}
+        />
+        <Button
+          onPress={() => {
+            navigation.navigate('menuFactories');
+          }}
+          text={string.products}
+        />
         <Styles.Version colors={colors}>{version}</Styles.Version>
       </Styles.Body>
       <Styles.Footer>

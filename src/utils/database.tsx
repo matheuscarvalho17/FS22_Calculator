@@ -1,18 +1,34 @@
 import {useLanguage} from '../languages';
 import {ImageURISource} from 'react-native';
 
-interface ICrop {
-  unit: string;
+interface IProducts {
   name: string;
-  type: 'normal' | 'root' | 'cluster' | 'grass' | 'straw';
-  yieldPerHa: number;
+  icon: ImageURISource;
+  type: 'normal' | 'root' | 'cluster' | 'grass' | 'straw' | string;
   avgPriceEasy: number;
   avgPriceMedium: number;
   avgPriceHard: number;
-  icon: ImageURISource;
+  yieldPerHa: number;
+  unit: string;
 }
 
-export function useCrops(): Array<ICrop> {
+export function useAnimals(): Array<IProducts> {
+  const {string} = useLanguage();
+  return [
+    {
+      name: string.silage,
+      icon: require('../assets/crops/silage.png'),
+      type: 'normal',
+      avgPriceEasy: 3,
+      avgPriceMedium: 2,
+      avgPriceHard: 1,
+      yieldPerHa: 87395,
+      unit: string.liters,
+    },
+  ];
+}
+
+export function useCrops(): Array<IProducts> {
   const {string} = useLanguage();
   return [
     {

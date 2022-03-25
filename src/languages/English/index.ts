@@ -50,6 +50,7 @@ export interface ILanguage {
   field_size: string;
   warn_yield_size: string;
   warn_measure_unit: string;
+  wip: string;
   // Crops
   barley: string;
   canola: string;
@@ -127,6 +128,7 @@ const strings: ILanguage = {
   field_size: 'About field size and measure unit',
   warn_yield_size: 'Invalid yield size',
   warn_measure_unit: 'Invalid measure unit',
+  wip: 'Work in progress',
   // Crops
   barley: 'Barley',
   canola: 'Canola',

@@ -46,6 +46,7 @@ const strings: ILanguage = {
   field_size: 'Sobre dimensão do campo e unidade de medida',
   warn_yield_size: 'Tamanho do campo inválido',
   warn_measure_unit: 'Unidade de medida inválida',
+  wip: 'Em desenvolvimento',
   // Culturas
   barley: 'Cevada',
   canola: 'Canola',

@@ -6,6 +6,8 @@ import {StatusBar} from 'react-native';
 import Language from '../pages/Language';
 import MenuCrops from '../pages/MenuCrops';
 import Appearance from '../pages/Appearance';
+import MenuAnimals from '../pages/MenuAnimals';
+import MenuFactories from '../pages/MenuFactories';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -13,6 +15,8 @@ export type RootStackParamList = {
   mainPage: undefined;
   language: undefined;
   menuCrops: undefined;
+  menuAnimals: undefined;
+  menuFactories: undefined;
   appearance: undefined;
   crop: {cropId: number};
 };
@@ -30,6 +34,8 @@ const App: React.FC = () => {
         <Stack.Screen name="mainPage" component={Main} />
         <Stack.Screen name="language" component={Language} />
         <Stack.Screen name="menuCrops" component={MenuCrops} />
+        <Stack.Screen name="menuAnimals" component={MenuAnimals} />
+        <Stack.Screen name="menuFactories" component={MenuFactories} />
         <Stack.Screen name="appearance" component={Appearance} />
       </Stack.Navigator>
     </NavigationContainer>
