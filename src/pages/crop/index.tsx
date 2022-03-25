@@ -4,12 +4,12 @@ import {useFlavor} from '../../flavor';
 import {useNav} from '../../utils/hooks';
 import {useLanguage} from '../../languages';
 import {useCrops} from '../../utils/database';
-import React, {useMemo, useState} from 'react';
 import CheckBox from '../../components/CheckBox';
 import {useRoute} from '@react-navigation/native';
 import TextInput from '../../components/TextInput';
 import IconButton from '../../components/IconButton';
 import ComboBox, {Data} from '../../components/ComboBox';
+import React, {useEffect, useMemo, useState} from 'react';
 import {roundNumber, onlyNumberAndDot} from '../../utils/masks';
 
 const Crop: React.FC = ({}) => {
@@ -23,11 +23,14 @@ const Crop: React.FC = ({}) => {
   const [limed, setLimed] = useState<boolean>(false);
   const [rolled, setRolled] = useState<boolean>(false);
   const [plowed, setPlowed] = useState<boolean>(false);
+  const [yieldField, setYieldField] = useState<number>(0);
   const [fieldSize, setFieldSize] = useState<string>('');
   const [mulched, setMulched] = useState<boolean>(false);
   const [multiplier, setMultiplier] = useState<number>(1);
   const [showWarn, setShowWarn] = useState<boolean>(false);
   const [warnMessage, setWarnMessage] = useState<string>('');
+  const [mathBySize, setMathBySize] = useState<boolean>(true);
+  const [targetHarvester, setTargetHarvester] = useState<string>('');
   const [fertilized, setFertilized] = useState<Data>({
     id: -1,
     label: null,
@@ -76,27 +79,50 @@ const Crop: React.FC = ({}) => {
     ),
   );
 
+  function handleChangeMathBySize() {
+    setMathBySize(!mathBySize);
+  }
   function validateEntryData() {
     setShowWarn(false);
     setWarnMessage('');
 
-    if (parseFloat(fieldSize) > 0) {
-      if (measureUnit.id != -1) {
-        yieldCalculation();
+    if (!mathBySize) {
+      if (parseFloat(targetHarvester) > 0) {
+        if (measureUnit.id != -1) {
+          fieldCalculation();
+        } else {
+          setWarnMessage(string.warn_measure_unit);
+          setShowWarn(true);
+          return;
+        }
       } else {
-        setWarnMessage(string.warn_measure_unit);
+        setWarnMessage(string.warn_harvest_target);
         setShowWarn(true);
         return;
       }
     } else {
-      setWarnMessage(string.warn_yield_size);
-      setShowWarn(true);
-      return;
+      if (parseFloat(fieldSize) > 0) {
+        if (measureUnit.id != -1) {
+          yieldCalculation();
+        } else {
+          setWarnMessage(string.warn_measure_unit);
+          setShowWarn(true);
+          return;
+        }
+      } else {
+        setWarnMessage(string.warn_yield_size);
+        setShowWarn(true);
+        return;
+      }
     }
   }
+  function fieldCalculation() {
+    console.log('fieldCalculation');
+  }
+
   function yieldCalculation() {
+    let yieldMultiplier: number = 0;
     let multiplierByCare: number = 1;
-    let multiplierByFieldSize: number = 0;
     let multiplierByMeasureUnit: number = 1;
 
     if (limed) {
@@ -137,12 +163,22 @@ const Crop: React.FC = ({}) => {
       multiplierByMeasureUnit = 0.0000092903;
     }
 
-    multiplierByFieldSize =
+    yieldMultiplier =
       parseFloat(fieldSize) * multiplierByCare * multiplierByMeasureUnit;
 
-    setMultiplier(multiplierByFieldSize);
+    setMultiplier(yieldMultiplier);
     setBonus((multiplierByCare - 1) * 100);
   }
+
+  useEffect(() => {
+    setYieldField(crops[cropId].yieldPerHa);
+  }, []);
+  useEffect(() => {
+    setFieldSize('');
+    setShowWarn(false);
+    setWarnMessage('');
+    setTargetHarvester('');
+  }, [mathBySize]);
 
   return (
     <Styles.Container colors={colors}>
@@ -155,84 +191,133 @@ const Crop: React.FC = ({}) => {
         </Styles.RightView>
       </Styles.Header>
       <Styles.Body>
-        <Styles.DivideView>
-          <Styles.TextInfos colors={colors}>
-            {string.yield} {measureUnit.value}:
-          </Styles.TextInfos>
-          <Styles.TextInfosAccent colors={colors}>
-            {roundNumber(multiplier * crops[cropId].yieldPerHa)}{' '}
-            {crops[cropId].unit}
-          </Styles.TextInfosAccent>
-        </Styles.DivideView>
-        <Styles.DivideView>
-          <Styles.TextInfos colors={colors}>{string.bonus}:</Styles.TextInfos>
-          <Styles.TextInfosAccent colors={colors}>
-            +{roundNumber(bonus) + '%'}
-          </Styles.TextInfosAccent>
-        </Styles.DivideView>
+        {/* //* Main informations */}
+        <>
+          <Styles.DivideView>
+            {mathBySize ? (
+              <>
+                <Styles.TextInfos colors={colors}>
+                  {string.yield} {measureUnit.value}:
+                </Styles.TextInfos>
+                <Styles.TextInfosAccent colors={colors}>
+                  {roundNumber(yieldField * multiplier)} {crops[cropId].unit}
+                </Styles.TextInfosAccent>
+              </>
+            ) : (
+              <>
+                <Styles.TextInfos colors={colors}>
+                  {string.field_required}:
+                </Styles.TextInfos>
+                <Styles.TextInfosAccent colors={colors}>
+                  {roundNumber(yieldField * multiplier)} {measureUnit.value}
+                </Styles.TextInfosAccent>
+              </>
+            )}
+          </Styles.DivideView>
+          <Styles.DivideView>
+            <Styles.TextInfos colors={colors}>{string.bonus}:</Styles.TextInfos>
+            <Styles.TextInfosAccent colors={colors}>
+              +{roundNumber(bonus) + '%'}
+            </Styles.TextInfosAccent>
+          </Styles.DivideView>
+        </>
         <Styles.ScrollBody>
-          <Styles.SectionTitle colors={colors}>
-            {string.field_size}:
-          </Styles.SectionTitle>
-          <TextInput
-            style={styles.margin5px}
-            value={onlyNumberAndDot(fieldSize)}
-            setValue={setFieldSize}
-            keyboard={'numeric'}
-            placeholder={string.enter_field_size}
-          />
-          <ComboBox
-            style={styles.margin5px}
-            value={measureUnit}
-            data={measureUnitItens}
-            setValue={setMeasureUnit}
-            placeholder={string.measure_unit}
-            modal_text={string.select_measure_unit}
-          />
-          {showWarn && <Styles.warnMessage>{warnMessage}</Styles.warnMessage>}
-          <Styles.SectionTitle colors={colors}>
-            {string.field_care}:
-          </Styles.SectionTitle>
-          <ComboBox
-            style={styles.margin5px}
-            value={fertilized}
-            data={fertilizedItems}
-            setValue={setFertilized}
-            placeholder={string.fertilized_stage}
-            modal_text={string.select_fertilized}
-          />
-          <ComboBox
-            style={styles.margin5px}
-            value={removedWeeds}
-            data={removedWeedItens}
-            setValue={setRemovedWeeds}
-            placeholder={string.weeds_stage}
-            modal_text={string.select_removed_weeds}
-          />
-          <CheckBox
-            value={limed}
-            setValue={setLimed}
-            style={styles.margin5px}
-            text={string.limed_stage}
-          />
-          <CheckBox
-            value={plowed}
-            setValue={setPlowed}
-            style={styles.margin5px}
-            text={string.plowed_stage}
-          />
-          <CheckBox
-            value={rolled}
-            setValue={setRolled}
-            style={styles.margin5px}
-            text={string.rolled_stage}
-          />
-          <CheckBox
-            value={mulched}
-            setValue={setMulched}
-            style={styles.margin5px}
-            text={string.mulched_stage}
-          />
+          {/* //* Calculation method */}
+          <>
+            <Styles.SectionTitle colors={colors}>
+              {string.calculation_method}:
+            </Styles.SectionTitle>
+            <CheckBox
+              value={mathBySize}
+              setValue={setMathBySize}
+              style={styles.margin5px}
+              text={string.mathBySize}
+            />
+            <CheckBox
+              value={!mathBySize}
+              setValue={handleChangeMathBySize}
+              style={styles.margin5px}
+              text={string.mathByHarvest}
+            />
+          </>
+          {/* //* Input size or target and measure unit */}
+          <>
+            <Styles.SectionTitle colors={colors}>
+              {mathBySize ? string.field_size : string.harvest_target}:
+            </Styles.SectionTitle>
+            {mathBySize ? (
+              <TextInput
+                style={styles.margin5px}
+                value={onlyNumberAndDot(fieldSize)}
+                setValue={setFieldSize}
+                keyboard={'numeric'}
+                placeholder={string.enter_field_size}
+              />
+            ) : (
+              <TextInput
+                style={styles.margin5px}
+                value={onlyNumberAndDot(targetHarvester)}
+                setValue={setTargetHarvester}
+                keyboard={'numeric'}
+                placeholder={string.enter_harvester_target}
+              />
+            )}
+            <ComboBox
+              style={styles.margin5px}
+              value={measureUnit}
+              data={measureUnitItens}
+              setValue={setMeasureUnit}
+              placeholder={string.measure_unit}
+              modal_text={string.select_measure_unit}
+            />
+            {showWarn && <Styles.warnMessage>{warnMessage}</Styles.warnMessage>}
+          </>
+          {/* //* Field Care */}
+          <>
+            <Styles.SectionTitle colors={colors}>
+              {string.field_care}:
+            </Styles.SectionTitle>
+            <ComboBox
+              style={styles.margin5px}
+              value={fertilized}
+              data={fertilizedItems}
+              setValue={setFertilized}
+              placeholder={string.fertilized_stage}
+              modal_text={string.select_fertilized}
+            />
+            <ComboBox
+              style={styles.margin5px}
+              value={removedWeeds}
+              data={removedWeedItens}
+              setValue={setRemovedWeeds}
+              placeholder={string.weeds_stage}
+              modal_text={string.select_removed_weeds}
+            />
+            <CheckBox
+              value={limed}
+              setValue={setLimed}
+              style={styles.margin5px}
+              text={string.limed_stage}
+            />
+            <CheckBox
+              value={plowed}
+              setValue={setPlowed}
+              style={styles.margin5px}
+              text={string.plowed_stage}
+            />
+            <CheckBox
+              value={rolled}
+              setValue={setRolled}
+              style={styles.margin5px}
+              text={string.rolled_stage}
+            />
+            <CheckBox
+              value={mulched}
+              setValue={setMulched}
+              style={styles.margin5px}
+              text={string.mulched_stage}
+            />
+          </>
         </Styles.ScrollBody>
       </Styles.Body>
       <Styles.Footer>
