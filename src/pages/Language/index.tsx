@@ -7,17 +7,22 @@ import Button from '../../components/CustomButton';
 import IconButton from '../../components/IconButton';
 import {listOfLanguages, useLanguage} from '../../languages';
 
+//*  It is the Language page.
+//*  This (page) allows users change the language based on the available languages.
+
 const Language: React.FC = () => {
+  //* Flavor, Language, Context and Navigation hooks declaration
   const {colors} = useFlavor();
   const {string} = useLanguage();
   const {SetLanguage} = useAppContext();
-
   const navigation = useNav('language');
+
   return (
     <Styles.Container colors={colors}>
       <Styles.Header>
         <Styles.Title colors={colors}>{string.language}</Styles.Title>
       </Styles.Header>
+      {/* //*  The Body contains the list of available languages. */}
       <Styles.ScrollBody showsVerticalScrollIndicator={false}>
         <Styles.List>
           {Object.keys(listOfLanguages).map((value, index) => (
@@ -38,6 +43,7 @@ const Language: React.FC = () => {
           ))}
         </Styles.List>
       </Styles.ScrollBody>
+      {/* //*  The Footer contains the button to go back to the previous page. */}
       <Styles.Footer>
         <IconButton
           onPress={() => {
