@@ -14,6 +14,7 @@ import {roundNumber, onlyNumberAndDot} from '../../utils/masks';
 import Normal from './normal';
 import Cluster from './cluster';
 import {View} from 'react-native';
+import Grass from './grass';
 
 const Crop: React.FC = ({}) => {
   const crops = useCrops();
@@ -182,7 +183,7 @@ const Crop: React.FC = ({}) => {
             </Styles.TextInfosAccent>
           </Styles.DivideView>
         </>
-        <Styles.ScrollBody>
+        <Styles.ScrollBody showsVerticalScrollIndicator={false}>
           <>
             <Styles.SectionTitle colors={colors}>
               {string.calculation_method}:
@@ -245,6 +246,17 @@ const Crop: React.FC = ({}) => {
           )}
           {crops[cropId].type == 'cluster' && (
             <Cluster
+              cropId={cropId}
+              setBonus={setBonus}
+              setMeasureUnitLabel={setMeasureUnitLabel}
+              setRealBonus={setRealBonus}
+              targetHarvester={targetHarvester}
+              unitsField={unitsField}
+            />
+          )}
+
+          {crops[cropId].type == 'grass' && (
+            <Grass
               cropId={cropId}
               setBonus={setBonus}
               setMeasureUnitLabel={setMeasureUnitLabel}

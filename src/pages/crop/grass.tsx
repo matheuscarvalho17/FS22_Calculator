@@ -11,7 +11,7 @@ import ComboBox, {Data} from '../../components/ComboBox';
 import CheckBox from '../../components/CheckBox';
 import TextInput from '../../components/TextInput';
 // import { Container } from './styles';
-interface ICluster {
+interface IGrass {
   cropId: number;
   setMeasureUnitLabel: Function;
   unitsField: {
@@ -25,7 +25,7 @@ interface ICluster {
   setBonus: Function;
   setRealBonus: Function;
 }
-const Cluster: React.FC<ICluster> = ({
+const Grass: React.FC<IGrass> = ({
   cropId,
   setMeasureUnitLabel,
   unitsField,
@@ -33,7 +33,6 @@ const Cluster: React.FC<ICluster> = ({
   setBonus,
   setRealBonus,
 }) => {
-  // !adubagem, rolagem, calagem
   // !hooks
   const crops = useCrops();
   const route = useRoute();
@@ -81,39 +80,94 @@ const Cluster: React.FC<ICluster> = ({
       [],
     ),
   );
+  // *first preparation
+  const [firstPreparation, setFirstPreparation] = useState<boolean>(false);
 
   // !functions
 
   function bonusCalculation() {
+    //TODO: refactor
     let multiplierByCare: number = 1;
 
-    if (plowed) {
-      multiplierByCare = multiplierByCare + 0.35;
+    if (limed && firstPreparation) {
+      multiplierByCare += 0.15;
     }
-
+    if (plowed && firstPreparation) {
+      multiplierByCare += 0.15;
+    }
+    if (rolled && firstPreparation) {
+      multiplierByCare += 0.025;
+    }
+    if (mulched) {
+      if (firstPreparation) {
+        multiplierByCare += 0.025;
+      } else {
+        multiplierByCare += 1;
+      }
+    }
     if (fertilized.value === 'half_fertilized') {
-      multiplierByCare = multiplierByCare + 0.225;
+      if (firstPreparation) {
+        multiplierByCare += 0.225;
+      } else {
+        multiplierByCare += 1;
+      }
     }
     if (fertilized.value === 'full_fertilized') {
-      multiplierByCare = multiplierByCare + 0.45;
+      if (firstPreparation) {
+        multiplierByCare += 0.35;
+      } else {
+        multiplierByCare += 1;
+      }
     }
     if (removedWeeds.value === 'mec_removed_weeds') {
-      multiplierByCare = multiplierByCare + 0.2;
+      if (firstPreparation) {
+        multiplierByCare += 0.05;
+      } else {
+        multiplierByCare += 1;
+      }
     }
     if (removedWeeds.value === 'chem_removed_weeds') {
-      multiplierByCare = multiplierByCare + 0.15;
+      if (firstPreparation) {
+        multiplierByCare += 0.075;
+      } else {
+        multiplierByCare += 1;
+      }
     }
     setBonus((multiplierByCare - 1) * 100);
     setRealBonus(multiplierByCare);
     return multiplierByCare;
   }
-
+  // *first preparation
+  function handleChangeFirstPreparationToFalse() {
+    setFirstPreparation(false);
+  }
   // !useEffect
   useEffect(() => {
     bonusCalculation();
   }, [fertilized, removedWeeds, limed, plowed, rolled, mulched]);
   return (
     <View>
+      <>
+        <Styles.SectionTitle colors={colors}>
+          {string.first_soil_preparation}:
+        </Styles.SectionTitle>
+        <CheckBox
+          value={firstPreparation}
+          setValue={() => {
+            setFirstPreparation(true);
+          }}
+          style={styles.margin5px}
+          text={string.first_soil_preparation_check}
+        />
+        <CheckBox
+          value={!firstPreparation}
+          setValue={() => {
+            setFirstPreparation(false);
+          }}
+          style={styles.margin5px}
+          text={string.first_soil_preparation_not_check}
+        />
+      </>
       {/* //* Calculation method */}
 
       {/* //* Field Care */}
@@ -137,15 +191,40 @@ const Cluster: React.FC<ICluster> = ({
           placeholder={string.weeds_stage}
           modal_text={string.select_removed_weeds}
         />
+        {/*  */}
+        {firstPreparation && (
+          <CheckBox
+            value={limed}
+            setValue={setLimed}
+            style={styles.margin5px}
+            text={string.limed_stage}
+          />
+        )}
+        {firstPreparation && (
+          <CheckBox
+            value={plowed}
+            setValue={setPlowed}
+            style={styles.margin5px}
+            text={string.plowed_stage}
+          />
+        )}
+        {firstPreparation && (
+          <CheckBox
+            value={rolled}
+            setValue={setRolled}
+            style={styles.margin5px}
+            text={string.rolled_stage}
+          />
+        )}
         <CheckBox
-          value={plowed}
-          setValue={setPlowed}
+          value={mulched}
+          setValue={setMulched}
           style={styles.margin5px}
-          text={string.plowed_stage}
+          text={string.mulched_stage}
         />
       </>
     </View>
   );
 };
 
-export default Cluster;
+export default Grass;
