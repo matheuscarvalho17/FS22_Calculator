@@ -1,5 +1,4 @@
 import {styles} from './styles';
-import {View} from 'react-native';
 import * as Styles from './styles';
 import {ICropProps} from './normal';
 import {useFlavor} from '../../flavor';

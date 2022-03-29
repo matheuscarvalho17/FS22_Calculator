@@ -14,6 +14,7 @@ import IconButton from '../../components/IconButton';
 import ComboBox, {Data} from '../../components/ComboBox';
 import React, {useEffect, useMemo, useState} from 'react';
 import {roundNumber, onlyNumberAndDot} from '../../utils/masks';
+import StrawCrop from './straw';
 
 //*  It is the Crop page.
 //*  This (page) allows users manage the props to calculate a yield and field.
@@ -40,6 +41,7 @@ const Crop: React.FC = ({}) => {
   const [mathBySize, setMathBySize] = useState<boolean>(true);
   const [targetHarvester, setTargetHarvester] = useState<string>('');
   const [measureUnitLabel, setMeasureUnitLabel] = useState<string>('');
+  const [strawYield, setStrawYield] = useState<number>(0);
   const [measureUnit, setMeasureUnit] = useState<Data>({
     id: -1,
     label: null,
@@ -241,6 +243,9 @@ const Crop: React.FC = ({}) => {
             )}
             {crops[cropId].type == 'grass' && (
               <Grass setBonus={setBonus} setRealBonus={setRealBonus} />
+            )}
+            {crops[cropId].type == 'straw' && (
+              <StrawCrop setStrawYield={setStrawYield} />
             )}
           </>
         </Styles.ScrollBody>
