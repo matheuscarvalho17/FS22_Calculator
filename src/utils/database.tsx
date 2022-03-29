@@ -5,7 +5,7 @@ import {ImageURISource} from 'react-native';
 //*  This (file) is used to store the 'database' of all products.
 
 //* Products Interface
-interface IProducts {
+export interface IProducts {
   name: string;
   icon: ImageURISource;
   type: 'normal' | 'root' | 'cluster' | 'grass' | 'straw';
