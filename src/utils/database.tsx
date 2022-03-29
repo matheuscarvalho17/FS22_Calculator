@@ -13,6 +13,7 @@ interface IProducts {
   avgPriceMedium: number;
   avgPriceHard: number;
   yieldPerHa: number;
+  strawPerHa?: number;
   unit: string;
 }
 
@@ -47,6 +48,7 @@ export function useCrops(): Array<IProducts> {
       avgPriceMedium: 2,
       avgPriceHard: 1,
       yieldPerHa: 8900,
+      strawPerHa: 1000,
       unit: string.liters,
     },
     {
@@ -57,6 +59,7 @@ export function useCrops(): Array<IProducts> {
       avgPriceMedium: 2,
       avgPriceHard: 1,
       yieldPerHa: 9600,
+      strawPerHa: 2000,
       unit: string.liters,
     },
     {
@@ -67,6 +70,7 @@ export function useCrops(): Array<IProducts> {
       avgPriceMedium: 2,
       avgPriceHard: 1,
       yieldPerHa: 5700,
+      strawPerHa: 3000,
       unit: string.liters,
     },
     {
