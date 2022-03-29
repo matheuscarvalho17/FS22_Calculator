@@ -23,7 +23,7 @@ const Main: React.FC = () => {
       <Styles.Header>
         <Styles.Title colors={colors}>{string.title}</Styles.Title>
       </Styles.Header>
-      {/* //*  The Footer contains buttons for the menuCrops, menuAnimals and menuFactories pages. */}
+      {/* //*  The Body contains buttons for the menuCrops, menuAnimals and menuFactories pages. */}
       <Styles.Body>
         <Button
           onPress={() => {

@@ -1,55 +1,22 @@
-import React, {useEffect, useMemo, useState} from 'react';
-import {View} from 'react-native';
 import {styles} from './styles';
 import * as Styles from './styles';
+import {ICropProps} from './normal';
 import {useFlavor} from '../../flavor';
-import {useCrops} from '../../utils/database';
-import {useRoute} from '@react-navigation/native';
 import {useLanguage} from '../../languages';
-import {useNav} from '../../utils/hooks';
-import ComboBox, {Data} from '../../components/ComboBox';
 import CheckBox from '../../components/CheckBox';
-import TextInput from '../../components/TextInput';
-// import { Container } from './styles';
-interface ICluster {
-  cropId: number;
-  setMeasureUnitLabel: Function;
-  unitsField: {
-    '(ha)': number;
-    '(acre)': number;
-    '(a)': number;
-    '(m²)': number;
-    '(ft²)': number;
-  };
-  targetHarvester: string;
-  setBonus: Function;
-  setRealBonus: Function;
-}
-const Cluster: React.FC<ICluster> = ({
-  cropId,
-  setMeasureUnitLabel,
-  unitsField,
-  targetHarvester,
-  setBonus,
-  setRealBonus,
-}) => {
-  // !adubagem, rolagem, calagem
-  // !hooks
-  const crops = useCrops();
-  const route = useRoute();
+import ComboBox, {Data} from '../../components/ComboBox';
+import React, {useEffect, useMemo, useState} from 'react';
+
+//*  It is the ClusterCrop internal component.
+//*  This (internal component) is used by Crop page to calculate a bonus prop.
+
+const ClusterCrop: React.FC<ICropProps> = ({setBonus, setRealBonus}) => {
+  //* Flavor and Language hooks delaration
   const {colors} = useFlavor();
   const {string} = useLanguage();
-  const navigation = useNav('crop');
 
-  // !useState
-
-  //const [bonus, setBonus] = useState<number>(0);
-  const [limed, setLimed] = useState<boolean>(false);
-  const [rolled, setRolled] = useState<boolean>(false);
+  //* useStates declaration
   const [plowed, setPlowed] = useState<boolean>(false);
-
-  const [mulched, setMulched] = useState<boolean>(false);
-
   const [fertilized, setFertilized] = useState<Data>({
     id: -1,
     label: null,
@@ -60,7 +27,6 @@ const Cluster: React.FC<ICluster> = ({
     label: null,
     value: null,
   });
-
   const [fertilizedItems] = useState<Array<Data>>(
     useMemo(
       () => [
@@ -82,70 +48,66 @@ const Cluster: React.FC<ICluster> = ({
     ),
   );
 
-  // !functions
-
+  //* Functions
   function bonusCalculation() {
     let multiplierByCare: number = 1;
 
     if (plowed) {
-      multiplierByCare = multiplierByCare + 0.35;
+      multiplierByCare += 0.35;
     }
-
     if (fertilized.value === 'half_fertilized') {
-      multiplierByCare = multiplierByCare + 0.225;
+      multiplierByCare += 0.225;
     }
     if (fertilized.value === 'full_fertilized') {
-      multiplierByCare = multiplierByCare + 0.45;
+      multiplierByCare += 0.45;
     }
     if (removedWeeds.value === 'mec_removed_weeds') {
-      multiplierByCare = multiplierByCare + 0.2;
+      multiplierByCare += 0.2;
     }
     if (removedWeeds.value === 'chem_removed_weeds') {
-      multiplierByCare = multiplierByCare + 0.15;
+      multiplierByCare += 0.15;
     }
-    setBonus((multiplierByCare - 1) * 100);
+
     setRealBonus(multiplierByCare);
-    return multiplierByCare;
+    setBonus((multiplierByCare - 1) * 100);
   }
 
-  // !useEffect
+  //* useEffects
   useEffect(() => {
     bonusCalculation();
-  }, [fertilized, removedWeeds, limed, plowed, rolled, mulched]);
-  return (
-    <View>
-      {/* //* Calculation method */}
+  }, [plowed, fertilized, removedWeeds]);
 
-      {/* //* Field Care */}
-      <>
-        <Styles.SectionTitle colors={colors}>
-          {string.field_care}:
-        </Styles.SectionTitle>
-        <ComboBox
-          style={styles.margin5px}
-          value={fertilized}
-          data={fertilizedItems}
-          setValue={setFertilized}
-          placeholder={string.fertilized_stage}
-          modal_text={string.select_fertilized}
-        />
-        <ComboBox
-          style={styles.margin5px}
-          value={removedWeeds}
-          data={removedWeedItens}
-          setValue={setRemovedWeeds}
-          placeholder={string.weeds_stage}
-          modal_text={string.select_removed_weeds}
-        />
-        <CheckBox
-          value={plowed}
-          setValue={setPlowed}
-          style={styles.margin5px}
-          text={string.plowed_stage}
-        />
-      </>
-    </View>
+  return (
+    //* Render the Care Bonuses internal component
+    //* Care Bonuses markers
+    <>
+      <Styles.SectionTitle colors={colors}>
+        {string.field_care}:
+      </Styles.SectionTitle>
+      <ComboBox
+        style={styles.margin5px}
+        value={fertilized}
+        data={fertilizedItems}
+        setValue={setFertilized}
+        placeholder={string.fertilized_stage}
+        modal_text={string.select_fertilized}
+      />
+      <ComboBox
+        style={styles.margin5px}
+        value={removedWeeds}
+        data={removedWeedItens}
+        setValue={setRemovedWeeds}
+        placeholder={string.weeds_stage}
+        modal_text={string.select_removed_weeds}
+      />
+      <CheckBox
+        value={plowed}
+        setValue={setPlowed}
+        style={styles.margin5px}
+        text={string.plowed_stage}
+      />
+    </>
   );
 };
 
-export default Cluster;
+export default ClusterCrop;

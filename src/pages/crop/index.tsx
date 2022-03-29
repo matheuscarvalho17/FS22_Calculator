@@ -1,3 +1,6 @@
+import Grass from './grass';
+import Normal from './normal';
+import Cluster from './cluster';
 import {styles} from './styles';
 import * as Styles from './styles';
 import {useFlavor} from '../../flavor';
@@ -11,12 +14,12 @@ import IconButton from '../../components/IconButton';
 import ComboBox, {Data} from '../../components/ComboBox';
 import React, {useEffect, useMemo, useState} from 'react';
 import {roundNumber, onlyNumberAndDot} from '../../utils/masks';
-import Normal from './normal';
-import Cluster from './cluster';
-import {View} from 'react-native';
-import Grass from './grass';
+
+//*  It is the Crop page.
+//*  This (page) allows users manage the props to calculate a yield and field.
 
 const Crop: React.FC = ({}) => {
+  //* Flavor, Language, Crops, Route and Navigation hooks declaration
   const crops = useCrops();
   const route = useRoute();
   const {colors} = useFlavor();
@@ -24,22 +27,24 @@ const Crop: React.FC = ({}) => {
   const {string} = useLanguage();
   const navigation = useNav('crop');
 
-  // !useState
-  const [mathBySize, setMathBySize] = useState<boolean>(true);
-  const [showWarn, setShowWarn] = useState<boolean>(false);
-  const [warnMessage, setWarnMessage] = useState<string>('');
-  const [measureUnitLabel, setMeasureUnitLabel] = useState<string>('');
-  const [bonusLabel, setBonusLabel] = useState<number>(0);
-  const [fieldSize, setFieldSize] = useState<string>('');
-  const [targetHarvester, setTargetHarvester] = useState<string>('');
+  //* useStates declaration
   const [bonus, setBonus] = useState<number>(0);
   const [realBonus, setRealBonus] = useState<number>(0);
+  const [fieldSize, setFieldSize] = useState<string>('');
+  const [yieldField, setYieldField] = useState<number>(0);
+  const [bonusLabel, setBonusLabel] = useState<number>(0);
+  const [multiplier, setMultiplier] = useState<number>(1);
+  const [showWarn, setShowWarn] = useState<boolean>(false);
+  const [targetField, setTargetField] = useState<number>(0);
+  const [warnMessage, setWarnMessage] = useState<string>('');
+  const [mathBySize, setMathBySize] = useState<boolean>(true);
+  const [targetHarvester, setTargetHarvester] = useState<string>('');
+  const [measureUnitLabel, setMeasureUnitLabel] = useState<string>('');
   const [measureUnit, setMeasureUnit] = useState<Data>({
     id: -1,
     label: null,
     value: null,
   });
-  const [multiplier, setMultiplier] = useState<number>(1);
   const [measureUnitItens] = useState<Array<Data>>(
     useMemo(
       () => [
@@ -65,34 +70,8 @@ const Crop: React.FC = ({}) => {
     '(m²)': 0.0001,
     '(ft²)': 0.0000092903,
   };
-  const [yieldField, setYieldField] = useState<number>(0);
-  const [targetField, setTargetField] = useState<number>(0);
-  // !function
-  function fieldCalculation(multiplierByCare: number) {
-    let fieldSize: number = 0;
 
-    fieldSize =
-      yieldField /
-      multiplierByCare /
-      parseFloat(targetHarvester) /
-      unitsField[measureUnit.value ? measureUnit.value : '(ha)'];
-
-    setTargetField(fieldSize);
-    setMeasureUnitLabel(measureUnit.value ? measureUnit.value : '(ha)');
-  }
-  function handleChangeMathBySize() {
-    setMathBySize(!mathBySize);
-  }
-  function yieldCalculation(multiplierByCare: number) {
-    let yieldMultiplier: number = 0;
-
-    yieldMultiplier =
-      parseFloat(fieldSize) *
-      multiplierByCare *
-      unitsField[measureUnit.value ? measureUnit.value : '(ha)'];
-
-    setMultiplier(yieldMultiplier);
-  }
+  //* Functions
   function validateEntryData() {
     setShowWarn(false);
     setWarnMessage('');
@@ -100,8 +79,7 @@ const Crop: React.FC = ({}) => {
     if (!mathBySize) {
       if (parseFloat(targetHarvester) > 0) {
         if (measureUnit.id != -1) {
-          let bonus: number = realBonus;
-          fieldCalculation(bonus);
+          fieldCalculation(realBonus);
         } else {
           setWarnMessage(string.warn_measure_unit);
           setShowWarn(true);
@@ -115,8 +93,7 @@ const Crop: React.FC = ({}) => {
     } else {
       if (parseFloat(fieldSize) > 0) {
         if (measureUnit.id != -1) {
-          let bonus: number = realBonus;
-          yieldCalculation(bonus);
+          yieldCalculation(realBonus);
         } else {
           setWarnMessage(string.warn_measure_unit);
           setShowWarn(true);
@@ -130,20 +107,38 @@ const Crop: React.FC = ({}) => {
     }
     setBonusLabel(bonus);
   }
-  // !useEffect
+  function fieldCalculation(multiplierByCare: number) {
+    let fieldSize: number =
+      parseFloat(targetHarvester) /
+      (multiplierByCare * yieldField) /
+      unitsField[measureUnit.value ? measureUnit.value : '(ha)'];
+
+    setTargetField(fieldSize);
+    setMeasureUnitLabel(measureUnit.value ? measureUnit.value : '(ha)');
+  }
+  function yieldCalculation(multiplierByCare: number) {
+    let yieldMultiplier: number =
+      parseFloat(fieldSize) *
+      multiplierByCare *
+      unitsField[measureUnit.value ? measureUnit.value : '(ha)'];
+
+    setMultiplier(yieldMultiplier);
+  }
+
+  //* useEffects
   useEffect(() => {
     setYieldField(crops[cropId].yieldPerHa);
   }, []);
   useEffect(() => {
     setFieldSize('');
-    //setShowWarn(false);
-    //setWarnMessage('');
+    setShowWarn(false);
+    setWarnMessage('');
     setTargetHarvester('');
   }, [mathBySize]);
 
-  // !render
   return (
     <Styles.Container colors={colors}>
+      {/* //* The Header contains the title and the icon. */}
       <Styles.Header>
         <Styles.LeftView>
           <Styles.Title colors={colors}>{crops[cropId].name}</Styles.Title>
@@ -152,6 +147,8 @@ const Crop: React.FC = ({}) => {
           <Styles.Image colors={colors} source={crops[cropId].icon} />
         </Styles.RightView>
       </Styles.Header>
+      {/* //* The Body is divided by sections: */}
+      {/* //* Main Information, Calculation Method, Target Yield and Field Size, Care Bonuses. */}
       <Styles.Body>
         {/* //* Main informations */}
         <>
@@ -184,24 +181,25 @@ const Crop: React.FC = ({}) => {
           </Styles.DivideView>
         </>
         <Styles.ScrollBody showsVerticalScrollIndicator={false}>
+          {/* //* Calculation Method */}
           <>
             <Styles.SectionTitle colors={colors}>
               {string.calculation_method}:
             </Styles.SectionTitle>
             <CheckBox
               value={mathBySize}
-              setValue={setMathBySize}
+              setValue={() => setMathBySize(true)}
               style={styles.margin5px}
               text={string.mathBySize}
             />
             <CheckBox
               value={!mathBySize}
-              setValue={handleChangeMathBySize}
+              setValue={() => setMathBySize(false)}
               style={styles.margin5px}
               text={string.mathByHarvest}
             />
           </>
-          {/* //* Input size or target and measure unit */}
+          {/* //* Size or target and measure unit */}
           <>
             <Styles.SectionTitle colors={colors}>
               {mathBySize ? string.field_size : string.harvest_target}:
@@ -233,40 +231,21 @@ const Crop: React.FC = ({}) => {
             />
             {showWarn && <Styles.warnMessage>{warnMessage}</Styles.warnMessage>}
           </>
-
-          {crops[cropId].type == 'normal' && (
-            <Normal
-              cropId={cropId}
-              setBonus={setBonus}
-              setMeasureUnitLabel={setMeasureUnitLabel}
-              setRealBonus={setRealBonus}
-              targetHarvester={targetHarvester}
-              unitsField={unitsField}
-            />
-          )}
-          {crops[cropId].type == 'cluster' && (
-            <Cluster
-              cropId={cropId}
-              setBonus={setBonus}
-              setMeasureUnitLabel={setMeasureUnitLabel}
-              setRealBonus={setRealBonus}
-              targetHarvester={targetHarvester}
-              unitsField={unitsField}
-            />
-          )}
-
-          {crops[cropId].type == 'grass' && (
-            <Grass
-              cropId={cropId}
-              setBonus={setBonus}
-              setMeasureUnitLabel={setMeasureUnitLabel}
-              setRealBonus={setRealBonus}
-              targetHarvester={targetHarvester}
-              unitsField={unitsField}
-            />
-          )}
+          {/* //* Care Bonuses type*/}
+          <>
+            {crops[cropId].type == 'normal' && (
+              <Normal setBonus={setBonus} setRealBonus={setRealBonus} />
+            )}
+            {crops[cropId].type == 'cluster' && (
+              <Cluster setBonus={setBonus} setRealBonus={setRealBonus} />
+            )}
+            {crops[cropId].type == 'grass' && (
+              <Grass setBonus={setBonus} setRealBonus={setRealBonus} />
+            )}
+          </>
         </Styles.ScrollBody>
       </Styles.Body>
+      {/* //*  The Footer contains buttons to go back to the previous page and calculate. */}
       <Styles.Footer>
         <IconButton
           onPress={() => {

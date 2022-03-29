@@ -1,54 +1,27 @@
-import React, {useEffect, useMemo, useState} from 'react';
-import {View} from 'react-native';
 import {styles} from './styles';
+import {View} from 'react-native';
 import * as Styles from './styles';
+import {ICropProps} from './normal';
 import {useFlavor} from '../../flavor';
-import {useCrops} from '../../utils/database';
-import {useRoute} from '@react-navigation/native';
 import {useLanguage} from '../../languages';
-import {useNav} from '../../utils/hooks';
-import ComboBox, {Data} from '../../components/ComboBox';
 import CheckBox from '../../components/CheckBox';
-import TextInput from '../../components/TextInput';
-// import { Container } from './styles';
-interface IGrass {
-  cropId: number;
-  setMeasureUnitLabel: Function;
-  unitsField: {
-    '(ha)': number;
-    '(acre)': number;
-    '(a)': number;
-    '(m²)': number;
-    '(ft²)': number;
-  };
-  targetHarvester: string;
-  setBonus: Function;
-  setRealBonus: Function;
-}
-const Grass: React.FC<IGrass> = ({
-  cropId,
-  setMeasureUnitLabel,
-  unitsField,
-  targetHarvester,
-  setBonus,
-  setRealBonus,
-}) => {
-  // !hooks
-  const crops = useCrops();
-  const route = useRoute();
+import ComboBox, {Data} from '../../components/ComboBox';
+import React, {useEffect, useMemo, useState} from 'react';
+
+//*  It is the GrassCrop internal component.
+//*  This (internal component) is used by Crop page to calculate a bonus prop.
+
+const GrassCrop: React.FC<ICropProps> = ({setBonus, setRealBonus}) => {
+  //* Flavor and Language hooks delaration
   const {colors} = useFlavor();
   const {string} = useLanguage();
-  const navigation = useNav('crop');
 
-  // !useState
-
-  //const [bonus, setBonus] = useState<number>(0);
+  //* useStates declaration
   const [limed, setLimed] = useState<boolean>(false);
   const [rolled, setRolled] = useState<boolean>(false);
   const [plowed, setPlowed] = useState<boolean>(false);
-
   const [mulched, setMulched] = useState<boolean>(false);
-
+  const [firstPreparation, setFirstPreparation] = useState<boolean>(false);
   const [fertilized, setFertilized] = useState<Data>({
     id: -1,
     label: null,
@@ -59,7 +32,6 @@ const Grass: React.FC<IGrass> = ({
     label: null,
     value: null,
   });
-
   const [fertilizedItems] = useState<Array<Data>>(
     useMemo(
       () => [
@@ -80,13 +52,9 @@ const Grass: React.FC<IGrass> = ({
       [],
     ),
   );
-  // *first preparation
-  const [firstPreparation, setFirstPreparation] = useState<boolean>(false);
 
-  // !functions
-
+  //* Functions
   function bonusCalculation() {
-    //TODO: refactor
     let multiplierByCare: number = 1;
 
     if (limed && firstPreparation) {
@@ -102,75 +70,72 @@ const Grass: React.FC<IGrass> = ({
       if (firstPreparation) {
         multiplierByCare += 0.025;
       } else {
-        multiplierByCare += 1;
+        multiplierByCare += 0.05;
       }
     }
     if (fertilized.value === 'half_fertilized') {
       if (firstPreparation) {
         multiplierByCare += 0.225;
       } else {
-        multiplierByCare += 1;
+        multiplierByCare += 0.35;
       }
     }
     if (fertilized.value === 'full_fertilized') {
       if (firstPreparation) {
-        multiplierByCare += 0.35;
+        multiplierByCare += 0.45;
       } else {
-        multiplierByCare += 1;
+        multiplierByCare += 0.7;
       }
     }
     if (removedWeeds.value === 'mec_removed_weeds') {
       if (firstPreparation) {
-        multiplierByCare += 0.05;
+        multiplierByCare += 0.2;
       } else {
-        multiplierByCare += 1;
+        multiplierByCare += 0.25;
       }
     }
     if (removedWeeds.value === 'chem_removed_weeds') {
       if (firstPreparation) {
-        multiplierByCare += 0.075;
+        multiplierByCare += 0.15;
       } else {
-        multiplierByCare += 1;
+        multiplierByCare += 0.2;
       }
     }
-    setBonus((multiplierByCare - 1) * 100);
     setRealBonus(multiplierByCare);
-    return multiplierByCare;
+    setBonus((multiplierByCare - 1) * 100);
   }
-  // *first preparation
-  function handleChangeFirstPreparationToFalse() {
-    setFirstPreparation(false);
-  }
-  // !useEffect
+
+  //* useEffects
   useEffect(() => {
     bonusCalculation();
   }, [fertilized, removedWeeds, limed, plowed, rolled, mulched]);
+
   return (
-    <View>
+    //* Render the Care Bonuses internal component divided by sections
+    <>
+      {/* //* Soil Preparation */}
       <>
         <Styles.SectionTitle colors={colors}>
           {string.first_soil_preparation}:
         </Styles.SectionTitle>
         <CheckBox
+          style={styles.margin5px}
           value={firstPreparation}
           setValue={() => {
             setFirstPreparation(true);
           }}
-          style={styles.margin5px}
           text={string.first_soil_preparation_check}
         />
         <CheckBox
+          style={styles.margin5px}
           value={!firstPreparation}
           setValue={() => {
             setFirstPreparation(false);
           }}
-          style={styles.margin5px}
           text={string.first_soil_preparation_not_check}
         />
       </>
-      {/* //* Calculation method */}
-
-      {/* //* Field Care */}
+      {/* //* Care Bonuses markers */}
       <>
         <Styles.SectionTitle colors={colors}>
           {string.field_care}:
@@ -191,7 +156,6 @@ const Grass: React.FC<IGrass> = ({
           placeholder={string.weeds_stage}
           modal_text={string.select_removed_weeds}
         />
-        {/*  */}
         {firstPreparation && (
           <CheckBox
             value={limed}
@@ -223,8 +187,8 @@ const Grass: React.FC<IGrass> = ({
           text={string.mulched_stage}
         />
       </>
-    </View>
+    </>
   );
 };
 
-export default Grass;
+export default GrassCrop;

@@ -1,54 +1,29 @@
-import React, {useEffect, useMemo, useState} from 'react';
-import {View} from 'react-native';
 import {styles} from './styles';
 import * as Styles from './styles';
 import {useFlavor} from '../../flavor';
-import {useCrops} from '../../utils/database';
-import {useRoute} from '@react-navigation/native';
 import {useLanguage} from '../../languages';
-import {useNav} from '../../utils/hooks';
-import ComboBox, {Data} from '../../components/ComboBox';
 import CheckBox from '../../components/CheckBox';
-import TextInput from '../../components/TextInput';
-// import { Container } from './styles';
-interface INormal {
-  cropId: number;
-  setMeasureUnitLabel: Function;
-  unitsField: {
-    '(ha)': number;
-    '(acre)': number;
-    '(a)': number;
-    '(m²)': number;
-    '(ft²)': number;
-  };
-  targetHarvester: string;
+import ComboBox, {Data} from '../../components/ComboBox';
+import React, {useEffect, useMemo, useState} from 'react';
+
+//*  It is the NormalCrop internal component.
+//*  This (internal component) is used by Crop page to calculate a bonus prop.
+
+//* NormalCrop Interface
+export interface ICropProps {
   setBonus: Function;
   setRealBonus: Function;
 }
-const Normal: React.FC<INormal> = ({
-  cropId,
-  setMeasureUnitLabel,
-  unitsField,
-  targetHarvester,
-  setBonus,
-  setRealBonus,
-}) => {
-  // !hooks
-  const crops = useCrops();
-  const route = useRoute();
+const NormalCrop: React.FC<ICropProps> = ({setBonus, setRealBonus}) => {
+  //* Flavor and Language hooks delaration
   const {colors} = useFlavor();
   const {string} = useLanguage();
-  const navigation = useNav('crop');
 
-  // !useState
-
-  //const [bonus, setBonus] = useState<number>(0);
+  //* useStates declaration
   const [limed, setLimed] = useState<boolean>(false);
   const [rolled, setRolled] = useState<boolean>(false);
   const [plowed, setPlowed] = useState<boolean>(false);
-
   const [mulched, setMulched] = useState<boolean>(false);
-
   const [fertilized, setFertilized] = useState<Data>({
     id: -1,
     label: null,
@@ -59,7 +34,6 @@ const Normal: React.FC<INormal> = ({
     label: null,
     value: null,
   });
-
   const [fertilizedItems] = useState<Array<Data>>(
     useMemo(
       () => [
@@ -81,96 +55,92 @@ const Normal: React.FC<INormal> = ({
     ),
   );
 
-  // !functions
-
+  //* Functions
   function bonusCalculation() {
     let multiplierByCare: number = 1;
 
     if (limed) {
-      multiplierByCare = multiplierByCare + 0.15;
+      multiplierByCare += 0.15;
     }
     if (plowed) {
-      multiplierByCare = multiplierByCare + 0.15;
+      multiplierByCare += 0.15;
     }
     if (rolled) {
-      multiplierByCare = multiplierByCare + 0.025;
+      multiplierByCare += 0.025;
     }
     if (mulched) {
-      multiplierByCare = multiplierByCare + 0.025;
+      multiplierByCare += 0.025;
     }
     if (fertilized.value === 'half_fertilized') {
-      multiplierByCare = multiplierByCare + 0.225;
+      multiplierByCare += 0.225;
     }
     if (fertilized.value === 'full_fertilized') {
-      multiplierByCare = multiplierByCare + 0.45;
+      multiplierByCare += 0.45;
     }
     if (removedWeeds.value === 'mec_removed_weeds') {
-      multiplierByCare = multiplierByCare + 0.2;
+      multiplierByCare += 0.2;
     }
     if (removedWeeds.value === 'chem_removed_weeds') {
-      multiplierByCare = multiplierByCare + 0.15;
+      multiplierByCare += 0.15;
     }
-    setBonus((multiplierByCare - 1) * 100);
     setRealBonus(multiplierByCare);
-    return multiplierByCare;
+    setBonus((multiplierByCare - 1) * 100);
   }
 
-  // !useEffect
+  //* useEffects
   useEffect(() => {
     bonusCalculation();
   }, [fertilized, removedWeeds, limed, plowed, rolled, mulched]);
-  return (
-    <View>
-      {/* //* Calculation method */}
 
-      {/* //* Field Care */}
-      <>
-        <Styles.SectionTitle colors={colors}>
-          {string.field_care}:
-        </Styles.SectionTitle>
-        <ComboBox
-          style={styles.margin5px}
-          value={fertilized}
-          data={fertilizedItems}
-          setValue={setFertilized}
-          placeholder={string.fertilized_stage}
-          modal_text={string.select_fertilized}
-        />
-        <ComboBox
-          style={styles.margin5px}
-          value={removedWeeds}
-          data={removedWeedItens}
-          setValue={setRemovedWeeds}
-          placeholder={string.weeds_stage}
-          modal_text={string.select_removed_weeds}
-        />
-        <CheckBox
-          value={limed}
-          setValue={setLimed}
-          style={styles.margin5px}
-          text={string.limed_stage}
-        />
-        <CheckBox
-          value={plowed}
-          setValue={setPlowed}
-          style={styles.margin5px}
-          text={string.plowed_stage}
-        />
-        <CheckBox
-          value={rolled}
-          setValue={setRolled}
-          style={styles.margin5px}
-          text={string.rolled_stage}
-        />
-        <CheckBox
-          value={mulched}
-          setValue={setMulched}
-          style={styles.margin5px}
-          text={string.mulched_stage}
-        />
-      </>
-    </View>
+  return (
+    //* Render the Care Bonuses internal component
+    //* Care Bonuses markers
+    <>
+      <Styles.SectionTitle colors={colors}>
+        {string.field_care}:
+      </Styles.SectionTitle>
+      <ComboBox
+        style={styles.margin5px}
+        value={fertilized}
+        data={fertilizedItems}
+        setValue={setFertilized}
+        placeholder={string.fertilized_stage}
+        modal_text={string.select_fertilized}
+      />
+      <ComboBox
+        style={styles.margin5px}
+        value={removedWeeds}
+        data={removedWeedItens}
+        setValue={setRemovedWeeds}
+        placeholder={string.weeds_stage}
+        modal_text={string.select_removed_weeds}
+      />
+      <CheckBox
+        value={limed}
+        setValue={setLimed}
+        style={styles.margin5px}
+        text={string.limed_stage}
+      />
+      <CheckBox
+        value={plowed}
+        setValue={setPlowed}
+        style={styles.margin5px}
+        text={string.plowed_stage}
+      />
+      <CheckBox
+        value={rolled}
+        setValue={setRolled}
+        style={styles.margin5px}
+        text={string.rolled_stage}
+      />
+      <CheckBox
+        value={mulched}
+        setValue={setMulched}
+        style={styles.margin5px}
+        text={string.mulched_stage}
+      />
+    </>
   );
 };
 
-export default Normal;
+export default NormalCrop;
