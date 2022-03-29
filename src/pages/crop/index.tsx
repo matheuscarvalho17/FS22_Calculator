@@ -23,14 +23,16 @@ const Crop: React.FC = ({}) => {
   const [limed, setLimed] = useState<boolean>(false);
   const [rolled, setRolled] = useState<boolean>(false);
   const [plowed, setPlowed] = useState<boolean>(false);
-  const [yieldField, setYieldField] = useState<number>(0);
   const [fieldSize, setFieldSize] = useState<string>('');
   const [mulched, setMulched] = useState<boolean>(false);
+  const [yieldField, setYieldField] = useState<number>(0);
   const [multiplier, setMultiplier] = useState<number>(1);
   const [showWarn, setShowWarn] = useState<boolean>(false);
+  const [targetField, setTargetField] = useState<number>(0);
   const [warnMessage, setWarnMessage] = useState<string>('');
   const [mathBySize, setMathBySize] = useState<boolean>(true);
   const [targetHarvester, setTargetHarvester] = useState<string>('');
+  const [measureUnitLabel, setMeasureUnitLabel] = useState<string>('');
   const [fertilized, setFertilized] = useState<Data>({
     id: -1,
     label: null,
@@ -78,6 +80,19 @@ const Crop: React.FC = ({}) => {
       [],
     ),
   );
+  const unitsField: {
+    '(ha)': number;
+    '(acre)': number;
+    '(a)': number;
+    '(m²)': number;
+    '(ft²)': number;
+  } = {
+    '(ha)': 1,
+    '(acre)': 0.404686,
+    '(a)': 0.01,
+    '(m²)': 0.0001,
+    '(ft²)': 0.0000092903,
+  };
 
   function handleChangeMathBySize() {
     setMathBySize(!mathBySize);
@@ -89,7 +104,8 @@ const Crop: React.FC = ({}) => {
     if (!mathBySize) {
       if (parseFloat(targetHarvester) > 0) {
         if (measureUnit.id != -1) {
-          fieldCalculation();
+          let bonus: number = bonusCalculation();
+          fieldCalculation(bonus);
         } else {
           setWarnMessage(string.warn_measure_unit);
           setShowWarn(true);
@@ -103,7 +119,8 @@ const Crop: React.FC = ({}) => {
     } else {
       if (parseFloat(fieldSize) > 0) {
         if (measureUnit.id != -1) {
-          yieldCalculation();
+          let bonus: number = bonusCalculation();
+          yieldCalculation(bonus);
         } else {
           setWarnMessage(string.warn_measure_unit);
           setShowWarn(true);
@@ -116,14 +133,8 @@ const Crop: React.FC = ({}) => {
       }
     }
   }
-  function fieldCalculation() {
-    console.log('fieldCalculation');
-  }
-
-  function yieldCalculation() {
-    let yieldMultiplier: number = 0;
+  function bonusCalculation() {
     let multiplierByCare: number = 1;
-    let multiplierByMeasureUnit: number = 1;
 
     if (limed) {
       multiplierByCare = multiplierByCare + 0.15;
@@ -149,25 +160,30 @@ const Crop: React.FC = ({}) => {
     if (removedWeeds.value === 'chem_removed_weeds') {
       multiplierByCare = multiplierByCare + 0.15;
     }
-
-    if (measureUnit.value === '(a)') {
-      multiplierByMeasureUnit = 0.01;
-    }
-    if (measureUnit.value === '(acre)') {
-      multiplierByMeasureUnit = 0.4036;
-    }
-    if (measureUnit.value === '(m²)') {
-      multiplierByMeasureUnit = 0.0001;
-    }
-    if (measureUnit.value === '(ft²)') {
-      multiplierByMeasureUnit = 0.0000092903;
-    }
+    setBonus((multiplierByCare - 1) * 100);
+    return multiplierByCare;
+  }
+  function yieldCalculation(multiplierByCare: number) {
+    let yieldMultiplier: number = 0;
 
     yieldMultiplier =
-      parseFloat(fieldSize) * multiplierByCare * multiplierByMeasureUnit;
+      parseFloat(fieldSize) *
+      multiplierByCare *
+      unitsField[measureUnit.value ? measureUnit.value : '(ha)'];
 
     setMultiplier(yieldMultiplier);
-    setBonus((multiplierByCare - 1) * 100);
+  }
+  function fieldCalculation(multiplierByCare: number) {
+    let fieldSize: number = 0;
+
+    fieldSize =
+      yieldField /
+      multiplierByCare /
+      parseFloat(targetHarvester) /
+      unitsField[measureUnit.value ? measureUnit.value : '(ha)'];
+
+    setTargetField(fieldSize);
+    setMeasureUnitLabel(measureUnit.value ? measureUnit.value : '(ha)');
   }
 
   useEffect(() => {
@@ -209,7 +225,7 @@ const Crop: React.FC = ({}) => {
                   {string.field_required}:
                 </Styles.TextInfos>
                 <Styles.TextInfosAccent colors={colors}>
-                  {roundNumber(yieldField * multiplier)} {measureUnit.value}
+                  {roundNumber(targetField)} {measureUnitLabel}
                 </Styles.TextInfosAccent>
               </>
             )}
