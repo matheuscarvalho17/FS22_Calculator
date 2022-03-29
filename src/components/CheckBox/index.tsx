@@ -3,6 +3,10 @@ import * as Styles from './styles';
 import {useFlavor} from '../../flavor';
 import {ViewStyle} from 'react-native';
 
+//*  It is the CheckBox component.
+//*  This (component) allow users to select a boolean data.
+
+//* CheckBox Interface
 interface ICheckBoxProps {
   text: string;
   value: boolean;
@@ -11,6 +15,7 @@ interface ICheckBoxProps {
 }
 
 const CheckBox: React.FC<ICheckBoxProps> = ({text, value, style, setValue}) => {
+  //* Flavor hook declaration
   const {colors} = useFlavor();
 
   return (

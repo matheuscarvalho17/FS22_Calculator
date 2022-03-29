@@ -7,7 +7,13 @@ import Button from '../../components/Button';
 import {version} from '../../../package.json';
 import IconButton from '../../components/IconButton';
 
+//*  It is the first page that is loaded when the app is started.
+//*  This (page) informs users about the app version and redirects to the functionalities pages, like:
+//*  Select the Harvest Products, Animal Products or Factory Products.
+//*  Change the language or appearance.
+
 const Main: React.FC = () => {
+  //* Flavor, Language and Navigation hooks declaration
   const {colors} = useFlavor();
   const {string} = useLanguage();
   const navigation = useNav('mainPage');
@@ -17,6 +23,7 @@ const Main: React.FC = () => {
       <Styles.Header>
         <Styles.Title colors={colors}>{string.title}</Styles.Title>
       </Styles.Header>
+      {/* //*  The Footer contains buttons for the menuCrops, menuAnimals and menuFactories pages. */}
       <Styles.Body>
         <Button
           onPress={() => {
@@ -24,6 +31,7 @@ const Main: React.FC = () => {
           }}
           text={string.crops}
         />
+
         <Button
           onPress={() => {
             navigation.navigate('menuAnimals');
@@ -38,6 +46,7 @@ const Main: React.FC = () => {
         />
         <Styles.Version colors={colors}>{version}</Styles.Version>
       </Styles.Body>
+      {/* //*  The Footer contains buttons for the language and appearance pages. */}
       <Styles.Footer>
         <IconButton
           onPress={() => {

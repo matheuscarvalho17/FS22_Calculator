@@ -9,18 +9,26 @@ import React, {useEffect, useState} from 'react';
 import IconButton from '../../components/IconButton';
 import CustomButton from '../../components/CustomButton';
 
+//*  It is the MenuCrop page.
+//*  This (page) allows users to select the culture (crop) they want to calculate.
+
 interface IButton {
   onPress: Function;
   icon: ImageURISource;
 }
 
 const MenuCrop: React.FC = () => {
+  //* Flavor, Language, Crops and Navigation hooks declaration
   const crops = useCrops();
   const {colors} = useFlavor();
   const {string} = useLanguage();
   const navigation = useNav('menuCrops');
+
+  //* useState declaration
   const [buttons, setButtons] = useState<Array<IButton>>([]);
 
+  //* useEffect's
+  //* This useEffect is used to set the buttons array.
   useEffect(() => {
     let aux: Array<IButton> = [];
     crops.forEach((element, id) => {
@@ -39,6 +47,7 @@ const MenuCrop: React.FC = () => {
       <Styles.Header>
         <Styles.Title colors={colors}>{string.crops}</Styles.Title>
       </Styles.Header>
+      {/* //*  The Body contains the list of crops button */}
       <Styles.ScrollBody showsVerticalScrollIndicator={false}>
         <Styles.List>
           {buttons.map((value, key) => (
@@ -54,6 +63,7 @@ const MenuCrop: React.FC = () => {
           ))}
         </Styles.List>
       </Styles.ScrollBody>
+      {/* //*  The Footer contains the button to go back to the previous page. */}
       <Styles.Footer>
         <IconButton
           onPress={() => {

@@ -3,12 +3,15 @@ import React, {useState} from 'react';
 import {useFlavor} from '../../flavor';
 import {Modal, ListRenderItem, ViewStyle} from 'react-native';
 
+//*  It is the ComboBox component.
+//*  This (component) allow users to select data through a modal.
+
+//* Default Data and ComboBox Interface
 export interface Data {
   id: number;
   value: string | null;
   label: string | null;
 }
-
 interface IComboBoxProps {
   value: Data;
   data: Array<Data>;
@@ -28,9 +31,13 @@ const ComboBox: React.FC<IComboBoxProps> = ({
   placeholder,
   placeholderType,
 }) => {
+  //* Flavor hook declaration
   const {colors} = useFlavor();
+
+  //* useState declaration
   const [open, setOpen] = useState<boolean>(false);
 
+  //* ListRenderItem declaration
   const Item = ({item}: {item: Data}) => (
     <Styles.ItemButton
       colors={colors}
@@ -44,6 +51,7 @@ const ComboBox: React.FC<IComboBoxProps> = ({
 
   return (
     <>
+      {/* //* Modal to view the data list to select */}
       <Modal visible={open} animationType="fade" transparent>
         <Styles.ModalContainer colors={colors}>
           <Styles.ModalBox colors={colors}>
@@ -62,6 +70,7 @@ const ComboBox: React.FC<IComboBoxProps> = ({
           </Styles.ModalBox>
         </Styles.ModalContainer>
       </Modal>
+      {/* //* Box to view the selected data and open the modal */}
       <Styles.Box
         colors={colors}
         style={style}

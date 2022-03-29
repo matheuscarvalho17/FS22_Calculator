@@ -1,10 +1,14 @@
 import {useLanguage} from '../languages';
 import {ImageURISource} from 'react-native';
 
+//*  It is the database file.
+//*  This (file) is used to store the 'database' of all products.
+
+//* Products Interface
 interface IProducts {
   name: string;
   icon: ImageURISource;
-  type: 'normal' | 'root' | 'cluster' | 'grass' | 'straw' | string;
+  type: 'normal' | 'root' | 'cluster' | 'grass' | 'straw';
   avgPriceEasy: number;
   avgPriceMedium: number;
   avgPriceHard: number;
@@ -12,6 +16,7 @@ interface IProducts {
   unit: string;
 }
 
+//* Function to simulate a database of Animals Products
 export function useAnimals(): Array<IProducts> {
   const {string} = useLanguage();
   return [
@@ -28,8 +33,11 @@ export function useAnimals(): Array<IProducts> {
   ];
 }
 
+//* Function to simulate a database of Harvest Products
 export function useCrops(): Array<IProducts> {
+  //* Language hook declaration
   const {string} = useLanguage();
+
   return [
     {
       name: string.wheat,

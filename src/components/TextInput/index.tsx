@@ -3,6 +3,10 @@ import * as Styles from './styles';
 import {useFlavor} from '../../flavor';
 import {ViewStyle} from 'react-native';
 
+//*  It is the TextInput component.
+//*  This (component) allow users entry data.
+
+//* Button Interface
 interface IButtonProps {
   value: string;
   style?: ViewStyle;
@@ -18,6 +22,7 @@ const TextInput: React.FC<IButtonProps> = ({
   keyboard,
   placeholder,
 }) => {
+  //* Flavor hook declaration
   const {colors} = useFlavor();
 
   return (
