@@ -46,10 +46,18 @@ export interface ILanguage {
   square_meter: string;
   square_foot: string;
   enter_field_size: string;
+  enter_harvester_target: string;
   field_care: string;
   field_size: string;
+  field_required: string;
+  harvest_target: string;
   warn_yield_size: string;
+  warn_harvest_target: string;
   warn_measure_unit: string;
+  wip: string;
+  calculation_method: string;
+  mathBySize: string;
+  mathByHarvest: string;
   // Crops
   barley: string;
   canola: string;
@@ -122,11 +130,19 @@ const strings: ILanguage = {
   hectare: 'Hectare (ha)',
   square_meter: 'Square Meter (m²)',
   square_foot: 'Square Foot (ft²)',
+  enter_harvester_target: 'Enter the harvester target',
   enter_field_size: 'Enter the field size',
   field_care: 'About field care',
-  field_size: 'About field size e measure unit',
+  field_size: 'About field size and measure unit',
+  field_required: 'Field size',
+  harvest_target: 'About harvest target and measure unit',
   warn_yield_size: 'Invalid yield size',
+  warn_harvest_target: 'Invalid harvest target',
   warn_measure_unit: 'Invalid measure unit',
+  wip: 'Work in progress',
+  calculation_method: 'Select the calculation method',
+  mathBySize: 'By field size',
+  mathByHarvest: 'By harvest target',
   // Crops
   barley: 'Barley',
   canola: 'Canola',
