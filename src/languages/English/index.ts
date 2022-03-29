@@ -6,14 +6,14 @@ export interface ILanguageProps {
 }
 
 export interface ILanguage {
-  // Main buttons and Title
+  // !Main buttons and Title
   crops: string;
   animals: string;
   products: string;
   language: string;
   appearance: string;
   title: string;
-  // Labels
+  // !Labels
   bonus: string;
   price: string;
   yield: string;
@@ -58,7 +58,7 @@ export interface ILanguage {
   calculation_method: string;
   mathBySize: string;
   mathByHarvest: string;
-  // Crops
+  // !Crops
   barley: string;
   canola: string;
   chafft: string;
@@ -89,16 +89,19 @@ export interface ILanguage {
   wood_chips: string;
   wood_chips_round_bale: string;
   wood_chips_square_bale: string;
+  first_soil_preparation: string;
+  first_soil_preparation_check: string;
+  first_soil_preparation_not_check: string;
 }
 const strings: ILanguage = {
-  // Main buttons and Title
+  // !Main buttons and Title
   crops: 'Crops',
   animals: 'Animals',
   products: 'Products',
   language: 'Language',
   appearance: 'Appearance',
   title: 'Farming Calculator',
-  // Labels
+  // !Labels
   price: 'Price',
   bonus: 'Bonus',
   yield: 'Yield',
@@ -143,7 +146,7 @@ const strings: ILanguage = {
   calculation_method: 'Select the calculation method',
   mathBySize: 'By field size',
   mathByHarvest: 'By harvest target',
-  // Crops
+  // !Crops
   barley: 'Barley',
   canola: 'Canola',
   chafft: 'Chafft',
@@ -174,6 +177,9 @@ const strings: ILanguage = {
   wood_chips: 'Wood Chips',
   wood_chips_round_bale: 'Wood Chips Round Bale',
   wood_chips_square_bale: 'Wood Chips Square Bale',
+  first_soil_preparation: 'About soil preparation',
+  first_soil_preparation_check: 'First soil preparation',
+  first_soil_preparation_not_check: 'Not first soil preparation',
 };
 
 const US: ILanguageProps = {
