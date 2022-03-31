@@ -161,7 +161,10 @@ const Crop: React.FC = ({}) => {
                   {string.yield} {measureUnit.value}:
                 </Styles.TextInfos>
                 <Styles.TextInfosAccent colors={colors}>
-                  {roundNumber(yieldField * multiplier)} {crops[cropId].unit}
+                  {crops[cropId].type === 'straw'
+                    ? roundNumber(strawYield * multiplier)
+                    : roundNumber(yieldField * multiplier)}{' '}
+                  {crops[cropId].unit}
                 </Styles.TextInfosAccent>
               </>
             ) : (
@@ -192,13 +195,13 @@ const Crop: React.FC = ({}) => {
               value={mathBySize}
               setValue={() => setMathBySize(true)}
               style={styles.margin5px}
-              text={string.mathBySize}
+              text={string.math_by_size}
             />
             <CheckBox
               value={!mathBySize}
               setValue={() => setMathBySize(false)}
               style={styles.margin5px}
-              text={string.mathByHarvest}
+              text={string.math_by_harvest}
             />
           </>
           {/* //* Size or target and measure unit */}
@@ -235,17 +238,21 @@ const Crop: React.FC = ({}) => {
           </>
           {/* //* Care Bonuses type*/}
           <>
-            {crops[cropId].type == 'normal' && (
+            {crops[cropId].type === 'normal' && (
               <Normal setBonus={setBonus} setRealBonus={setRealBonus} />
             )}
-            {crops[cropId].type == 'cluster' && (
+            {crops[cropId].type === 'cluster' && (
               <Cluster setBonus={setBonus} setRealBonus={setRealBonus} />
             )}
-            {crops[cropId].type == 'grass' && (
+            {crops[cropId].type === 'grass' && (
               <Grass setBonus={setBonus} setRealBonus={setRealBonus} />
             )}
-            {crops[cropId].type == 'straw' && (
-              <StrawCrop setStrawYield={setStrawYield} />
+            {crops[cropId].type === 'straw' && (
+              <StrawCrop
+                setBonus={setBonus}
+                setRealBonus={setRealBonus}
+                setStrawYield={setStrawYield}
+              />
             )}
           </>
         </Styles.ScrollBody>

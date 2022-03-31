@@ -20,7 +20,7 @@ const GrassCrop: React.FC<ICropProps> = ({setBonus, setRealBonus}) => {
   const [rolled, setRolled] = useState<boolean>(false);
   const [plowed, setPlowed] = useState<boolean>(false);
   const [mulched, setMulched] = useState<boolean>(false);
-  const [firstPreparation, setFirstPreparation] = useState<boolean>(false);
+  const [firstPreparation, setFirstPreparation] = useState<boolean>(true);
   const [fertilized, setFertilized] = useState<Data>({
     id: -1,
     label: null,
@@ -56,58 +56,67 @@ const GrassCrop: React.FC<ICropProps> = ({setBonus, setRealBonus}) => {
   function bonusCalculation() {
     let multiplierByCare: number = 1;
 
-    if (limed && firstPreparation) {
+    if (!firstPreparation) {
+      multiplierByCare += 0.55;
+    }
+
+    if (limed) {
       multiplierByCare += 0.15;
     }
-    if (plowed && firstPreparation) {
+    if (plowed) {
       multiplierByCare += 0.15;
     }
-    if (rolled && firstPreparation) {
+    if (rolled) {
       multiplierByCare += 0.025;
     }
     if (mulched) {
-      if (firstPreparation) {
-        multiplierByCare += 0.025;
-      } else {
-        multiplierByCare += 0.05;
-      }
+      multiplierByCare += 0.025;
     }
-    if (fertilized.value === 'half_fertilized') {
-      if (firstPreparation) {
-        multiplierByCare += 0.225;
-      } else {
-        multiplierByCare += 0.35;
-      }
+    if (fertilized.value === 'half_fertilized' && firstPreparation) {
+      multiplierByCare += 0.225;
     }
-    if (fertilized.value === 'full_fertilized') {
-      if (firstPreparation) {
-        multiplierByCare += 0.45;
-      } else {
-        multiplierByCare += 0.7;
-      }
+    if (fertilized.value === 'full_fertilized' && firstPreparation) {
+      multiplierByCare += 0.45;
+    } else if (fertilized.value === 'full_fertilized' && !firstPreparation) {
+      multiplierByCare += 0.225;
     }
+
     if (removedWeeds.value === 'mec_removed_weeds') {
-      if (firstPreparation) {
-        multiplierByCare += 0.2;
-      } else {
-        multiplierByCare += 0.25;
-      }
+      multiplierByCare += 0.2;
     }
     if (removedWeeds.value === 'chem_removed_weeds') {
-      if (firstPreparation) {
-        multiplierByCare += 0.15;
-      } else {
-        multiplierByCare += 0.2;
-      }
+      multiplierByCare += 0.15;
     }
+
     setRealBonus(multiplierByCare);
     setBonus((multiplierByCare - 1) * 100);
   }
 
   //* useEffects
   useEffect(() => {
+    if (!firstPreparation && fertilized.id < 1) {
+      fertilizedItems.find(item => {
+        if (item.value === 'half_fertilized') {
+          setFertilized(item);
+        }
+      }, []);
+    }
+    setLimed(false);
+    setPlowed(false);
+    setRolled(false);
+    setMulched(false);
+  }, [firstPreparation]);
+  useEffect(() => {
     bonusCalculation();
-  }, [fertilized, removedWeeds, limed, plowed, rolled, mulched]);
+  }, [
+    limed,
+    plowed,
+    rolled,
+    mulched,
+    fertilized,
+    removedWeeds,
+    firstPreparation,
+  ]);
 
   return (
     //* Render the Care Bonuses internal component divided by sections
@@ -115,7 +124,7 @@ const GrassCrop: React.FC<ICropProps> = ({setBonus, setRealBonus}) => {
       {/* //* Soil Preparation */}
       <>
         <Styles.SectionTitle colors={colors}>
-          {string.first_soil_preparation}:
+          {string.soil_preparation}:
         </Styles.SectionTitle>
         <CheckBox
           style={styles.margin5px}
@@ -123,7 +132,7 @@ const GrassCrop: React.FC<ICropProps> = ({setBonus, setRealBonus}) => {
           setValue={() => {
             setFirstPreparation(true);
           }}
-          text={string.first_soil_preparation_check}
+          text={string.soil_preparation_first}
         />
         <CheckBox
           style={styles.margin5px}
@@ -131,7 +140,7 @@ const GrassCrop: React.FC<ICropProps> = ({setBonus, setRealBonus}) => {
           setValue={() => {
             setFirstPreparation(false);
           }}
-          text={string.first_soil_preparation_not_check}
+          text={string.soil_preparation_continuous}
         />
       </>
       {/* //* Care Bonuses markers */}
@@ -156,28 +165,26 @@ const GrassCrop: React.FC<ICropProps> = ({setBonus, setRealBonus}) => {
           modal_text={string.select_removed_weeds}
         />
         {firstPreparation && (
-          <CheckBox
-            value={limed}
-            setValue={setLimed}
-            style={styles.margin5px}
-            text={string.limed_stage}
-          />
-        )}
-        {firstPreparation && (
-          <CheckBox
-            value={plowed}
-            setValue={setPlowed}
-            style={styles.margin5px}
-            text={string.plowed_stage}
-          />
-        )}
-        {firstPreparation && (
-          <CheckBox
-            value={rolled}
-            setValue={setRolled}
-            style={styles.margin5px}
-            text={string.rolled_stage}
-          />
+          <>
+            <CheckBox
+              value={limed}
+              setValue={setLimed}
+              style={styles.margin5px}
+              text={string.limed_stage}
+            />
+            <CheckBox
+              value={plowed}
+              setValue={setPlowed}
+              style={styles.margin5px}
+              text={string.plowed_stage}
+            />
+            <CheckBox
+              value={rolled}
+              setValue={setRolled}
+              style={styles.margin5px}
+              text={string.rolled_stage}
+            />
+          </>
         )}
         <CheckBox
           value={mulched}
