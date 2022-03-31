@@ -1,5 +1,5 @@
-export function roundNumber(number: number) {
-  return (Math.round(number * 100) / 100).toFixed(2);
+export function roundNumber(number: number, decimals: number) {
+  return (Math.round(number * 100) / 100).toFixed(decimals);
 }
 
 export function onlyNumberAndDot(value: string) {

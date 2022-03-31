@@ -210,7 +210,7 @@ export function useCrops(): Array<IProducts> {
       avgPriceEasy: 3,
       avgPriceMedium: 2,
       avgPriceHard: 1,
-      yieldPerHa: 1,
+      yieldPerHa: 36400,
       unit: string.liters,
     },
     {
