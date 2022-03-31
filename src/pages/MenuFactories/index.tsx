@@ -1,5 +1,6 @@
 // import {styles} from './styles';
 import * as Styles from './styles';
+// import {IButton} from '../MenuCrops';
 import {useFlavor} from '../../flavor';
 import {useNav} from '../../utils/hooks';
 import {useLanguage} from '../../languages';
@@ -9,11 +10,6 @@ import React from 'react';
 // import {useEffect, useState} from 'react';
 import IconButton from '../../components/IconButton';
 // import CustomButton from '../../components/CustomButton';
-
-// interface IButton {
-//   onPress: Function;
-//   icon: ImageURISource;
-// }
 
 const MenuFactories: React.FC = () => {
   // const animals = useAnimals();

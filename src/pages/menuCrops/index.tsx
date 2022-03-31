@@ -12,7 +12,8 @@ import CustomButton from '../../components/CustomButton';
 //*  It is the MenuCrop page.
 //*  This (page) allows users to select the culture (crop) they want to calculate.
 
-interface IButton {
+//* IButton interface to menu buttons
+export interface IButton {
   onPress: Function;
   icon: ImageURISource;
 }

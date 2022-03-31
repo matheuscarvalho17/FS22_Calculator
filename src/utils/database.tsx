@@ -19,7 +19,9 @@ export interface IProducts {
 
 //* Function to simulate a database of Animals Products
 export function useAnimals(): Array<IProducts> {
+  //* Language hook declaration
   const {string} = useLanguage();
+
   return [
     {
       name: string.silage,

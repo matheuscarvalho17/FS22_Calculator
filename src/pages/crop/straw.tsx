@@ -3,16 +3,12 @@ import * as Styles from './styles';
 import {useFlavor} from '../../flavor';
 import {useLanguage} from '../../languages';
 import {useCrops} from '../../utils/database';
+import CheckBox from '../../components/CheckBox';
 import ComboBox, {Data} from '../../components/ComboBox';
 import React, {useEffect, useMemo, useState} from 'react';
-import CheckBox from '../../components/CheckBox';
 
 //*  It is the StrawCrop internal component.
 //*  This (internal component) is used by Crop page to calculate a straw.
-interface ICombobox {
-  name: string;
-  strawPerHa: number;
-}
 interface IStrawProps {
   setBonus: Function;
   setRealBonus: Function;
@@ -122,14 +118,15 @@ const StrawCrop: React.FC<IStrawProps> = ({
 
   //* useEffects
   useEffect(() => {
-    const auxStrawCrop: Array<Data> = cropsWithStraw.map((item, index) => {
-      return {
+    let aux: Array<Data> = [];
+    cropsWithStraw.forEach((item, index) => {
+      aux.push({
         id: index,
         label: item.name,
         value: item.name,
-      };
+      });
     });
-    setStrawCropItens(auxStrawCrop);
+    setStrawCropItens(aux);
   }, []);
   useEffect(() => {
     const auxStrawCrop = crops.find(item => item.name === strawCrop.value);
