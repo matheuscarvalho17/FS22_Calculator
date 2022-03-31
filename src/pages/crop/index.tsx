@@ -2,6 +2,7 @@ import Grass from './grass';
 import Normal from './normal';
 import Cluster from './cluster';
 import {styles} from './styles';
+import StrawCrop from './straw';
 import * as Styles from './styles';
 import {useFlavor} from '../../flavor';
 import {useNav} from '../../utils/hooks';
@@ -14,7 +15,6 @@ import IconButton from '../../components/IconButton';
 import ComboBox, {Data} from '../../components/ComboBox';
 import React, {useEffect, useMemo, useState} from 'react';
 import {roundNumber, onlyNumberAndDot} from '../../utils/masks';
-import StrawCrop from './straw';
 
 //*  It is the Crop page.
 //*  This (page) allows users manage the props to calculate a yield and field.
@@ -32,10 +32,9 @@ const Crop: React.FC = ({}) => {
   const [bonus, setBonus] = useState<number>(0);
   const [realBonus, setRealBonus] = useState<number>(0);
   const [fieldSize, setFieldSize] = useState<string>('');
-  const [yieldField, setYieldField] = useState<number>(0);
   const [bonusLabel, setBonusLabel] = useState<number>(0);
-  const [multiplier, setMultiplier] = useState<number>(1);
   const [showWarn, setShowWarn] = useState<boolean>(false);
+  const [yieldResult, setYieldResult] = useState<number>(0);
   const [targetField, setTargetField] = useState<number>(0);
   const [warnMessage, setWarnMessage] = useState<string>('');
   const [mathBySize, setMathBySize] = useState<boolean>(true);
@@ -110,26 +109,42 @@ const Crop: React.FC = ({}) => {
     setBonusLabel(bonus);
   }
   function fieldCalculation(multiplierByCare: number) {
+    let parcialYield: number = 0;
+
+    if (crops[cropId].type === 'straw') {
+      parcialYield = strawYield;
+    } else {
+      parcialYield = yieldResult;
+    }
+
     let fieldSize: number =
       parseFloat(targetHarvester) /
-      (multiplierByCare * yieldField) /
+      (multiplierByCare * parcialYield) /
       unitsField[measureUnit.value ? measureUnit.value : '(ha)'];
 
     setTargetField(fieldSize);
     setMeasureUnitLabel(measureUnit.value ? measureUnit.value : '(ha)');
   }
   function yieldCalculation(multiplierByCare: number) {
+    let auxYield: number = 0;
+
     let yieldMultiplier: number =
       parseFloat(fieldSize) *
       multiplierByCare *
       unitsField[measureUnit.value ? measureUnit.value : '(ha)'];
 
-    setMultiplier(yieldMultiplier);
+    if (crops[cropId].type === 'straw') {
+      auxYield = strawYield * yieldMultiplier;
+    } else {
+      auxYield = crops[cropId].yieldPerHa * yieldMultiplier;
+    }
+
+    setYieldResult(auxYield);
   }
 
   //* useEffects
   useEffect(() => {
-    setYieldField(crops[cropId].yieldPerHa);
+    setYieldResult(crops[cropId].yieldPerHa);
   }, []);
   useEffect(() => {
     setFieldSize('');
@@ -161,7 +176,7 @@ const Crop: React.FC = ({}) => {
                   {string.yield} {measureUnit.value}:
                 </Styles.TextInfos>
                 <Styles.TextInfosAccent colors={colors}>
-                  {roundNumber(yieldField * multiplier)} {crops[cropId].unit}
+                  {roundNumber(yieldResult, 2)} {crops[cropId].unit}
                 </Styles.TextInfosAccent>
               </>
             ) : (
@@ -170,7 +185,7 @@ const Crop: React.FC = ({}) => {
                   {string.field_required}:
                 </Styles.TextInfos>
                 <Styles.TextInfosAccent colors={colors}>
-                  {roundNumber(targetField)} {measureUnitLabel}
+                  {roundNumber(targetField, 2)} {measureUnitLabel}
                 </Styles.TextInfosAccent>
               </>
             )}
@@ -178,7 +193,7 @@ const Crop: React.FC = ({}) => {
           <Styles.DivideView>
             <Styles.TextInfos colors={colors}>{string.bonus}:</Styles.TextInfos>
             <Styles.TextInfosAccent colors={colors}>
-              +{roundNumber(bonusLabel) + '%'}
+              +{roundNumber(bonusLabel, 1) + '%'}
             </Styles.TextInfosAccent>
           </Styles.DivideView>
         </>
@@ -192,13 +207,13 @@ const Crop: React.FC = ({}) => {
               value={mathBySize}
               setValue={() => setMathBySize(true)}
               style={styles.margin5px}
-              text={string.mathBySize}
+              text={string.math_by_size}
             />
             <CheckBox
               value={!mathBySize}
               setValue={() => setMathBySize(false)}
               style={styles.margin5px}
-              text={string.mathByHarvest}
+              text={string.math_by_harvest}
             />
           </>
           {/* //* Size or target and measure unit */}
@@ -235,17 +250,21 @@ const Crop: React.FC = ({}) => {
           </>
           {/* //* Care Bonuses type*/}
           <>
-            {crops[cropId].type == 'normal' && (
+            {crops[cropId].type === 'normal' && (
               <Normal setBonus={setBonus} setRealBonus={setRealBonus} />
             )}
-            {crops[cropId].type == 'cluster' && (
+            {crops[cropId].type === 'cluster' && (
               <Cluster setBonus={setBonus} setRealBonus={setRealBonus} />
             )}
-            {crops[cropId].type == 'grass' && (
+            {crops[cropId].type === 'grass' && (
               <Grass setBonus={setBonus} setRealBonus={setRealBonus} />
             )}
-            {crops[cropId].type == 'straw' && (
-              <StrawCrop setStrawYield={setStrawYield} />
+            {crops[cropId].type === 'straw' && (
+              <StrawCrop
+                setBonus={setBonus}
+                setRealBonus={setRealBonus}
+                setStrawYield={setStrawYield}
+              />
             )}
           </>
         </Styles.ScrollBody>

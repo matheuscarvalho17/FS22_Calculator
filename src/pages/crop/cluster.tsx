@@ -52,8 +52,10 @@ const ClusterCrop: React.FC<ICropProps> = ({setBonus, setRealBonus}) => {
   function bonusCalculation() {
     let multiplierByCare: number = 1;
 
+    multiplierByCare += 0.2;
+
     if (plowed) {
-      multiplierByCare += 0.35;
+      multiplierByCare += 0.15;
     }
     if (fertilized.value === 'half_fertilized') {
       multiplierByCare += 0.225;
@@ -61,6 +63,7 @@ const ClusterCrop: React.FC<ICropProps> = ({setBonus, setRealBonus}) => {
     if (fertilized.value === 'full_fertilized') {
       multiplierByCare += 0.45;
     }
+
     if (removedWeeds.value === 'mec_removed_weeds') {
       multiplierByCare += 0.2;
     }

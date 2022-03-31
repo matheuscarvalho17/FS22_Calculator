@@ -6,14 +6,14 @@ export interface ILanguageProps {
 }
 
 export interface ILanguage {
-  // !Main buttons and Title
+  //* Main buttons and Title
   crops: string;
   animals: string;
   products: string;
   language: string;
   appearance: string;
   title: string;
-  // !Labels
+  //* Labels
   bonus: string;
   price: string;
   yield: string;
@@ -54,11 +54,18 @@ export interface ILanguage {
   warn_yield_size: string;
   warn_harvest_target: string;
   warn_measure_unit: string;
+  warn_crop_origin: string;
   wip: string;
   calculation_method: string;
-  mathBySize: string;
-  mathByHarvest: string;
-  // !Crops
+  math_by_size: string;
+  math_by_harvest: string;
+  soil_preparation: string;
+  soil_preparation_first: string;
+  soil_preparation_continuous: string;
+  straw_crop_origins: string;
+  straw_by_crop_type: string;
+  select_straw_by_crop_type: string;
+  //* Crops
   barley: string;
   canola: string;
   chafft: string;
@@ -89,19 +96,16 @@ export interface ILanguage {
   wood_chips: string;
   wood_chips_round_bale: string;
   wood_chips_square_bale: string;
-  first_soil_preparation: string;
-  first_soil_preparation_check: string;
-  first_soil_preparation_not_check: string;
 }
 const strings: ILanguage = {
-  // !Main buttons and Title
+  //* Main buttons and Title
   crops: 'Crops',
   animals: 'Animals',
   products: 'Products',
   language: 'Language',
   appearance: 'Appearance',
   title: 'Farming Calculator',
-  // !Labels
+  //* Labels
   price: 'Price',
   bonus: 'Bonus',
   yield: 'Yield',
@@ -135,18 +139,25 @@ const strings: ILanguage = {
   square_foot: 'Square Foot (ft²)',
   enter_harvester_target: 'Enter the harvester target',
   enter_field_size: 'Enter the field size',
-  field_care: 'About field care',
-  field_size: 'About field size and measure unit',
+  field_care: 'Report about field care',
+  field_size: 'Enter the field size and its measure unit',
   field_required: 'Field size',
-  harvest_target: 'About harvest target and measure unit',
+  harvest_target: 'Enter the harvest target and field unit measurement',
   warn_yield_size: 'Invalid yield size',
   warn_harvest_target: 'Invalid harvest target',
   warn_measure_unit: 'Invalid measure unit',
+  warn_crop_origin: 'Invalid crop origin',
   wip: 'Work in progress',
   calculation_method: 'Select the calculation method',
-  mathBySize: 'By field size',
-  mathByHarvest: 'By harvest target',
-  // !Crops
+  math_by_size: 'By field size',
+  math_by_harvest: 'By harvest target',
+  soil_preparation: 'About soil preparation',
+  soil_preparation_first: 'First soil preparation',
+  soil_preparation_continuous: 'Continuous soil preparation',
+  straw_crop_origins: 'Select the crop to calculate straw yield',
+  straw_by_crop_type: 'Planted crop',
+  select_straw_by_crop_type: 'Select the crop',
+  //* Crops
   barley: 'Barley',
   canola: 'Canola',
   chafft: 'Chafft',
@@ -177,9 +188,6 @@ const strings: ILanguage = {
   wood_chips: 'Wood Chips',
   wood_chips_round_bale: 'Wood Chips Round Bale',
   wood_chips_square_bale: 'Wood Chips Square Bale',
-  first_soil_preparation: 'About soil preparation',
-  first_soil_preparation_check: 'First soil preparation',
-  first_soil_preparation_not_check: 'Not first soil preparation',
 };
 
 const US: ILanguageProps = {

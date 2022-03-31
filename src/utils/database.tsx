@@ -48,7 +48,7 @@ export function useCrops(): Array<IProducts> {
       avgPriceMedium: 2,
       avgPriceHard: 1,
       yieldPerHa: 8900,
-      strawPerHa: 1000,
+      strawPerHa: 36400,
       unit: string.liters,
     },
     {
@@ -59,7 +59,7 @@ export function useCrops(): Array<IProducts> {
       avgPriceMedium: 2,
       avgPriceHard: 1,
       yieldPerHa: 9600,
-      strawPerHa: 2000,
+      strawPerHa: 36450,
       unit: string.liters,
     },
     {
@@ -70,7 +70,7 @@ export function useCrops(): Array<IProducts> {
       avgPriceMedium: 2,
       avgPriceHard: 1,
       yieldPerHa: 5700,
-      strawPerHa: 3000,
+      strawPerHa: 36500,
       unit: string.liters,
     },
     {
@@ -210,7 +210,7 @@ export function useCrops(): Array<IProducts> {
       avgPriceEasy: 3,
       avgPriceMedium: 2,
       avgPriceHard: 1,
-      yieldPerHa: 1,
+      yieldPerHa: 36400,
       unit: string.liters,
     },
     {

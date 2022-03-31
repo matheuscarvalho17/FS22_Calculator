@@ -63,7 +63,7 @@ export const warnMessage = styled.Text`
   font-weight: bold;
   text-align: center;
   margin-bottom: ${hp(1)}px;
-  font-size: ${hp(3.5)}px;
+  font-size: ${hp(3)}px;
 `;
 export const ScrollBody = styled.ScrollView`
   flex: 1;

@@ -2,14 +2,14 @@ import {ILanguage, ILanguageProps, US} from '../English';
 
 const strings: ILanguage = {
   ...US.string,
-  // Botões do Menu e Títulos
+  //* Botões do Menu e Títulos
   crops: 'Culturas',
   animals: 'Animais',
   products: 'Produtos',
   language: 'Idioma',
   appearance: 'Aparência',
   title: 'Calculadora do Farming',
-  // Rótulos
+  //* Rótulos
   bonus: 'Bônus',
   price: 'Preço',
   yield: 'Rendimento',
@@ -43,18 +43,25 @@ const strings: ILanguage = {
   square_foot: 'Pé quadrado (ft²)',
   enter_harvester_target: 'Digite a meta de colheita',
   enter_field_size: 'Digite o tamanho do campo',
-  field_care: 'Sobre cuidados com o campo',
-  field_size: 'Sobre dimensão do campo e unidade de medida',
+  field_care: 'Informe sobre os cuidados com o campo',
+  field_size: 'Informe a dimensão do campo e sua unidade de medida',
   field_required: 'Dimensão do campo',
-  harvest_target: 'Sobre a meta de colheita e a unidade de medida',
+  harvest_target: 'Informe a meta de colheita e a unidade de medida do campo',
   warn_yield_size: 'Tamanho do campo inválido',
   warn_harvest_target: 'Meta de colheita inválida',
   warn_measure_unit: 'Unidade de medida inválida',
+  warn_crop_origin: 'Origem da cultura inválida',
   wip: 'Em desenvolvimento',
   calculation_method: 'Selecione o método de cálculo',
-  mathBySize: 'Por tamanho do campo',
-  mathByHarvest: 'Por meta de colheita',
-  // Culturas
+  math_by_size: 'Por tamanho do campo',
+  math_by_harvest: 'Por meta de colheita',
+  soil_preparation: 'Sobre a preparação de solo',
+  soil_preparation_first: 'Primeira preparação de solo',
+  soil_preparation_continuous: 'Preparação de solo contínua',
+  straw_crop_origins: 'Selecione a cultura para calcular o rendimento de palha',
+  straw_by_crop_type: 'Cultura plantada',
+  select_straw_by_crop_type: 'Selecione a cultura',
+  //* Culturas
   barley: 'Cevada',
   canola: 'Canola',
   chafft: 'Restolho',
