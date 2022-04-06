@@ -1,7 +1,7 @@
+import {JP} from './Japones';
 import {PT} from './Portuguese';
 import {ILanguage, US} from './English';
-import {useAppContext} from '../Context';
-import {JP} from './Japones';
+import {useAppContext} from '../utils/Context';
 
 export const listOfLanguages: any = {
   US: {language: US},

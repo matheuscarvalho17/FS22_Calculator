@@ -1,9 +1,9 @@
 import Routes from './src/routes';
-import {Context} from './src/Context';
 import {StatusBar} from 'react-native';
 import {AppRegistry} from 'react-native';
 import Logo from './src/assets/logo/logo';
 import {name as appName} from './app.json';
+import {Context} from './src/utils/Context';
 import React, {useEffect, useState} from 'react';
 import AnimatedSplash from 'react-native-animated-splash-screen';
 

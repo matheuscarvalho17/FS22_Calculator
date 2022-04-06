@@ -3,7 +3,7 @@ import {Fendt} from './fendt';
 import {IColors} from './fs22/colors';
 import {JohnDeere} from './johnDeere';
 import {NewHolland} from './newHolland';
-import {useAppContext} from '../Context';
+import {useAppContext} from '../utils/Context';
 import {MasseyFerguson} from './masseyFerguson';
 
 export const listOfFlavors: any = {

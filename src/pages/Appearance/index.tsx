@@ -3,9 +3,9 @@ import * as Styles from './styles';
 import {useFlavor} from '../../flavor';
 import {useNav} from '../../utils/hooks';
 import {listOfFlavors} from '../../flavor';
-import {useAppContext} from '../../Context';
 import {useLanguage} from '../../languages';
 import Button from '../../components/Button';
+import {useAppContext} from '../../utils/Context';
 import IconButton from '../../components/IconButton';
 
 //*  It is the Language page.

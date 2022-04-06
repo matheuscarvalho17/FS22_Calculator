@@ -2,7 +2,7 @@ import React from 'react';
 import * as Styles from './styles';
 import {useFlavor} from '../../flavor';
 import {useNav} from '../../utils/hooks';
-import {useAppContext} from '../../Context';
+import {useAppContext} from '../../utils/Context';
 import Button from '../../components/CustomButton';
 import IconButton from '../../components/IconButton';
 import {listOfLanguages, useLanguage} from '../../languages';
