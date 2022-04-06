@@ -10,9 +10,9 @@ import AnimatedSplash from 'react-native-animated-splash-screen';
 //*  It is the first page that is loaded when the application is launched.
 //*  This (page) loads the main components in app: Splash screen, Context, Status Bar and redirects to Routes.
 
-const MainIndex: React.FC = () => {
+export default function MainIndex() {
   //* useState declaration
-  const [splash, setSplash] = useState<boolean>(false);
+  const [splash, setSplash] = useState(false);
 
   //* useEffect's
   useEffect(() => {
@@ -33,8 +33,6 @@ const MainIndex: React.FC = () => {
       </Context>
     </AnimatedSplash>
   );
-};
+}
 
 AppRegistry.registerComponent(appName, () => MainIndex);
-
-export default MainIndex;
