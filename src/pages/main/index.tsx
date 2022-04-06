@@ -7,7 +7,7 @@ import Button from '../../components/Button';
 import {version} from '../../../package.json';
 import IconButton from '../../components/IconButton';
 
-//*  It is the first page that is loaded when the app is started.
+//*  It is the first page that the user has access to when the application is launched.
 //*  This (page) informs users about the app version and redirects to the functionalities pages, like:
 //*  Select the Harvest Products, Animal Products or Factory Products.
 //*  Change the language or appearance.
